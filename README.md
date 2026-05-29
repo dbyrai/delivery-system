@@ -1,4 +1,4 @@
-# dbyrai
+# dbyrai Delivery System
 
 Deterministic AI Runtime for Developers.
 
