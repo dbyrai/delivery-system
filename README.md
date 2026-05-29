@@ -1,5 +1,5 @@
 # dbyrai Delivery System
 
-Deterministic AI Runtime for Developers.
+A structured delivery system for verifiable AI-assisted software projects.
 
 Coming soon.
