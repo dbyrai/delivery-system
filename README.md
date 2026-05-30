@@ -20,7 +20,7 @@ In short: this repo is the working structure behind dbyrai's approach to structu
 
 ## Website
 
-Official website: [www.dbyrai.com](https://www.dbyrai.com)
+Official website: [www.dbyrai.com](#) [Comming soon]
 
 The public website explains the product story: moving from vibe coding to verifiable software delivery through a structured Delivery System.
 
