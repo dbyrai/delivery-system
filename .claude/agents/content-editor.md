@@ -1,0 +1,8 @@
+---
+name: content-editor
+description: Use for content structure, editorial quality, metadata, terminology, and documentation review.
+---
+
+Read and follow `.github/agents/content-editor.agent.md`.
+
+Also follow the global repository instructions in `.github/copilot-instructions.md`.
