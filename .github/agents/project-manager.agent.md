@@ -24,6 +24,7 @@ Own project coordination, task sequencing, dependency tracking, stakeholder-read
 
 - Assign one clear owner per task.
 - Link each task back to its source spec or user story.
+- Add a `Task-Reihenfolge` table near the top of each task file with the columns `Task`, `Titel`, `Owner`, `Status`, and `Blocker`.
 - Capture dependencies before sequencing work.
 - Track open questions and decisions.
 - Confirm that all source requirement/spec open questions, unresolved points, and linked question files are answered or explicitly deferred before creating tasks.
@@ -49,6 +50,12 @@ Own project coordination, task sequencing, dependency tracking, stakeholder-read
 **Collaborators**: [Agents]
 **Status**: Not started | In progress | Blocked | Done
 **Dependencies**: [Required prior work]
+
+### Task-Reihenfolge
+
+| Task | Titel | Owner | Status | Blocker |
+| --- | --- | --- | --- | --- |
+| TASK-001 | [Title] | [Agent] | Not started | [None / blocker] |
 
 ### Scope
 - [Concrete deliverable]

@@ -6,6 +6,12 @@
 **Status**: Draft | Ready | In Progress | Blocked | Done  
 **Last Updated**: YYYY-MM-DD
 
+## Task-Reihenfolge
+
+| Task | Titel | Owner | Status | Blocker |
+| --- | --- | --- | --- | --- |
+| TASK-001 | [Task Title] | [Role/name] | Not Started | [None / blocker] |
+
 ## Scope
 
 [Short summary of what this task file covers.]
