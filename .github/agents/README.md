@@ -6,6 +6,14 @@ Use these files as scoped role prompts. They are not standalone project plans; t
 
 Claude subagent wrappers may live in `.claude/agents/`, but they should only delegate to these `.github/agents/*.agent.md` files instead of duplicating role guidance.
 
+## Tool Integration
+
+| Tool | Config Location | Notes |
+| --- | --- | --- |
+| Kiro | `.kiro/steering/`, `.kiro/specs/` | Spec-driven workflow (requirements → design → tasks) |
+| GitHub Copilot / Codex | `.github/copilot-instructions.md` | Project instructions |
+| Claude Code | `.claude/agents/` | Wrappers delegating to `.github/agents/` |
+
 ## Available Agents
 
 | Agent | File | Primary Ownership |
@@ -25,6 +33,13 @@ Claude subagent wrappers may live in `.claude/agents/`, but they should only del
 3. If the work crosses roles, keep one primary owner and list collaborators.
 4. Use the Technical Lead for architectural decisions, cross-role conflicts, and final technical approval.
 5. Use the Project Manager for sequencing, task creation, dependency tracking, and stakeholder-ready summaries.
+
+All tools share this agent role guidance.
+When working in Kiro spec-driven mode:
+- Tasks derive from specs in `.kiro/specs/` or `docs/specs/`.
+- Follow the spec's requirements and design before implementing.
+- Mark tasks complete only when acceptance criteria are met.
+- Reference the source spec when reporting completion.
 
 ## Typical Ownership
 
