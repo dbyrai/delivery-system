@@ -30,6 +30,8 @@ The public website explains the product story: moving from vibe coding to verifi
 - `.github/copilot-instructions.md` - project instructions for AI assistants
 - `.github/agents/` - role-specific guidance for GitHub Copilot, ChatGPT Codex, Claude Code, and other AI-assisted project workflows
 - `.claude/agents/` - Claude Code wrappers that delegate to the shared `.github/agents/` role guidance
+- `.kiro/steering/` - Kiro steering files with persistent session instructions
+- `.kiro/specs/` - Kiro-native spec files for spec-driven development
 - `delivery-system.md` - bootstrap process for starting a new project from this structure
 - `docs/project/` - project overview, roadmap, and decisions
 - `docs/specs/` - requirements and specification templates
@@ -148,6 +150,9 @@ company-platform/
     agents/
   .claude/
     agents/
+  .kiro/
+    specs/
+    steering/
   docs/
     project/
       overview.md
@@ -190,6 +195,64 @@ company-platform/
 ```
 
 Use the root `docs/` for shared product, architecture, security, and delivery decisions. Use each subproject's `docs/` for local requirements, tasks, acceptance criteria, and verification evidence.
+
+## Using Kiro
+
+[Kiro](https://kiro.dev) is an AI-powered development environment built on VS Code. If you use Kiro as your IDE, this repository includes dedicated configuration that enables structured, spec-driven development with tighter agent control.
+
+### Kiro-Specific Files
+
+- `.kiro/steering/project-instructions.md` - steering file loaded into every Kiro session, defining behavior rules, source-of-truth priority, and code/language policies
+- `.kiro/specs/` - directory for Kiro-native spec files that drive the spec-driven workflow
+- `.kiro/hooks/` - optional agent hooks that automate actions on IDE events (file saves, task execution, etc.)
+
+### Spec-Driven Development in Kiro
+
+Kiro supports a structured development workflow where features move through three stages before implementation begins:
+
+1. **Requirements** - capture the goal, user stories, acceptance criteria, and open questions.
+2. **Design** - define the technical approach, data models, API contracts, and component structure.
+3. **Tasks** - break the design into sequenced implementation steps with verification criteria.
+
+Each stage is reviewed before advancing. Implementation does not start until a spec is approved or the user gives explicit instruction.
+
+Key principles:
+
+- Specs define scope. Tasks are generated from specs and executed sequentially.
+- Each task has clear acceptance criteria and a verification step.
+- Open questions block progress until resolved or explicitly deferred.
+- Project-level specs live in `docs/specs/`. Kiro-native spec files go in `.kiro/specs/`.
+- Specs can reference external files (OpenAPI schemas, GraphQL definitions, etc.) via `#[[file:<path>]]` syntax.
+
+### Steering Files
+
+Steering files (`.kiro/steering/*.md`) are additional instructions loaded into Kiro sessions. They provide persistent context without requiring the user to repeat it in every prompt.
+
+The current steering file defines:
+
+- Source-of-truth priority order (user instructions > docs > steering > code conventions > agents > best practices)
+- Open question gating rules (unanswered questions block implementation)
+- Code policy (tech stack, style, verification expectations)
+- Language policy (German for UI, English for code and docs)
+- Agent role mapping
+- Delivery standards for task completion
+
+Steering files can be scoped to always load, to match specific file patterns, or to be included manually via context keys.
+
+### Hooks
+
+Kiro hooks automate agent behavior on IDE events. Hooks are JSON files stored in `.kiro/hooks/` and can be triggered by events like file saves, task execution, or session start. They are useful for enforcing standards (linting on save, running tests after task completion) without manual intervention.
+
+### Kiro Workflow Summary
+
+```text
+1. Create or review a spec (requirements → design → tasks)
+2. Resolve open questions before generating tasks
+3. Execute tasks sequentially with verification at each step
+4. Steering rules and hooks enforce consistent behavior across sessions
+```
+
+For projects that do not use Kiro, the same principles apply through the standard `docs/` structure, `.github/agents/`, and `copilot-instructions.md`.
 
 ## Current Status
 
