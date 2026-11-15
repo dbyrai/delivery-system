@@ -36,6 +36,7 @@ The public website explains the product story: moving from vibe coding to verifi
 - `docs/specs/baseline/` - baseline functional, non-functional, security, and acceptance requirements
 - `docs/tasks/` - implementation task templates and task artifacts
 - `docs/quality/` - Definition of Done, test strategy, and manual test structure
+- `addons/` - optional integration instructions and AI prompts for external delivery tools
 - `howto/` - optional walkthroughs and prompt examples for trying the Delivery System
 
 The agents are intentionally kept global. They describe stable role behavior instead of assuming a specific product, architecture, or delivery process. During project bootstrap, review the agents against the project overview and scope. Keep them generic when possible, but adapt them when a project needs clearer ownership, terminology, or workflow rules.
@@ -111,6 +112,19 @@ The default [shared instructions](.github/copilot-instructions.md#task-routing-a
 - Existing v1 adopters should follow the [v1-to-v2 upgrade guide](howto/upgrades/v1-to-v2.md). This is a workflow migration, not a bulk replacement of completed project documents.
 
 Reducing unnecessary context is a goal, not a guarantee for a particular context-window size or model. Tool-specific instruction support varies; inspect the active client and distinguish static checks from live verification.
+
+## Optional Integration Add-ons
+
+Use the [add-on guide](addons/README.md) to select Jira, Confluence, GitHub Projects,
+or GitLab integration instructions and a copyable AI adaptation prompt. These
+files install no connection and are loaded only for the selected integration.
+Project-specific decisions and durable operating rules stay in the project's
+existing documentation root.
+
+Existing v2.0 projects can follow the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
+Adoption is optional. Users can delete individual add-ons or the entire `addons/`
+directory and remove associated links; see the [removal instructions](addons/README.md#removing-instruction-files).
+Deleting instructions does not disable an already configured external connection.
 
 ## Optional Delivery Diagnostics
 
