@@ -32,7 +32,8 @@ DASH-001
 - Every task should link to a source spec or requirement.
 - Every task should have one primary owner.
 - Every task should include verification expectations.
-- Every task file should include a `Task-Reihenfolge` table near the top with the columns `Task`, `Titel`, `Owner`, `Status`, and `Blocker`.
+- Every task file should include a `Task Order` table near the top with the columns `Task`, `Title`, `Owner`, `Status`, and `Blocker`.
+- The table and detail sections describe the same individual tasks. Keep IDs, titles, owners, statuses, and blockers consistent in both places when making changes. The template uses `Not Started`, `In Progress`, `Blocked`, and `Done` for individual tasks; the file statuses `Draft` and `Ready` describe the task file as a whole.
 - Keep implementation notes separate from acceptance criteria.
 - Put large supporting material in `tasks/artifacts/` and link to it.
 - Do not create tasks until the source requirement or spec has no unanswered blocking open questions, unresolved points, or unresolved linked question files.
