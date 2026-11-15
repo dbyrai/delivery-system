@@ -89,6 +89,36 @@ For a practical walkthrough, see:
 howto/new-project-ai-bootstrap-prompts.md
 ```
 
+## Shared AI Instructions
+
+Maintain common workflow rules in [`.github/copilot-instructions.md`](.github/copilot-instructions.md) and role guidance in [`.github/agents/`](.github/agents/README.md). Tool-specific entry files route to these shared sources so changes do not need to be copied between tools.
+
+| Tool | Entry point | Shared instructions |
+| --- | --- | --- |
+| Codex | `AGENTS.md` | Explicit instruction to read `.github/copilot-instructions.md` |
+| Claude Code | `CLAUDE.md` | Imports `.github/copilot-instructions.md` using `@` syntax |
+| GitHub Copilot | `.github/copilot-instructions.md` | Uses the shared file directly on supported surfaces with repository instructions enabled |
+
+The files in `.claude/agents/` and `.codex/agents/` already reference the same role files and shared instructions. Other assistants need access to these files and an entry instruction to read them. For a web chat without repository access, supply the shared instructions and relevant project files as context. Verify instruction loading in each tool; these documents guide model behavior and are not an enforcement mechanism.
+
+## Optional Delivery Diagnostics
+
+When following the [shared AI instructions](.github/copilot-instructions.md#optional-diagnostic-gate), you can enable a visible diagnostic block showing which project instructions and relevant files the agent has read, which role it selected, and how many subagents it plans to use. Diagnostic output is **off by default**. Reading, review, and approval obligations still apply when the block is hidden.
+
+Send either instruction in the chat:
+
+```text
+Delivery diagnostics: on
+```
+
+```text
+Delivery diagnostics: off
+```
+
+The latest explicit choice applies for the rest of that chat until changed. To limit it to one task, say “Delivery diagnostics: on for this task only”; the previous setting resumes afterward. These are natural-language instructions for the agent, not terminal commands or an application setting.
+
+For a persistent project default, change `Delivery diagnostics default: off` to `Delivery diagnostics default: on` in `.github/copilot-instructions.md`. Chat instructions override that default without modifying files and do not automatically carry over to other chats.
+
 ## Adoption Paths
 
 The Delivery System can be used in two ways:

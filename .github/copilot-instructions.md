@@ -2,6 +2,43 @@
 
 These instructions define the default behavior for AI assistants working in this repository. They are intended to be usable by GitHub Copilot, Codex, Claude, and other AI coding agents.
 
+## Mandatory Workflow
+
+Before every new task, read the applicable tool entry file (such as `AGENTS.md` or `CLAUDE.md`, when present), these shared instructions in `.github/copilot-instructions.md`, `delivery-system.md`, and `docs/project/overview.md`. Paths in these shared instructions are relative to the repository root. Instructions already loaded in the current context count as read; do not recursively reload entry files or these shared instructions. Then select the appropriate agent using `.github/agents/README.md` and read its complete agent file. Load only relevant specs, architecture documents, task files, and source files in addition to these instructions.
+
+### Optional Diagnostic Gate
+
+Delivery diagnostics default: off
+
+The diagnostic gate controls only whether the following block is displayed. All applicable reading, role, verification, and approval obligations remain in effect when diagnostics are disabled.
+
+- `Delivery diagnostics: on` in a user message enables the output.
+- `Delivery diagnostics: off` in a user message disables the output.
+- The latest explicit user choice applies for the rest of the chat until changed. A choice explicitly limited to one task applies only to that task; the previous setting resumes afterward.
+- Without an explicit chat choice, use `Delivery diagnostics default` from this file. For a persistent project default, the user can set this value to `on` or `off`. Changing the setting in chat does not modify files or automatically carry over to other chats.
+
+When diagnostics are enabled, display this diagnostic gate before analyzing or implementing a new task, using only values actually established. When diagnostics are disabled, omit the block; necessary clarification questions and blocker notices still apply.
+
+```text
+Delivery System:
+- tool entry file: <Path read or not applicable>
+- shared instructions loaded: yes/no
+- delivery-system.md read: yes/no
+- project overview read: yes/no
+- selected agent: <Agent>
+- agent file: <Path read>
+- relevant spec(s): <Files read or none>
+- relevant architecture documents: <Files read or none>
+- relevant task(s): <Files read or none>
+- planned subagents: <Count>
+```
+
+### Work Boundaries Regardless of Diagnostics
+
+Selecting an agent initially applies only its role instructions. The default is `planned subagents: 0`. Subagents are permitted only when explicitly required by the workflow, for clearly separated parallel work, for a necessary independent specialist review, or when explicitly requested by the user.
+
+Use as little context as possible and as much as necessary. Do not independently expand scope, overwrite others' changes, perform unrequested refactoring, upgrades, architecture, CI/CD, or formatting changes, or automatically commit, push, rebase, or reset. Limit tests and tool output to the affected area. Stop after final verification and do not independently start a follow-up task.
+
 ## Project Context
 
 This repository is the working space for a project that will be specified in more detail over time.

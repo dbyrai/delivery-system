@@ -302,6 +302,8 @@ docs/tasks/020-dashboard-tasks.md
 
 Split into one file per task only when tasks become large, long-lived, independently owned, or need separate artifacts.
 
+Use `TASK-<spec-number>-<sequence>` for new individual tasks, for example `TASK-010-001` and `TASK-010-002` in `010-authentication-tasks.md`. Keep assigned IDs stable when reordering tasks or splitting files. See [task naming and ID rules](docs/tasks/README.md#file-names-and-task-ids) for numbering, references, and adoption by existing projects.
+
 ## Existing Project Layout Example
 
 For an existing single-project repository, add the Delivery System around the current application structure:
@@ -424,9 +426,11 @@ Only create a top-level `docs/manuals/` directory if the project needs user manu
 
 ## AI Usage Guidance
 
+Maintain shared workflow rules, the diagnostic default, and work boundaries in `.github/copilot-instructions.md`. Keep `AGENTS.md` and `CLAUDE.md` as thin tool-specific entry points, and keep role guidance in `.github/agents/`. Do not copy common rules into each wrapper.
+
 For ChatGPT Codex:
 
-- Start from `AGENTS.md`.
+- Start from `AGENTS.md` and follow its reference to `.github/copilot-instructions.md`.
 - Then read the relevant files under `docs/`.
 - Use `.github/agents/` for role-specific behavior.
 
@@ -437,7 +441,7 @@ For GitHub Copilot:
 
 For Claude Code:
 
-- Start from `CLAUDE.md`.
+- Start from `CLAUDE.md`, which imports `.github/copilot-instructions.md`.
 - Use `.claude/agents/` only as wrappers.
 - Keep `.github/agents/` as the shared source for role guidance.
 
