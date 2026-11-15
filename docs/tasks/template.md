@@ -6,9 +6,13 @@
 **Status**: Draft | Ready | In Progress | Blocked | Done  
 **Last Updated**: YYYY-MM-DD
 
-## Task-Reihenfolge
+## Task Order
 
-| Task | Titel | Owner | Status | Blocker |
+The table summarizes individual tasks. IDs, titles, owners, statuses, and
+blockers match the corresponding detail sections; the file status above
+describes the task file as a whole.
+
+| Task | Title | Owner | Status | Blocker |
 | --- | --- | --- | --- | --- |
 | TASK-001 | [Task Title] | [Role/name] | Not Started | [None / blocker] |
 
@@ -45,6 +49,7 @@
 #### Verification
 
 - [Command, review, test, or manual check]
+- [After execution: result and known verification limitations, if any]
 
 #### Open Questions
 

@@ -37,6 +37,12 @@ Examples:
 - Manual test results
 - Known failures and explanations
 
+A verification command initially describes only the planned check. After
+execution, record the actual result and known limitations in the existing
+verification section or linked evidence. A successful local test establishes
+only what was checked; report device acceptance, a release build, or a
+production deployment as verified only when separate evidence supports it.
+
 ## Open Questions
 
 - Supported environments: TBD

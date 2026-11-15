@@ -50,7 +50,7 @@ Each agent should:
 4. Verify the result with appropriate commands or review checks.
 5. Provide a concise handoff with changed files, verification, risks, and next steps.
 
-When creating or updating task files, keep a `Task-Reihenfolge` table near the top with the columns `Task`, `Titel`, `Owner`, `Status`, and `Blocker`.
+When creating or updating task files, keep a `Task Order` table near the top with the columns `Task`, `Title`, `Owner`, `Status`, and `Blocker`.
 
 ## Handoff Format
 
