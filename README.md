@@ -99,11 +99,22 @@ Maintain common workflow rules in [`.github/copilot-instructions.md`](.github/co
 | Claude Code | `CLAUDE.md` | Imports `.github/copilot-instructions.md` using `@` syntax |
 | GitHub Copilot | `.github/copilot-instructions.md` | Uses the shared file directly on supported surfaces with repository instructions enabled |
 
-The files in `.claude/agents/` and `.codex/agents/` already reference the same role files and shared instructions. Other assistants need access to these files and an entry instruction to read them. For a web chat without repository access, supply the shared instructions and relevant project files as context. Verify instruction loading in each tool; these documents guide model behavior and are not an enforcement mechanism.
+The files in `.claude/agents/` and `.codex/agents/` reference the same role profiles. Global rules come from the tool entry points and repository instructions rather than being repeated in each adapter. Other assistants need access to these files and an entry instruction to read them. For a web chat without repository access, supply the shared instructions and relevant project files as context. Verify instruction loading in each tool; these documents guide model behavior and are not an enforcement mechanism.
+
+## Context-Aware Workflow in v2
+
+The default [shared instructions](.github/copilot-instructions.md#task-routing-and-context-loading) classify the task before loading project documents. The full bootstrap handbook, overview, baselines, and all roles are no longer mandatory reading for every request. Linked blockers, security requirements, acceptance criteria, and authorization gates remain binding.
+
+- New projects use the optimized instructions directly; no separate optimization prompt is needed.
+- Read [Context Optimization](howto/context-optimization.md) for file responsibilities and focused loading examples.
+- Use the [migration prompt](howto/prompts/context-optimization.md) to adapt an existing repository, preserving its local rules.
+- Existing v1 adopters should follow the [v1-to-v2 upgrade guide](howto/upgrades/v1-to-v2.md). This is a workflow migration, not a bulk replacement of completed project documents.
+
+Reducing unnecessary context is a goal, not a guarantee for a particular context-window size or model. Tool-specific instruction support varies; inspect the active client and distinguish static checks from live verification.
 
 ## Optional Delivery Diagnostics
 
-When following the [shared AI instructions](.github/copilot-instructions.md#optional-diagnostic-gate), you can enable a visible diagnostic block showing which project instructions and relevant files the agent has read, which role it selected, and how many subagents it plans to use. Diagnostic output is **off by default**. Reading, review, and approval obligations still apply when the block is hidden.
+When following the [shared AI instructions](.github/copilot-instructions.md#optional-diagnostic-gate), you can enable a compact diagnostic block showing the task type, selected role and role file, project sources actually loaded, and planned subagent count. It is emitted after routing and before detailed analysis; documents are not loaded merely to fill its fields. Diagnostic output is **off by default**. Reading, review, and approval obligations still apply when the block is hidden.
 
 Send either instruction in the chat:
 

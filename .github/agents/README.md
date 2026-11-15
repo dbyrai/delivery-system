@@ -1,77 +1,17 @@
-# AI Agent Roles
+# Role Index
 
-This directory defines role-specific operating instructions for AI agents working in this repository.
+Use this index to select one primary owner under the [shared workflow](../copilot-instructions.md#task-routing-and-context-loading). Read only the selected role file; add another role only for an actual handoff or bounded collaboration. Tool adapters register roles and refer to these profiles; they do not own global rules.
 
-Use these files as scoped role prompts. They are not standalone project plans; they complement the repository specs, task files, and `.github/copilot-instructions.md`.
-
-Claude subagent wrappers may live in `.claude/agents/`, but they should only delegate to these `.github/agents/*.agent.md` files instead of duplicating role guidance.
-
-## Available Agents
-
-| Agent | File | Primary Ownership |
+| Role | File | Responsibility |
 | --- | --- | --- |
-| Project Manager | `project-manager.agent.md` | Planning, sequencing, stakeholder communication, task breakdown |
-| Technical Lead | `technical-lead.agent.md` | Architecture, technical decisions, review, risk management |
-| DevOps Engineer | `devops-engineer.agent.md` | Infrastructure, environments, deployment, operations |
-| Backend Developer | `backend-developer.agent.md` | Backend services, APIs, data models, integrations |
-| Frontend Developer | `frontend-developer.agent.md` | Frontend application, UI behavior, routing, client-side integration |
-| QA Engineer | `qa-engineer.agent.md` | Integration tests, acceptance verification, regression checks |
-| Content Editor | `content-editor.agent.md` | Content structure, editorial quality, metadata, documentation review |
+| project-manager | [project-manager.agent.md](project-manager.agent.md) | Planning, readiness, task sequencing, dependencies, and delivery status |
+| technical-lead | [technical-lead.agent.md](technical-lead.agent.md) | Architecture, cross-role decisions, integration review, and readiness |
+| devops-engineer | [devops-engineer.agent.md](devops-engineer.agent.md) | Environments, infrastructure, pipelines, releases, and recovery |
+| backend-developer | [backend-developer.agent.md](backend-developer.agent.md) | APIs, data models, authentication/authorization, and integrations |
+| frontend-developer | [frontend-developer.agent.md](frontend-developer.agent.md) | UI, routing, accessibility, client state, and API integration |
+| qa-engineer | [qa-engineer.agent.md](qa-engineer.agent.md) | Acceptance evidence, integration tests, and regression checks |
+| content-editor | [content-editor.agent.md](content-editor.agent.md) | Content structure, terminology, metadata, and documentation quality |
 
-## How To Select An Agent
+For mixed work, choose the role owning the main deliverable and identify any required handoff. Keep architecture decisions with the Technical Lead, implementation with its developer/operations owner, and verification evidence with QA when a separate review is required. This routing does not authorize spawning agents; the shared delegation rules apply.
 
-1. Identify the dominant work area.
-2. Select the agent whose ownership best matches that area.
-3. If the work crosses roles, keep one primary owner and list collaborators.
-4. Use the Technical Lead for architectural decisions, cross-role conflicts, and final technical approval.
-5. Use the Project Manager for sequencing, task creation, dependency tracking, and stakeholder-ready summaries.
-
-## Typical Ownership
-
-| Work Area | Primary Agent | Required Collaboration |
-| --- | --- | --- |
-| Infrastructure and local environments | DevOps Engineer | Technical Lead, QA Engineer |
-| Deployment and operations | DevOps Engineer | Technical Lead, Project Manager |
-| Backend services and APIs | Backend Developer | Frontend Developer, Technical Lead |
-| Data models and integration contracts | Backend Developer | Frontend Developer, Content Editor |
-| Frontend application and UI behavior | Frontend Developer | QA Engineer, Technical Lead |
-| Client-side integration | Frontend Developer | Backend Developer, QA Engineer |
-| Testing and acceptance verification | QA Engineer | Frontend Developer, Technical Lead |
-| Content and documentation quality | Content Editor | Project Manager, Technical Lead |
-| Project sequencing and reporting | Project Manager | All agents |
-
-## Standard Agent Workflow
-
-Each agent should:
-
-1. Read the relevant specs, tasks, and current files before acting.
-2. Confirm scope, assumptions, dependencies, and non-goals.
-3. Make the smallest useful change that satisfies the task.
-4. Verify the result with appropriate commands or review checks.
-5. Provide a concise handoff with changed files, verification, risks, and next steps.
-
-When creating or updating task files, follow [the task documentation](../../docs/tasks/README.md). Keep a `Task Order` table near the top with the columns `Task`, `Title`, `Owner`, `Status`, and `Blocker`. New task IDs use `TASK-<spec-number>-<sequence>`, for example `TASK-010-001`; retain IDs when reordering or splitting files. Follow the language policy in `.github/copilot-instructions.md` for delivery documents under `project`, `specs`, and `tasks` as well.
-
-## Handoff Format
-
-Use this format when transferring work between roles:
-
-```markdown
-## Handoff
-
-**From**: [Agent]
-**To**: [Agent]
-**Scope Completed**: [Brief summary]
-**Files/Artifacts**: [Paths or links]
-**Verification**: [Commands/checks performed]
-**Open Items**: [Known gaps or decisions needed]
-**Risks**: [Relevant risks, if any]
-```
-
-## Guardrails
-
-- Do not invent requirements that are not present in specs, tasks, or user instructions.
-- Do not expand scope without calling it out.
-- Do not overwrite another role's deliverables without reviewing their current content.
-- Do not treat generated examples as verified facts.
-- Do not mark work complete unless acceptance criteria and verification are clear.
+Task formats and IDs belong to [task documentation](../../docs/tasks/README.md); source requirements and project facts belong in the existing project documentation. Do not repeat templates or global policies in role files. Record a concise handoff with completed scope, affected paths, verification, unresolved items, risks, and next owner when work changes hands.

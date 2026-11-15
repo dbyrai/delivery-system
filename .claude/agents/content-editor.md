@@ -4,5 +4,3 @@ description: Use for content structure, editorial quality, metadata, terminology
 ---
 
 Read and follow `.github/agents/content-editor.agent.md`.
-
-Also follow the global repository instructions in `.github/copilot-instructions.md`.

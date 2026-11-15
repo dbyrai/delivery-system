@@ -4,5 +4,3 @@ description: Use for frontend application code, UI behavior, routing, client-sid
 ---
 
 Read and follow `.github/agents/frontend-developer.agent.md`.
-
-Also follow the global repository instructions in `.github/copilot-instructions.md`.
