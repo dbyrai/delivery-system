@@ -212,6 +212,18 @@ dbyrai is the product layer around this Delivery System. The repository document
 
 The goal is not to reject fast AI-assisted exploration. The goal is to make the next step practical: turning AI-assisted work into software that can be reviewed, maintained, and shipped with confidence.
 
+## Maintaining This Repository
+
+The [maintainer release workflow](.github/maintainers/releasing.md) describes branches, reviews, versioning, and GitHub releases for the original Delivery System repository. It applies only to maintaining this upstream repository and introduces no release requirements for projects adopting the template.
+
+When using this repository as a template, you can remove the upstream maintainer documentation. From the root of your new project, run this command in a POSIX shell (such as Bash or Zsh):
+
+```sh
+rm -r -- .github/maintainers
+```
+
+This deletes only the upstream maintainer documentation. Keep `.github/agents/` and `.github/copilot-instructions.md` for the Delivery System. After removing the directory, remove this README section as well so its link does not point to a deleted file.
+
 ## License
 
 This project is licensed under the [Apache License 2.0](LICENSE.md).
