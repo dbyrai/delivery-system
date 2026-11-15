@@ -1,11 +1,7 @@
 # Codex Repository Instructions
 
-Use `.github/copilot-instructions.md` as the primary project instruction file.
+Read and follow the shared project instructions in `.github/copilot-instructions.md`. They define the workflow, optional diagnostics, role selection, and work boundaries for this repository.
 
-For bootstrapping a new project from this structure, read `delivery-system.md` first.
+Use `.github/agents/` as the shared source for role guidance. Files under `.codex/agents/` are tool-specific wrappers and must not duplicate that guidance.
 
-Role-specific guidance lives in `.github/agents/`:
-
-Use `.github/agents/README.md` as the role index, then read the relevant `.github/agents/*.agent.md` file before editing.
-
-Keep changes scoped to the requested task.
+Keep cross-tool rules in `.github/copilot-instructions.md`; keep this entry file limited to Codex-specific routing.

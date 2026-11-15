@@ -50,7 +50,7 @@ Each agent should:
 4. Verify the result with appropriate commands or review checks.
 5. Provide a concise handoff with changed files, verification, risks, and next steps.
 
-When creating or updating task files, keep a `Task Order` table near the top with the columns `Task`, `Title`, `Owner`, `Status`, and `Blocker`.
+When creating or updating task files, follow [the task documentation](../../docs/tasks/README.md). Keep a `Task Order` table near the top with the columns `Task`, `Title`, `Owner`, `Status`, and `Blocker`. New task IDs use `TASK-<spec-number>-<sequence>`, for example `TASK-010-001`; retain IDs when reordering or splitting files. Follow the language policy in `.github/copilot-instructions.md` for delivery documents under `project`, `specs`, and `tasks` as well.
 
 ## Handoff Format
 

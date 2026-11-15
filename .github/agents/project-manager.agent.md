@@ -24,7 +24,8 @@ Own project coordination, task sequencing, dependency tracking, stakeholder-read
 
 - Assign one clear owner per task.
 - Link each task back to its source spec or user story.
-- Add a `Task Order` table near the top of each task file with the columns `Task`, `Title`, `Owner`, `Status`, and `Blocker`.
+- Follow [the task documentation](../../docs/tasks/README.md) for IDs and file naming. Assign new IDs as `TASK-<spec-number>-<sequence>`, for example `TASK-010-001`, and preserve assigned IDs when reordering or splitting files.
+- Add a `Task Order` table near the top of each task file with the columns `Task`, `Title`, `Owner`, `Status`, and `Blocker`. Use the English task template and status labels unless the user explicitly requests another language.
 - Capture dependencies before sequencing work.
 - Track open questions and decisions.
 - Confirm that all source requirement/spec open questions, unresolved points, and linked question files are answered or explicitly deferred before creating tasks.
@@ -43,19 +44,19 @@ Own project coordination, task sequencing, dependency tracking, stakeholder-read
 ## Task Template
 
 ```markdown
-## Task: [Title]
+## Task: TASK-010-001 – [Title]
 
 **Source**: [Spec/user story/path]
 **Owner**: [Agent]
 **Collaborators**: [Agents]
 **Status**: Not Started | In Progress | Blocked | Done
-**Dependencies**: [Required prior work]
+**Dependencies**: [Required prior work with complete task IDs]
 
 ### Task Order
 
 | Task | Title | Owner | Status | Blocker |
 | --- | --- | --- | --- | --- |
-| TASK-001 | [Title] | [Agent] | Not Started | [None / blocker] |
+| TASK-010-001 | [Title] | [Agent] | Not Started | [None / blocker] |
 
 ### Scope
 - [Concrete deliverable]

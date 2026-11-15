@@ -15,17 +15,17 @@ Examples:
 
 ## Naming
 
-Prefer names that include the task ID:
+Use the complete task ID according to the [task ID rules](../README.md#file-names-and-task-ids):
 
 ```text
-TASK-001-api-response-example.md
-AUTH-002-test-evidence.md
+TASK-010-001-api-response-example.md
+TASK-010-002-test-evidence.md
 ```
 
 For larger tasks, create a folder:
 
 ```text
-TASK-001/
+TASK-010-001/
   notes.md
   screenshots/
   logs/

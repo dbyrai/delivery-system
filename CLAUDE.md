@@ -1,13 +1,9 @@
 # Claude Repository Instructions
 
-Use `.github/copilot-instructions.md` as the primary project instruction file.
+Read and follow the shared project instructions imported below. They define the workflow, optional diagnostics, role selection, and work boundaries for this repository.
 
-Claude-specific agent wrappers live in `.claude/agents/`, but they must not duplicate role guidance. Each wrapper delegates to the corresponding source file in `.github/agents/`.
+@.github/copilot-instructions.md
 
-For bootstrapping a new project from this structure, read `delivery-system.md` first.
+Claude-specific agent wrappers live in `.claude/agents/`. Each wrapper delegates to the corresponding source file in `.github/agents/` and must not duplicate role guidance.
 
-Role-specific guidance lives in `.github/agents/`:
-
-Use `.github/agents/README.md` as the role index, then read the relevant `.github/agents/*.agent.md` file before editing.
-
-Keep changes scoped to the requested task.
+Keep cross-tool rules in `.github/copilot-instructions.md`; keep this entry file limited to Claude-specific routing.
