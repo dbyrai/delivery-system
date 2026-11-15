@@ -29,6 +29,10 @@ the task workflow does not authorize changing pipelines or releasing software.
 
 ## Removal
 
+Use the [deactivation prompt](deactivation-prompt.md) to retire an active
+integration with AI assistance. It uses the durable project record and also
+works when the optional add-on files have already been removed.
+
 Delete unused add-on files and remove their links from the add-on index and other
 instructions. After setup, keep durable project rules and mappings independently
 of this directory. Deleting these files does not disable external connections or

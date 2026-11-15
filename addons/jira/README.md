@@ -30,6 +30,10 @@ direction is predefined by this add-on.
 
 ## Removal
 
+Use the [deactivation prompt](deactivation-prompt.md) to retire an active
+integration with AI assistance. It uses the durable project record and also
+works when the optional add-on files have already been removed.
+
 Unused files under `addons/jira/` can be removed; remove their index references
 as well. After setup, first verify that the project's durable integration record
 contains its rules and is linked from task-relevant project guidance without a

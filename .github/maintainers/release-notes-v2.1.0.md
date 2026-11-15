@@ -13,7 +13,9 @@ prompt for adapting the connection to an adopting project.
 
 - Added: `addons/README.md` with selection, a shared setup lifecycle, durable
   project records, and separate removal of instructions versus active connections.
-- Added: four add-ons, each with a README, integration instructions, and a prompt.
+- Added: four add-ons, each with a README, integration instructions, setup and deactivation prompts.
+- Added: deactivation prompts require a remote/local knowledge inventory and a
+  user decision about migration or external retention before dependent shutdown.
 - Added: a selective adoption guide for existing v2.0.0 projects.
 - Changed: root README and delivery handbook include optional discovery links.
 - Breaking changes: none. No mandatory bootstrap steps, role-adapter changes,

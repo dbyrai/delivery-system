@@ -28,6 +28,10 @@ background automation merely by being selected.
 
 ## Removal
 
+Use the [deactivation prompt](deactivation-prompt.md) to retire an active
+integration with AI assistance. It uses the durable project record and also
+works when the optional add-on files have already been removed.
+
 Unused instructions can be deleted with this directory; remove its index link
 and other references. After setup, retain the project's integration record and
 working rules independently of these files. Deleting this add-on does not remove

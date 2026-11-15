@@ -107,6 +107,22 @@ must not disable the core Delivery System workflow.
 
 ## Disabling an Active Integration
 
+Each add-on provides a copyable deactivation prompt:
+[Jira](jira/deactivation-prompt.md),
+[Confluence](confluence/deactivation-prompt.md),
+[GitHub Projects](github-projects/deactivation-prompt.md), and
+[GitLab](gitlab/deactivation-prompt.md).
+Use the selected prompt with the durable project integration record. The prompt
+also works when supplied separately after optional add-on files were removed.
+When copying only selected add-ons, retain only their prompt links here.
+
+Before shutdown, compare remote project knowledge with local documentation and
+ask the user what to migrate, retain externally, or exclude, unless that decision
+already explicitly covers the discovered content. Complete and verify required
+migration into `docs/` or the existing documentation root before stopping access
+needed for it. Record deliberate external-only retention and future access;
+preserving remote objects alone does not establish a complete local handover.
+
 Deleting these files does not revoke access, stop external jobs, or remove remote
 objects. Follow the chosen add-on's removal guidance and the project's recorded
 teardown plan. Identify the integration's actual hooks, schedules, apps, and

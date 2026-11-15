@@ -27,6 +27,10 @@ for requirements or acceptance criteria.
 
 ## Removal
 
+Use the [deactivation prompt](deactivation-prompt.md) to retire an active
+integration with AI assistance. It uses the durable project record and also
+works when the optional add-on files have already been removed.
+
 Unused files under `addons/confluence/` can be removed along with their index
 references. After setup, first ensure all ongoing rules are in the project's
 durable integration record and linked from relevant project guidance.
