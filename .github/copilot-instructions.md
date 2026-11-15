@@ -1,129 +1,75 @@
-# AI Project Instructions
+# Shared AI Project Instructions
 
-These instructions define the default behavior for AI assistants working in this repository. They are intended to be usable by GitHub Copilot, Codex, Claude, and other AI coding agents.
+These are the canonical cross-tool workflow rules. Paths are relative to the repository root. Tool entry files route here; role files define only role-specific behavior. `docs/` is the project source of truth; do not assume a stack, product, or deployment target from an unfilled template.
 
-## Mandatory Workflow
+## Source of Truth
 
-Before every new task, read the applicable tool entry file (such as `AGENTS.md` or `CLAUDE.md`, when present), these shared instructions in `.github/copilot-instructions.md`, `delivery-system.md`, and `docs/project/overview.md`. Paths in these shared instructions are relative to the repository root. Instructions already loaded in the current context count as read; do not recursively reload entry files or these shared instructions. Then select the appropriate agent using `.github/agents/README.md` and read its complete agent file. Load only relevant specs, architecture documents, task files, and source files in addition to these instructions.
+Apply this order within the repository; applicable tool/system safety policies remain in force:
 
-### Optional Diagnostic Gate
+1. Direct user instructions for the current work, including explicit exceptions or deferrals.
+2. Relevant documentation under the project's existing documentation root: recorded decisions, specs, architecture, requirements, and task acceptance criteria. Do not treat a task as permission to bypass its source requirements or security policy. Surface contradictions rather than silently choosing a convenient interpretation.
+3. Existing repository structure and code conventions.
+4. Selected role guidance under `.github/agents/`.
+5. General engineering practices.
+
+## Task Routing and Context Loading
+
+1. Check the working-tree state before edits. Preserve unrelated and uncommitted user changes.
+2. Classify the request and identify affected paths using file names, indexes, or focused search before reading large files. Treat follow-up questions as part of the current task unless the user changes the objective.
+3. Select exactly one primary owner using the compact [role index](agents/README.md), then read only that role's complete file. Selecting a role does not launch a subagent.
+4. Load sources using the table below. Reuse unchanged instructions already in the current context; reload only when changed, missing, or uncertain. Do not recursively reread entry files or imports.
+5. Follow linked dependencies, unresolved question files, acceptance criteria, and applicable security/operational constraints before acting. If a required source is unavailable, report the gap; do not assume it was read or that a gate passed.
+
+| Request | Sources to load as needed |
+| --- | --- |
+| Question or small review | Affected files and directly relevant references |
+| Product, goals, or scope | Project overview and relevant decisions |
+| Bootstrap or adoption | Relevant sections of `delivery-system.md`, then each current step's files in order |
+| Spec or task creation/change | Relevant delivery rules, template, source requirement/spec, linked questions, and affected artifact |
+| Implementation or bug fix | Relevant task, source spec/requirements, applicable architecture/security rules, affected code, and verification commands |
+| Architecture or security decision | Relevant specs, decisions, architecture, security baseline, and impacted interfaces |
+| Release, operations, or migration | Relevant release/runbook/upgrade instructions, affected configuration, verification and rollback expectations |
+
+The overview, full delivery handbook, all baseline files, and all roles are not universal startup reading. Classify mixed requests by all affected concerns; routing is never an exemption from required acceptance or safety gates. Keep existing documentation roots, including subproject roots, and resolve their nearest applicable instructions before using generic paths.
+
+## Optional Diagnostic Gate
 
 Delivery diagnostics default: off
 
-The diagnostic gate controls only whether the following block is displayed. All applicable reading, role, verification, and approval obligations remain in effect when diagnostics are disabled.
+Diagnostics control visible output only; all gates still apply when hidden. `Delivery diagnostics: on` or `Delivery diagnostics: off` in a user message overrides this default for the chat until changed. A choice explicitly limited to one task restores the previous setting afterward. Chat changes do not modify files or carry over to other chats; change this default only when asked to set a persistent project preference.
 
-- `Delivery diagnostics: on` in a user message enables the output.
-- `Delivery diagnostics: off` in a user message disables the output.
-- The latest explicit user choice applies for the rest of the chat until changed. A choice explicitly limited to one task applies only to that task; the previous setting resumes afterward.
-- Without an explicit chat choice, use `Delivery diagnostics default` from this file. For a persistent project default, the user can set this value to `on` or `off`. Changing the setting in chat does not modify files or automatically carry over to other chats.
-
-When diagnostics are enabled, display this diagnostic gate before analyzing or implementing a new task, using only values actually established. When diagnostics are disabled, omit the block; necessary clarification questions and blocker notices still apply.
+When enabled, emit this compact gate after classification and role selection, before detailed domain/code analysis or edits. List only sources actually loaded; if needed, report missing sources separately. Do not bulk-read documents merely to populate the gate.
 
 ```text
 Delivery System:
-- tool entry file: <Path read or not applicable>
-- shared instructions loaded: yes/no
-- delivery-system.md read: yes/no
-- project overview read: yes/no
-- selected agent: <Agent>
+- task type: <Classification>
+- selected agent: <Primary owner>
 - agent file: <Path read>
-- relevant spec(s): <Files read or none>
-- relevant architecture documents: <Files read or none>
-- relevant task(s): <Files read or none>
+- loaded project sources: <Paths actually read or none>
 - planned subagents: <Count>
 ```
 
-### Work Boundaries Regardless of Diagnostics
+## Blocking Questions and Delivery Gates
 
-Selecting an agent initially applies only its role instructions. The default is `planned subagents: 0`. Subagents are permitted only when explicitly required by the workflow, for clearly separated parallel work, for a necessary independent specialist review, or when explicitly requested by the user.
+- Open questions are blocking unless the user explicitly resolves or defers them. Read linked question files; capture the chosen answer or explicit deferral in the relevant requirement, spec, task, decision, or question file before proceeding.
+- Do not create implementation tasks from sources with unresolved blocking questions or implement a task with unresolved blockers. Ask focused questions in sequence; explain viable options and material tradeoffs when a decision is needed.
+- Run bootstrap steps in order when bootstrapping or adopting a project. Implementation requires a completed or explicitly deferred bootstrap. Do not rerun bootstrap or replace completed documents for routine work in an already adopted project.
+- Keep task scope tied to source requirements and acceptance criteria. Do not invent business rules, endpoints, user flows, or security policies.
 
-Use as little context as possible and as much as necessary. Do not independently expand scope, overwrite others' changes, perform unrequested refactoring, upgrades, architecture, CI/CD, or formatting changes, or automatically commit, push, rebase, or reset. Limit tests and tool output to the affected area. Stop after final verification and do not independently start a follow-up task.
+## Work, Security, and Authorization Boundaries
 
-## Project Context
+- Make the smallest complete change for the request. No unrelated refactors, upgrades, redesigns, architecture, CI/CD, formatting, or automatic follow-up tasks.
+- Keep secrets and sensitive data out of code, logs, documentation, and artifacts. Never weaken authentication, authorization, privacy, or other project safety gates to save context. Use existing deployment processes; do not replace a pipeline with direct uploads without explicit authorization.
+- No automatic commits, pushes, rebases, resets, releases, or destructive operations. Clarify who performs the requested Git/publication steps; authorization already given for the current task remains valid. Commit only approved related changes and verify the published commit matches the approved source.
+- Default to zero subagents. Delegate only for an explicit workflow requirement, a clearly bounded parallel task, a necessary independent specialist review, or a user request. Assign one primary owner and separate write scopes; communicate shared-worktree constraints and review the results before completion.
+- Preserve user-provided wording, existing project rules, and customizations unless the requested change requires adapting them. Report conflicts explicitly.
 
-This repository is the working space for a project that will be specified in more detail over time.
+## Verification and Handoff
 
-The authoritative project knowledge should live in `docs/`. When project details, requirements, architecture notes, workflows, or decisions are added there, treat those files as the source of truth.
+Use checks proportional to the changed behavior and risk: relevant tests, lint/type checks, builds, document links/formats, or repeatable manual checks. Bound searches, diffs, and logs to affected paths. Do not report an unrun or blocked check as passed. Distinguish static format checks from actual model/client behavior.
 
-Until detailed documentation exists, do not assume a specific framework, stack, product domain, deployment target, or architecture. Ask for clarification only when a reasonable local assumption would create risk; otherwise keep work small, explicit, and easy to revise.
+For small work, report the result, affected files, and verification briefly. For larger or risky work, also state limitations, unresolved items, risks, and the next owner when a handoff is required. Avoid repeating project context or full logs; link evidence. Stop after final verification without starting another task.
 
-## Source Of Truth Order
+## Language and Documentation
 
-Use this priority order when making decisions:
-
-1. Direct user instructions in the current task
-2. Relevant files in `docs/`
-3. Existing repository structure and code conventions
-4. Agent role guidance in `.github/agents/`
-5. General engineering best practices
-
-If two sources conflict, follow the higher-priority source and mention the conflict in the response or handoff.
-
-## Default Behavior
-
-- Read relevant files before changing anything.
-- Keep changes focused on the requested task.
-- Prefer existing structure, naming, tooling, and style.
-- Do not invent requirements, business rules, APIs, user flows, or project facts.
-- Preserve user-provided text, labels, URLs, and quoted content unless explicitly asked to edit them.
-- Make assumptions visible when they affect behavior, scope, or future implementation.
-- Surface blockers, missing information, or ambiguity before making risky changes.
-
-## Open Question Gating
-
-Open questions are blocking unless the user explicitly marks them as non-blocking or deferred.
-
-- Do not create implementation tasks from a requirement or spec while that requirement or spec has unanswered open questions, unresolved points, or references to unresolved question files.
-- Do not start implementing an individual task while that task has unanswered open questions, unresolved points, or references to unresolved question files.
-- When a requirement, spec, or task links to a question file such as `q-001.md`, `Q-001.md`, or any similarly named open-question artifact, read that file and resolve every blocking question before creating tasks or implementing the task.
-- Resolve questions through step-by-step dialogue with the user. Ask one focused question or decision at a time when possible.
-- When multiple options exist, present the viable options with clear explanations. Include pros and cons when the tradeoff matters, and provide an AI recommendation when useful.
-- Record the chosen answer, decision, or explicit deferral in the relevant requirement, spec, task, decision record, or question file before proceeding.
-
-## Documentation Policy
-
-- Keep documentation clear, practical, and maintainable.
-- Prefer concise sections, checklists, examples, and decision records over long narrative text.
-- When adding project details, place them under `docs/` unless the file clearly belongs elsewhere.
-- Link related documents instead of duplicating large sections.
-- Mark unresolved items as open questions or assumptions.
-
-## Code Policy
-
-- Source code may be created or edited when the task asks for implementation.
-- Follow the repository's existing tooling and patterns.
-- Avoid broad refactors unless required for the requested work.
-- Keep secrets, credentials, private tokens, and sensitive data out of the repository.
-- Include appropriate verification for code changes, such as tests, linting, type checks, builds, or a clear note when verification is not possible.
-
-## Language Policy
-
-- Chat responses may use the user's language.
-- Repository deliverables should be written in English unless the user explicitly requests another language.
-- Keep code syntax, commands, configuration keys, API paths, and literal values unchanged.
-- Comments and inline documentation should be concise and useful.
-
-## Agent Roles
-
-Specialized agent guidance lives in `.github/agents/`. Use these roles as working modes, not as fixed project assumptions:
-
-- `project-manager`: planning, sequencing, task breakdown, stakeholder-ready status
-- `technical-lead`: architecture, cross-role decisions, review, risk management
-- `devops-engineer`: infrastructure, environments, deployment, operations
-- `backend-developer`: backend services, APIs, data models, integrations
-- `frontend-developer`: frontend application, UI behavior, routing, client-side integration
-- `qa-engineer`: test strategy, automated/manual verification, acceptance checks
-- `content-editor`: content structure, editorial quality, metadata, documentation review
-
-If a task spans multiple roles, identify the primary owner and list required collaborators or handoffs.
-
-## Delivery Standards
-
-Every completed task should make clear:
-
-- What changed
-- Which files were affected
-- How the work was verified
-- Which assumptions, risks, or follow-up tasks remain
-
-For reviews, lead with concrete findings and file references. For implementation, keep final summaries short and include relevant commands that were run.
+Chat may use the user's language. Repository deliverables, including `project`, `specs`, and `tasks`, use English unless the user explicitly requests another language. Keep code syntax, commands, IDs, configuration keys, API paths, and literal source values unchanged. Keep project facts in the existing documentation root and link rather than duplicate them. Mark assumptions and unresolved questions; keep operational rules here and use guides only to explain them.

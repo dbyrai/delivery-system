@@ -4,5 +4,3 @@ description: Use for quality verification, test planning, integration tests, reg
 ---
 
 Read and follow `.github/agents/qa-engineer.agent.md`.
-
-Also follow the global repository instructions in `.github/copilot-instructions.md`.

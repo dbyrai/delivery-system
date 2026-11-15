@@ -4,5 +4,3 @@ description: Use for project coordination, task sequencing, dependency tracking,
 ---
 
 Read and follow `.github/agents/project-manager.agent.md`.
-
-Also follow the global repository instructions in `.github/copilot-instructions.md`.

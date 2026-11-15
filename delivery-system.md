@@ -16,6 +16,12 @@ It provides a documentation structure, AI instruction files, role-based agent gu
 - `docs/tasks/` - implementation task templates and task artifacts
 - `docs/quality/` - Definition of Done, test strategy, and manual test structure
 
+## Using This Handbook
+
+The [shared workflow](.github/copilot-instructions.md#task-routing-and-context-loading) defines task classification and context loading. Read this handbook for bootstrap/adoption, spec/task conventions, or migration work, rather than on every question or code change. During bootstrap, use the sequence below and read each current step's required files before proceeding; targeted reading does not skip steps, linked blockers, security policy, or acceptance gates.
+
+New projects receive context-aware routing through the default instruction and role files. No optimization prompt is required after copying the template. See [Context Optimization](howto/context-optimization.md) for rationale, [the reusable prompt](howto/prompts/context-optimization.md) for adapting an existing setup, and [the v1-to-v2 upgrade guide](howto/upgrades/v1-to-v2.md) for existing adopters. Preserve an established documentation root instead of relocating it to match examples here.
+
 ## Bootstrap Rules
 
 Use this delivery system as a gated sequence, not as loose guidance.
@@ -431,7 +437,7 @@ Maintain shared workflow rules, the diagnostic default, and work boundaries in `
 For ChatGPT Codex:
 
 - Start from `AGENTS.md` and follow its reference to `.github/copilot-instructions.md`.
-- Then read the relevant files under `docs/`.
+- Load only the task-relevant sources selected by the shared routing table; reuse unchanged context.
 - Use `.github/agents/` for role-specific behavior.
 
 For GitHub Copilot:

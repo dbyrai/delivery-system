@@ -4,5 +4,3 @@ description: Use for architecture, technical decision-making, cross-role coordin
 ---
 
 Read and follow `.github/agents/technical-lead.agent.md`.
-
-Also follow the global repository instructions in `.github/copilot-instructions.md`.

@@ -64,7 +64,8 @@ Create a small internal task tracker for a team. Users should be able to create 
 assign an owner, set a status, and see open work. The first version should be simple,
 local, and easy to verify.
 
-Please read delivery-system.md and the existing docs structure first.
+Follow the shared task-routing instructions, read the bootstrap sequence in delivery-system.md,
+and inspect the files needed for the current bootstrap step first.
 Then start the bootstrap sequence. Ask only for information that blocks the next step.
 Record assumptions and open questions in docs instead of guessing.
 ```
@@ -72,7 +73,7 @@ Record assumptions and open questions in docs instead of guessing.
 Expected AI behavior:
 
 - read `delivery-system.md`
-- read the current `docs/` files
+- read the current bootstrap step's relevant `docs/` files and any linked blockers
 - mark existing-project review as not applicable because this is a new project
 - identify missing project context
 - ask focused questions only when needed
