@@ -8,7 +8,7 @@ import tempfile
 import tomllib
 import unittest
 
-SCRIPT = Path(__file__).resolve().parents[1] / 'addons/configure_mcp.py'
+SCRIPT = Path(__file__).resolve().parents[3] / 'addons/configure_mcp.py'
 spec = importlib.util.spec_from_file_location('configure_mcp', SCRIPT)
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
