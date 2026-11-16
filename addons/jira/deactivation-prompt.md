@@ -60,6 +60,16 @@ missing authorization before external changes. The deactivation request does
 not authorize deleting remote work, revoking shared credentials, or affecting
 other integrations. Never request, print, or store secrets in chat or files.
 
+Inspect the actual MCP client entry, transport, active sessions and access grant.
+If Jira and Confluence share an Atlassian profile, identify which allowed tools
+and policy belong to this adapter and which are still needed by the other one.
+Remove or restrict only this adapter's active configuration after the required
+migration is verified; do not disable the shared profile or revoke a shared OAuth
+grant. For a dedicated profile, prepare removal/disable and session shutdown
+within authorization, preserve unrelated MCP entries, and verify the new client
+state after reload. Retain parent/child identity mappings and hierarchy evidence;
+retirement does not authorize detaching or deleting the canonical work objects.
+
 Stop only the selected integration's authorized triggers/jobs/connections, check
 for pending or in-flight work, and reconcile uncertain results before retrying.
 Use the established operator/access owner where this tool lacks capability.

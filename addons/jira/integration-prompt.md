@@ -1,4 +1,4 @@
-# Jira Integration Prompt
+# Jira Adapter Integration Prompt
 
 Copy the prompt below into the AI tool used for the target project. Add known
 non-secret target details if available; unresolved decisions will be clarified.
@@ -11,6 +11,27 @@ addons/jira/instructions.md before acting. If those instructions were removed,
 ask for the selected add-on source; do not pretend to have read it. Follow the
 existing documentation root and load only relevant specs, tasks, decisions,
 and security rules. Preserve project content, IDs, and existing integrations.
+
+Configure this as a real MCP-backed Jira adapter. Read
+addons/mcp-setup.md and addons/jira/mcp-setup.md, inspect existing
+client profiles, then prepare and apply the selected client configuration within
+this setup request's scope. Use addons/configure_mcp.py for supported project
+profiles; reuse matching Atlassian connection ownership instead of creating a
+duplicate OAuth profile. Do not overwrite other configuration or install an
+unapproved bridge. Complete interactive authentication, initialize MCP, discover
+actual operation schemas, reload the client as needed, and verify target reads.
+A mapping-only result or browser login is not completed MCP setup. Report blocked
+states and ask for missing target/access information without claiming success.
+
+Before ticket/page writes, verify create, read, update, native-parent assignment,
+and parent/children read-back for the chosen workflow. Use stable existing IDs
+in visible parent and task names, for example SPEC-001 and TASK-001-001. Tasks
+must be native children of their corresponding ticket; description links and
+checklists do not satisfy that requirement. Choose valid Jira parent and child
+work types from project metadata; do not guess Epic/Sub-task combinations.
+If required operations are missing, stop before creating flat substitutes.
+Record the precise missing capability and any separately approved supported
+connection needed to complete it. Keep capability and action permission distinct.
 
 Inspect the project and available tools first. Identify the Jira site, edition,
 project, issue types, current links, and integration owner. Verify the actual

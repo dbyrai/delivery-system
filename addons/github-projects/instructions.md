@@ -1,7 +1,9 @@
-# GitHub Projects Integration Instructions
+# GitHub Projects Adapter Instructions
 
 Apply the [shared lifecycle](../README.md) and existing project gates. Select
-this add-on explicitly; no external write is authorized by these instructions.
+this adapter explicitly. Complete [MCP setup](mcp-setup.md), including actual
+configuration, authentication, active-session tools, and target access. Setup
+selection is not a blanket authorization for remote issue or Project writes.
 
 ## Discover and Decide
 
@@ -11,8 +13,9 @@ this add-on explicitly; no external write is authorized by these instructions.
   the scope covers issues, pull requests, Project fields, or selected subsets.
 - Read the actual tool's capabilities. Confirm authenticated identity, access to
   the target resources, and support for each requested operation. Issue access
-  does not prove Project field access. If unavailable, provide manual steps and
-  label the connection unverified rather than claiming it is active.
+  does not prove Project field access. Missing MCP access or required operations
+  block full adapter activation; a manual guide is an incomplete fallback, not
+  successful setup.
 - Resolve authoritative sources per field, direction, trigger, owner, and conflict
   policy before dependent changes. Do not introduce a second task backlog by
   default. Record explicit deferrals and leave dependent work inactive.
@@ -29,8 +32,9 @@ following is an example, not a required schema or a decision for the user:
 
 | Delivery information | GitHub representation | Decision required |
 | --- | --- | --- |
-| Stable task ID, such as `TASK-010-001` | Issue body marker or agreed field | Marker, uniqueness scope, and authoritative source |
-| Task title and acceptance criteria | Issue title/body sections | Managed sections and preservation of other content |
+| Stable task ID, such as `TASK-010-001` | Visible title prefix plus persistent body marker | Preserve existing IDs; uniqueness scope and authoritative source |
+| Parent ticket and child task | Native issue/sub-issue relation | Exact parent identity and independent read-back in both directions |
+| Task title and acceptance criteria | ID-prefixed title/body sections | Managed sections and preservation of other content |
 | Task status | Project Status field and issue open/closed state | Explicit mapping; these states are separate |
 | Owner | Issue assignee or selected Project field | Account mapping and handling of unmapped users |
 | Spec and verification evidence | Repository links in issue | Stable links and allowed visibility |
@@ -43,6 +47,22 @@ IDs; verify an existing match before creating an issue or adding another item.
 A draft item must not silently become a repository issue or replace an existing
 issue. Verify conversion behavior and obtain any missing authorization first.
 
+## Mandatory Structure Preflight
+
+Before creating tickets, complete the operation matrix in the MCP setup guide:
+search/read, create, update, native parent assignment, both hierarchy read paths,
+and selected Project fields. Missing update or hierarchy tools is a blocker even
+when issue creation works. Inspect actual schemas, filters and target permissions
+before proposing writes; do not equate a listed tool with authorization or proven
+write access. A separate supported access route needs an explicit scoped decision.
+
+For new objects, use visible names such as `SPEC-001: <title>` and
+`TASK-001-001: <title>`, preserving established IDs and conventions. Ensure each
+child is natively under its intended ticket. Do not claim a body reference,
+checklist, Project item, or parent-name string satisfies that relation. Reuse
+mapped existing issues rather than creating duplicates. If a child already has
+a different parent, reconcile the conflict before an authorized reassignment.
+
 ## Execution and Failure Handling
 
 Start with authorized read-only inspection. Prepare a concrete change preview
@@ -51,8 +71,9 @@ resolved, authorized operations, checking the current remote state first. If
 concurrent edits conflict with the agreed source, stop that update and surface
 both values; do not overwrite unrelated issue text or comments.
 
-Read back changed issues and Project fields separately. Report partial success
-and remaining work. Before retrying an uncertain create or membership update,
+Read back changed issues, each child's native parent, the parent's paginated
+sub-issues, visible ID-prefixed titles, and Project fields separately. Report
+partial success and remaining work. Before retrying an uncertain create or membership update,
 look up the recorded stable ID and existing item to avoid duplicates. Do not
 close issues or mark tasks done merely because a pull request exists or merges;
 apply the project's acceptance gates. Inspect closing keywords in proposed text
@@ -63,7 +84,9 @@ and avoid unintended lifecycle changes.
 Record the connection owner, targets, verified capabilities, credential-location
 reference (never the secret), source and mapping decisions, authorization scope,
 manual or automated trigger, failure handling, verification results, and removal
-steps in the project. Update only relevant project routing to that durable record.
+steps in the project. Include the actual MCP client/profile path, authenticated
+identity reference, operation matrix, and native parent/child IDs. Update only
+relevant project routing to that durable record.
 Copy needed operational rules into it instead of linking runtime behavior back to
 `addons/`. No recurring job or webhook is installed by this add-on.
 

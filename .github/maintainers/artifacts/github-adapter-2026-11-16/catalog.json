@@ -1,0 +1,1832 @@
+[
+  {
+    "name": "add_issue_comment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string",
+          "description": "Comment content. Required unless reaction is provided.",
+          "minLength": 1
+        },
+        "comment_id": {
+          "type": "integer",
+          "description": "The numeric ID of the issue or pull request comment to react to. Use this for reactions to comments; omit it to react to the issue or pull request itself. Cannot be combined with body.",
+          "minimum": 1
+        },
+        "issue_number": {
+          "type": "number",
+          "description": "Issue or pull request number to comment on or react to."
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "reaction": {
+          "type": "string",
+          "description": "Emoji reaction to add. Required unless body is provided.",
+          "enum": [
+            "+1",
+            "-1",
+            "laugh",
+            "confused",
+            "heart",
+            "hooray",
+            "rocket",
+            "eyes"
+          ]
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "issue_number"
+      ]
+    }
+  },
+  {
+    "name": "create_branch",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "branch": {
+          "type": "string",
+          "description": "Name for new branch"
+        },
+        "from_branch": {
+          "type": "string",
+          "description": "Source branch (defaults to repo default)"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "branch"
+      ]
+    }
+  },
+  {
+    "name": "create_or_update_file",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "allow_symlink_write": {
+          "type": "boolean",
+          "description": "Set true to update a symbolic link itself; content must be its new target path.",
+          "default": false
+        },
+        "branch": {
+          "type": "string",
+          "description": "Branch to create/update the file in"
+        },
+        "content": {
+          "type": "string",
+          "description": "Content of the file, exactly as it should appear once written. Do not base64-encode it; this server does that before calling the REST API."
+        },
+        "message": {
+          "type": "string",
+          "description": "Commit message"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner (username or organization)",
+          "x-mcp-header": "owner"
+        },
+        "path": {
+          "type": "string",
+          "description": "Path where to create/update the file"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        },
+        "sha": {
+          "type": "string",
+          "description": "The blob SHA of the file being replaced. Required if the file already exists. Retrieve it with get_file_contents using the same owner, repo, and path, with ref set to this tool's branch value."
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "path",
+        "content",
+        "message",
+        "branch"
+      ]
+    }
+  },
+  {
+    "name": "create_repository",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "autoInit": {
+          "type": "boolean",
+          "description": "Initialize with README"
+        },
+        "description": {
+          "type": "string",
+          "description": "Repository description"
+        },
+        "name": {
+          "type": "string",
+          "description": "Repository name"
+        },
+        "organization": {
+          "type": "string",
+          "description": "Organization to create the repository in (omit to create in your personal account)"
+        },
+        "private": {
+          "type": "boolean",
+          "description": "Whether the repository should be private. Defaults to true (private) when omitted.",
+          "default": true
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "delete_file",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "branch": {
+          "type": "string",
+          "description": "Branch to delete the file from"
+        },
+        "message": {
+          "type": "string",
+          "description": "Commit message"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner (username or organization)",
+          "x-mcp-header": "owner"
+        },
+        "path": {
+          "type": "string",
+          "description": "Path to the file to delete"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "path",
+        "message",
+        "branch"
+      ]
+    }
+  },
+  {
+    "name": "fork_repository",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "organization": {
+          "type": "string",
+          "description": "Organization to fork to"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo"
+      ]
+    }
+  },
+  {
+    "name": "get_commit",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "detail": {
+          "type": "string",
+          "description": "Level of detail to include for changed files. \"none\" omits stats and files entirely. \"stats\" (default) includes per-file metadata: filename, status, and lines-of-code counts (additions, deletions, changes), with no patch content. \"full_patch\" additionally includes the unified diff content for each file and can be very large.",
+          "default": "stats",
+          "enum": [
+            "none",
+            "stats",
+            "full_patch"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (min 1)",
+          "minimum": 1
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        },
+        "sha": {
+          "type": "string",
+          "description": "Commit SHA, branch name, or tag name"
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "sha"
+      ]
+    }
+  },
+  {
+    "name": "get_file_contents",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "type",
+              "name",
+              "path",
+              "size",
+              "sha",
+              "url",
+              "git_url",
+              "html_url",
+              "download_url"
+            ]
+          },
+          "description": "Subset of fields to return for each entry when the path is a directory. If omitted, all fields are returned. Ignored when the path is a single file. Use this to reduce response size when listing directories and you only need specific fields, e.g. just 'name' and 'type'."
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner (username or organization)",
+          "x-mcp-header": "owner"
+        },
+        "path": {
+          "type": "string",
+          "description": "Path to file/directory",
+          "default": "/"
+        },
+        "ref": {
+          "type": "string",
+          "description": "Accepts optional git refs such as `refs/tags/{tag}`, `refs/heads/{branch}` or `refs/pull/{pr_number}/head`"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        },
+        "sha": {
+          "type": "string",
+          "description": "Accepts optional commit SHA. If specified, it will be used instead of ref"
+        }
+      },
+      "required": [
+        "owner",
+        "repo"
+      ]
+    }
+  },
+  {
+    "name": "get_label",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Label name."
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner (username or organization name)",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "name"
+      ]
+    }
+  },
+  {
+    "name": "get_latest_release",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo"
+      ]
+    }
+  },
+  {
+    "name": "get_me",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_release_by_tag",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Tag name (e.g., 'v1.0.0')"
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "tag"
+      ]
+    }
+  },
+  {
+    "name": "get_tag",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Tag name"
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "tag"
+      ]
+    }
+  },
+  {
+    "name": "issue_read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "issue_number": {
+          "type": "number",
+          "description": "The number of the issue"
+        },
+        "method": {
+          "type": "string",
+          "description": "The read operation to perform on a single issue.\nOptions are:\n1. get - Get issue details. Also returns best-effort hierarchy flags (`has_parent`, `has_children`); `parent` and `sub_issues_summary` are optional relationship summaries, and `closed_by_pull_requests` summarizes the pull requests configured to close the issue as `total_count` plus up to 5 `references`.\n2. get_comments - Get issue comments.\n3. get_sub_issues - Get sub-issues (children) of the issue.\n4. get_parent - Get the parent issue, if this issue is a sub-issue of another.\n5. get_labels - Get labels assigned to the issue.\n",
+          "enum": [
+            "get",
+            "get_comments",
+            "get_sub_issues",
+            "get_parent",
+            "get_labels"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "description": "The owner of the repository",
+          "x-mcp-header": "owner"
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (min 1)",
+          "minimum": 1
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "repo": {
+          "type": "string",
+          "description": "The name of the repository",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "method",
+        "owner",
+        "repo",
+        "issue_number"
+      ]
+    }
+  },
+  {
+    "name": "issue_write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "assignees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Usernames to assign to this issue"
+        },
+        "body": {
+          "type": "string",
+          "description": "Issue body content"
+        },
+        "duplicate_of": {
+          "type": "number",
+          "description": "Issue number that this issue is a duplicate of. Required when state_reason is 'duplicate'."
+        },
+        "issue_fields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "delete": {
+                "type": "boolean",
+                "description": "Set to true to clear this field's current value on the issue. When false or omitted, this property is ignored. Cannot be true when 'value' or 'field_option_name' is provided."
+              },
+              "field_name": {
+                "type": "string",
+                "description": "Issue field name (case-insensitive). Must match a field returned by list_issue_fields for this repository or its organization."
+              },
+              "field_option_name": {
+                "type": "string",
+                "description": "Option name for single-select fields. Validated against the field's options before the API call. Cannot be combined with 'value' or 'delete: true'."
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean"
+                ],
+                "description": "Value to set. Use for text, number, and date fields (date as YYYY-MM-DD). For single-select fields, prefer 'field_option_name' so the option is validated before the API call. Cannot be combined with 'field_option_name' or 'delete: true'."
+              }
+            },
+            "required": [
+              "field_name"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Issue field values to set or clear. Each item requires 'field_name' and exactly one of 'value', 'field_option_name', or 'delete: true'."
+        },
+        "issue_number": {
+          "type": "number",
+          "description": "Issue number to update"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Labels to apply to this issue"
+        },
+        "method": {
+          "type": "string",
+          "description": "Write operation to perform on a single issue.\nOptions are:\n- 'create' - creates a new issue.\n- 'update' - updates an existing issue.\n",
+          "enum": [
+            "create",
+            "update"
+          ]
+        },
+        "milestone": {
+          "type": "number",
+          "description": "Milestone number"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "parent_issue_number": {
+          "type": "number",
+          "description": "Issue number of the parent issue. Only used when method is 'create' and cannot be combined with issue_fields. The new issue is created and attached to this parent in the same operation.",
+          "minimum": 1
+        },
+        "parent_owner": {
+          "type": "string",
+          "description": "Repository owner of the parent issue. Must be provided with parent_repo. Omit both to use owner and repo. Only used when method is 'create' and parent_issue_number is provided."
+        },
+        "parent_repo": {
+          "type": "string",
+          "description": "Repository name of the parent issue. Must be provided with parent_owner. Omit both to use owner and repo. Only used when method is 'create' and parent_issue_number is provided."
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        },
+        "state": {
+          "type": "string",
+          "description": "New state",
+          "enum": [
+            "open",
+            "closed"
+          ]
+        },
+        "state_reason": {
+          "type": "string",
+          "description": "Reason for the state change. Ignored unless state is changed.",
+          "enum": [
+            "completed",
+            "not_planned",
+            "duplicate"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "description": "Issue title"
+        },
+        "type": {
+          "description": "Type of this issue. For updates, pass null to remove the current type. Only use if issue types are enabled for this repository. Use list_issue_types to get valid type values for this repository or its owner organization. If the repository doesn't support issue types, omit this parameter.",
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "method",
+        "owner",
+        "repo"
+      ]
+    }
+  },
+  {
+    "name": "list_branches",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (min 1)",
+          "minimum": 1
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo"
+      ]
+    }
+  },
+  {
+    "name": "list_commits",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Author username or email address to filter commits by"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "sha",
+              "html_url",
+              "commit",
+              "author",
+              "committer"
+            ]
+          },
+          "description": "Subset of fields to return for each commit. If omitted, all fields are returned. Use this to reduce response size when you only need specific fields, e.g. just 'sha' and 'html_url'."
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (min 1)",
+          "minimum": 1
+        },
+        "path": {
+          "type": "string",
+          "description": "Only commits containing this file path will be returned"
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        },
+        "sha": {
+          "type": "string",
+          "description": "Commit SHA, branch or tag name to list commits of. If not provided, uses the default branch of the repository. If a commit SHA is provided, will list commits up to that SHA."
+        },
+        "since": {
+          "type": "string",
+          "description": "Only commits after this date will be returned (ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ or YYYY-MM-DD)"
+        },
+        "until": {
+          "type": "string",
+          "description": "Only commits before this date will be returned (ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ or YYYY-MM-DD)"
+        }
+      },
+      "required": [
+        "owner",
+        "repo"
+      ]
+    }
+  },
+  {
+    "name": "list_issue_fields",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "description": "The account owner of the repository or organization. The name is not case sensitive.",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "The name of the repository. When provided, returns fields for this specific repository (inherited from its organization). When omitted, returns org-level fields directly.",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner"
+      ]
+    }
+  },
+  {
+    "name": "list_issue_types",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "description": "The account owner of the repository or organization.",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "The name of the repository. When provided, returns issue types for this specific repository. When omitted, returns org-level issue types directly.",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner"
+      ]
+    }
+  },
+  {
+    "name": "list_issues",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "after": {
+          "type": "string",
+          "description": "Cursor for pagination. Use the cursor from the previous response."
+        },
+        "direction": {
+          "type": "string",
+          "description": "Order direction. If provided, the 'orderBy' also needs to be provided.",
+          "enum": [
+            "ASC",
+            "DESC"
+          ]
+        },
+        "field_filters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "field_name": {
+                "type": "string",
+                "description": "Name of the custom field (e.g. \"Priority\"). Case-insensitive."
+              },
+              "value": {
+                "type": "string",
+                "description": "Value to filter on. For single-select fields, the option name (e.g. \"P1\"). For dates, YYYY-MM-DD. For numbers, the numeric value as a string. For text, the text value."
+              }
+            },
+            "required": [
+              "field_name",
+              "value"
+            ]
+          },
+          "description": "Filter by custom issue field values. Each entry takes a field_name and a value; the server looks up the field and coerces the value to its type (single-select option name, text, number, or YYYY-MM-DD date)."
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "number",
+              "title",
+              "body",
+              "state",
+              "user",
+              "labels",
+              "assignees",
+              "comments",
+              "created_at",
+              "updated_at",
+              "field_values"
+            ]
+          },
+          "description": "Subset of fields to return for each issue. If omitted, all fields are returned. Use this to reduce response size when you only need specific fields; omitting 'body' and 'field_values' in particular drops the largest per-result data."
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Filter by labels"
+        },
+        "orderBy": {
+          "type": "string",
+          "description": "Order issues by field. If provided, the 'direction' also needs to be provided.",
+          "enum": [
+            "CREATED_AT",
+            "UPDATED_AT",
+            "COMMENTS"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        },
+        "since": {
+          "type": "string",
+          "description": "Filter by date (ISO 8601 timestamp)"
+        },
+        "state": {
+          "type": "string",
+          "description": "Filter by state, by default both open and closed issues are returned when not provided",
+          "enum": [
+            "OPEN",
+            "CLOSED"
+          ]
+        }
+      },
+      "required": [
+        "owner",
+        "repo"
+      ]
+    }
+  },
+  {
+    "name": "list_releases",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "id",
+              "tag_name",
+              "name",
+              "body",
+              "html_url",
+              "published_at",
+              "prerelease",
+              "draft",
+              "author"
+            ]
+          },
+          "description": "Subset of fields to return for each release. If omitted, all fields are returned. Use this to reduce response size when you only need specific fields; omitting 'body' in particular drops the largest per-release data."
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (min 1)",
+          "minimum": 1
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo"
+      ]
+    }
+  },
+  {
+    "name": "list_repository_collaborators",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "affiliation": {
+          "type": "string",
+          "description": "Filter by affiliation. Can be one of: 'outside' (outside collaborators), 'direct' (all with permissions regardless of org membership), 'all' (all collaborators). Default: 'all'",
+          "enum": [
+            "outside",
+            "direct",
+            "all"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (default 1, min 1)",
+          "minimum": 1
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (default 30, min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo"
+      ]
+    }
+  },
+  {
+    "name": "list_tags",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (min 1)",
+          "minimum": 1
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo"
+      ]
+    }
+  },
+  {
+    "name": "projects_get",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "field_id": {
+          "type": "number",
+          "description": "The field's ID. Required for 'get_project_field' method."
+        },
+        "field_names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specific list of field names to include in the response when getting a project item (e.g. [\"Status\", \"Priority\"]). Resolved server-side to field IDs \u2014 pass this instead of 'fields' when you only know the human-readable names. Mutually exclusive with 'fields' \u2014 provide one, not both. Only used for 'get_project_item' method."
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specific list of field IDs to include in the response when getting a project item (e.g. [\"102589\", \"985201\", \"169875\"]). If neither 'fields' nor 'field_names' is provided, only the title field is included. Mutually exclusive with 'field_names' \u2014 provide one, not both. Only used for 'get_project_item' method."
+        },
+        "item_id": {
+          "type": "number",
+          "description": "The item's ID. Required for 'get_project_item' method."
+        },
+        "method": {
+          "type": "string",
+          "description": "The method to execute",
+          "enum": [
+            "get_project",
+            "get_project_field",
+            "get_project_item",
+            "get_project_status_update",
+            "get_project_view"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "description": "The owner (user or organization login). The name is not case sensitive.",
+          "x-mcp-header": "owner"
+        },
+        "owner_type": {
+          "type": "string",
+          "description": "Owner type (user or org). If not provided, will be automatically detected.",
+          "enum": [
+            "user",
+            "org"
+          ]
+        },
+        "project_number": {
+          "type": "number",
+          "description": "The project's number."
+        },
+        "status_update_id": {
+          "type": "string",
+          "description": "The node ID of the project status update. Required for 'get_project_status_update' method."
+        },
+        "view_id": {
+          "type": "string",
+          "description": "The node ID of the project view. Required for 'get_project_view' method."
+        }
+      },
+      "required": [
+        "method"
+      ]
+    }
+  },
+  {
+    "name": "projects_list",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "after": {
+          "type": "string",
+          "description": "Forward pagination cursor from previous pageInfo.nextCursor."
+        },
+        "before": {
+          "type": "string",
+          "description": "Backward pagination cursor from previous pageInfo.prevCursor (rare)."
+        },
+        "field_names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Field names to include when listing project items (e.g. [\"Status\", \"Priority\"]). Resolved server-side to field IDs \u2014 pass this instead of 'fields' when you only know the human-readable names. Names that fail to resolve return a structured error. Mutually exclusive with 'fields' \u2014 provide one, not both. Only used for 'list_project_items' method."
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Field IDs to include when listing project items (e.g. [\"102589\", \"985201\"]). CRITICAL: Always provide to get field values. Without this (and without 'field_names'), only titles returned. Mutually exclusive with 'field_names' \u2014 provide one, not both. Only used for 'list_project_items' method."
+        },
+        "method": {
+          "type": "string",
+          "description": "The action to perform",
+          "enum": [
+            "list_projects",
+            "list_project_fields",
+            "list_project_items",
+            "list_project_status_updates",
+            "list_project_views"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "description": "The owner (user or organization login). The name is not case sensitive.",
+          "x-mcp-header": "owner"
+        },
+        "owner_type": {
+          "type": "string",
+          "description": "Owner type (user or org). If not provided, will automatically try both.",
+          "enum": [
+            "user",
+            "org"
+          ]
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page (max 50)"
+        },
+        "project_number": {
+          "type": "number",
+          "description": "The project's number. Required for 'list_project_fields', 'list_project_items', 'list_project_views', and 'list_project_status_updates' methods."
+        },
+        "query": {
+          "type": "string",
+          "description": "Filter/query string. For list_projects: filter by title text and state (e.g. \"roadmap is:open\"). For list_project_items: advanced filtering using GitHub's project filtering syntax."
+        }
+      },
+      "required": [
+        "method",
+        "owner"
+      ]
+    }
+  },
+  {
+    "name": "projects_write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string",
+          "description": "The body of the status update (markdown). Used for 'create_project_status_update' method."
+        },
+        "field_name": {
+          "type": "string",
+          "description": "The name of the iteration field (e.g. 'Sprint'). Required for 'create_iteration_field' method."
+        },
+        "filter": {
+          "description": "Saved view filter; omit on update to preserve it, or pass null to clear it.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "issue_number": {
+          "type": "number",
+          "description": "The issue number. Required for 'add_project_item' when item_type is 'issue'. Also accepted by 'update_project_item' to resolve the item by issue number (combine with item_owner and item_repo)."
+        },
+        "item_id": {
+          "type": "number",
+          "description": "The project item ID. Required for 'delete_project_item'. For 'update_project_item', provide either item_id, or (item_owner + item_repo + issue_number) to resolve the item by issue."
+        },
+        "item_owner": {
+          "type": "string",
+          "description": "The owner (user or organization) of the repository containing the issue or pull request. Required for 'add_project_item' method. Also accepted by 'update_project_item' when resolving the item by issue number."
+        },
+        "item_repo": {
+          "type": "string",
+          "description": "The name of the repository containing the issue or pull request. Required for 'add_project_item' method. Also accepted by 'update_project_item' when resolving the item by issue number."
+        },
+        "item_type": {
+          "type": "string",
+          "description": "The item's type, either issue or pull_request. Required for 'add_project_item' method.",
+          "enum": [
+            "issue",
+            "pull_request"
+          ]
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "node_id": {
+                    "type": "string",
+                    "description": "The project item's GraphQL node ID, as returned by 'list_project_items' or 'add_project_item'."
+                  }
+                },
+                "required": [
+                  "node_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "item_id": {
+                    "type": "integer",
+                    "description": "The numeric project item ID."
+                  }
+                },
+                "required": [
+                  "item_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "issue_number": {
+                    "type": "integer",
+                    "description": "Issue number used to resolve the project item."
+                  },
+                  "item_owner": {
+                    "type": "string",
+                    "description": "Owner of the repository containing the issue."
+                  },
+                  "item_repo": {
+                    "type": "string",
+                    "description": "Repository containing the issue."
+                  }
+                },
+                "required": [
+                  "item_owner",
+                  "item_repo",
+                  "issue_number"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "description": "The items to update with the top-level 'updated_field'. Required for 'update_project_items'; prefer it over calling 'update_project_item' in a loop. Each entry must match exactly one reference variant: 'node_id', numeric 'item_id', or 'item_owner' + 'item_repo' + 'issue_number'. Limit: 50 items per call."
+        },
+        "iteration_duration": {
+          "type": "number",
+          "description": "Duration in days for iterations of the field (e.g. 7 for weekly, 14 for bi-weekly). Required for 'create_iteration_field' method."
+        },
+        "iterations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "duration": {
+                "type": "number",
+                "description": "Duration in days"
+              },
+              "start_date": {
+                "type": "string",
+                "description": "Start date in YYYY-MM-DD format"
+              },
+              "title": {
+                "type": "string",
+                "description": "Iteration title (e.g. 'Sprint 1')"
+              }
+            },
+            "required": [
+              "title",
+              "start_date",
+              "duration"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Custom iterations for 'create_iteration_field' method. Only set this when you need iterations with varying durations, breaks between them, or specific titles. Otherwise omit it: GitHub auto-creates three iterations of 'iteration_duration' days starting on 'start_date', which is the right choice for most cases."
+        },
+        "layout": {
+          "type": "string",
+          "description": "View layout; required when creating a view.",
+          "enum": [
+            "table",
+            "board",
+            "roadmap"
+          ]
+        },
+        "method": {
+          "type": "string",
+          "description": "The method to execute",
+          "enum": [
+            "add_project_item",
+            "update_project_item",
+            "update_project_items",
+            "delete_project_item",
+            "create_project_status_update",
+            "create_project_view",
+            "update_project_view",
+            "delete_project_view",
+            "create_project",
+            "create_iteration_field"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "View name; required when creating a view."
+        },
+        "owner": {
+          "type": "string",
+          "description": "The project owner (user or organization login). The name is not case sensitive.",
+          "x-mcp-header": "owner"
+        },
+        "owner_type": {
+          "type": "string",
+          "description": "Owner type (user or org). Required for 'create_project' method. If not provided for other methods, will be automatically detected.",
+          "enum": [
+            "user",
+            "org"
+          ]
+        },
+        "project_number": {
+          "type": "number",
+          "description": "The project's number. Required for all methods except 'create_project'."
+        },
+        "pull_request_number": {
+          "type": "number",
+          "description": "The pull request number (use when item_type is 'pull_request' for 'add_project_item' method). Provide either issue_number or pull_request_number."
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date in YYYY-MM-DD format. Used for 'create_project_status_update' and 'create_iteration_field' methods."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the project. Used for 'create_project_status_update' method.",
+          "enum": [
+            "INACTIVE",
+            "ON_TRACK",
+            "AT_RISK",
+            "OFF_TRACK",
+            "COMPLETE"
+          ]
+        },
+        "target_date": {
+          "type": "string",
+          "description": "The target date of the status update in YYYY-MM-DD format. Used for 'create_project_status_update' method."
+        },
+        "title": {
+          "type": "string",
+          "description": "The project title. Required for 'create_project' method."
+        },
+        "updated_field": {
+          "type": "object",
+          "description": "The field/value to apply, using {\"id\": 123, \"value\": ...} or {\"name\": \"Status\", \"value\": ...}; null clears the field. Required for 'update_project_item' and 'update_project_items', where one top-level field/value applies to every item in a batch. For 'update_project_item' SINGLE_SELECT fields, the name form accepts option names; the ID form expects an option ID.",
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "The numeric project field ID."
+                },
+                "value": {
+                  "description": "The value to apply. Any JSON value is accepted; use null to clear the field."
+                }
+              },
+              "required": [
+                "id",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The project field name. Matching is case-insensitive."
+                },
+                "value": {
+                  "description": "The value to apply. Any JSON value is accepted; use null to clear the field."
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "view_id": {
+          "type": "string",
+          "description": "Project view node ID for update or delete; must belong to owner/project_number."
+        },
+        "visible_field_names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ordered project field names to show on create or replace on update; omit on update to preserve, or pass [] to reset. Mutually exclusive with visible_fields. Roadmap accepts only []."
+        },
+        "visible_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ordered project field database IDs to show on create or replace on update; omit on update to preserve, or pass [] to reset. Mutually exclusive with visible_field_names. Roadmap accepts only []."
+        }
+      },
+      "required": [
+        "method",
+        "owner"
+      ]
+    }
+  },
+  {
+    "name": "push_files",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "branch": {
+          "type": "string",
+          "description": "Branch to push to"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "file content"
+              },
+              "path": {
+                "type": "string",
+                "description": "path to the file"
+              }
+            },
+            "required": [
+              "path",
+              "content"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Array of file objects to push, each object with path (string) and content (string)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Commit message"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "branch",
+        "files",
+        "message"
+      ]
+    }
+  },
+  {
+    "name": "search_code",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "path",
+              "sha",
+              "repository",
+              "text_matches"
+            ]
+          },
+          "description": "Subset of fields to return for each code search result. If omitted, all fields are returned. Use this to reduce response size when you only need specific fields; omitting 'repository' and 'text_matches' in particular drops the largest per-result data."
+        },
+        "order": {
+          "type": "string",
+          "description": "Sort order for results",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (min 1)",
+          "minimum": 1
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "query": {
+          "type": "string",
+          "description": "Search query (GitHub code search REST). Implicit AND between terms; supports `OR`, `NOT`, and `\"quoted phrase\"` for exact match. Qualifiers: `repo:owner/repo`, `org:`, `user:`, `language:`, `path:dir` (prefix match), `filename:exact.ext`, `extension:`, `in:file`, `in:path`, `size:`, `is:archived`, `is:fork`. Max 256 chars. Examples: `WithContext language:go org:github`; `\"package main\" repo:o/r`; `func extension:go path:cmd repo:o/r`; `NOT TODO language:go repo:o/r`."
+        },
+        "sort": {
+          "type": "string",
+          "description": "Sort field ('indexed' only)"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "search_commits",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "type": "string",
+          "description": "Sort order",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (min 1)",
+          "minimum": 1
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "query": {
+          "type": "string",
+          "description": "Commit search query (GitHub commit search REST). Searches commit messages on the default branch only. Scope the search with `repo:owner/repo`, `org:`, or `user:` (queries without a scope qualifier match across all of GitHub and are usually not what you want). Other qualifiers: `author:`, `committer:`, `author-name:`, `committer-name:`, `author-email:`, `committer-email:`, `author-date:`, `committer-date:` (supports `>`, `<`, `>=`, `<=`, and `YYYY-MM-DD..YYYY-MM-DD` ranges), `merge:true|false`, `hash:`, `tree:`, `parent:`, `is:public`. Examples: `repo:owner/repo fix panic`; `org:github author:defunkt committer-date:>=2024-01-01`; `\"refactor cache\" repo:o/r`; `hash:abc1234 repo:o/r`."
+        },
+        "sort": {
+          "type": "string",
+          "description": "Sort by author or committer date (defaults to best match)",
+          "enum": [
+            "author-date",
+            "committer-date"
+          ]
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "search_issues",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "number",
+              "title",
+              "body",
+              "state",
+              "state_reason",
+              "draft",
+              "locked",
+              "html_url",
+              "user",
+              "author_association",
+              "labels",
+              "assignee",
+              "assignees",
+              "milestone",
+              "comments",
+              "reactions",
+              "created_at",
+              "updated_at",
+              "closed_at",
+              "closed_by",
+              "type",
+              "repository_url",
+              "pull_request",
+              "field_values"
+            ]
+          },
+          "description": "Subset of fields to return for each issue result. If omitted, all fields are returned. Use this to reduce response size when you only need specific fields; omitting 'body', 'reactions', and 'labels' in particular drops the largest per-result data."
+        },
+        "order": {
+          "type": "string",
+          "description": "Sort order",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "description": "Optional repository owner. If provided with repo, only issues for this repository are listed.",
+          "x-mcp-header": "owner"
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (min 1)",
+          "minimum": 1
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "query": {
+          "type": "string",
+          "description": "The search query, as natural language. When the user gives alternative wordings, include them as plain words rather than joining them with OR."
+        },
+        "repo": {
+          "type": "string",
+          "description": "Optional repository name. If provided with owner, only issues for this repository are listed.",
+          "x-mcp-header": "repo"
+        },
+        "sort": {
+          "type": "string",
+          "description": "Sort field by number of matches of categories, defaults to best match",
+          "enum": [
+            "comments",
+            "reactions",
+            "reactions-+1",
+            "reactions--1",
+            "reactions-smile",
+            "reactions-thinking_face",
+            "reactions-heart",
+            "reactions-tada",
+            "interactions",
+            "created",
+            "updated"
+          ]
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "search_repositories",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "minimal_output": {
+          "type": "boolean",
+          "description": "Return minimal repository information (default: true). When false, modern clients receive additional curated repository details, not the complete GitHub API object. Legacy clients retain full GitHub API repository objects.",
+          "default": true
+        },
+        "order": {
+          "type": "string",
+          "description": "Sort order",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number for pagination (min 1)",
+          "minimum": 1
+        },
+        "perPage": {
+          "type": "number",
+          "description": "Results per page for pagination (min 1, max 100)",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "query": {
+          "type": "string",
+          "description": "Repository search query. Examples: 'machine learning in:name stars:>1000 language:python', 'topic:react', 'user:facebook'. Supports advanced search syntax for precise filtering."
+        },
+        "sort": {
+          "type": "string",
+          "description": "Sort repositories by field, defaults to best match",
+          "enum": [
+            "stars",
+            "forks",
+            "help-wanted-issues",
+            "updated"
+          ]
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "sub_issue_write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "after_id": {
+          "type": "number",
+          "description": "The ID of the sub-issue to be prioritized after (either after_id OR before_id should be specified)"
+        },
+        "before_id": {
+          "type": "number",
+          "description": "The ID of the sub-issue to be prioritized before (either after_id OR before_id should be specified)"
+        },
+        "issue_number": {
+          "type": "number",
+          "description": "The number of the parent issue"
+        },
+        "method": {
+          "type": "string",
+          "description": "The action to perform on a single sub-issue\nOptions are:\n- 'add' - add a sub-issue to a parent issue in a GitHub repository.\n- 'remove' - remove a sub-issue from a parent issue in a GitHub repository.\n- 'reprioritize' - change the order of sub-issues within a parent issue in a GitHub repository. Use either 'after_id' or 'before_id' to specify the new position.\nWrites issue hierarchy. To move a sub-issue to a new parent, use `add` with `replace_parent=true`; there is no writable parent field.\n"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "replace_parent": {
+          "type": "boolean",
+          "description": "When true, replaces the sub-issue's current parent issue. Use with 'add' method only."
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        },
+        "sub_issue_id": {
+          "type": "number",
+          "description": "The ID of the sub-issue to add. ID is not the same as issue number"
+        }
+      },
+      "required": [
+        "method",
+        "owner",
+        "repo",
+        "issue_number",
+        "sub_issue_id"
+      ]
+    }
+  },
+  {
+    "name": "ui_get",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "description": "The type of data to fetch",
+          "enum": [
+            "labels",
+            "assignees",
+            "milestones",
+            "issue_types",
+            "branches",
+            "issue_fields",
+            "reviewers"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner (required for all methods)",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name (required for labels, assignees, milestones, branches, issue fields, reviewers)",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "method",
+        "owner"
+      ]
+    }
+  },
+  {
+    "name": "update_issue_comment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string",
+          "description": "New comment content",
+          "minLength": 1
+        },
+        "comment_id": {
+          "type": "integer",
+          "description": "The numeric ID of the issue or pull request conversation comment to update. Do not use a pull request review comment ID.",
+          "minimum": 1
+        },
+        "owner": {
+          "type": "string",
+          "description": "Repository owner",
+          "x-mcp-header": "owner"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name",
+          "x-mcp-header": "repo"
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "comment_id",
+        "body"
+      ]
+    }
+  }
+]

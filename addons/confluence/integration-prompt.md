@@ -1,4 +1,4 @@
-# Confluence Integration Prompt
+# Confluence Adapter Integration Prompt
 
 Copy the prompt below into the AI tool used for the target project. Supply known
 non-secret site/space details if available; unresolved decisions will be clarified.
@@ -11,6 +11,28 @@ addons/confluence/instructions.md before acting. If the add-on source is missing
 ask for it rather than claiming to have read it. Use the established project
 documentation root and load only relevant sources, decisions, and security rules.
 Preserve existing documentation, IDs, integrations, and delivery gates.
+
+Configure this as a real MCP-backed Confluence adapter. Read
+addons/mcp-setup.md and addons/confluence/mcp-setup.md, inspect existing
+client profiles, then prepare and apply the selected client configuration within
+this setup request's scope. Use addons/configure_mcp.py for supported project
+profiles; reuse matching Atlassian connection ownership instead of creating a
+duplicate OAuth profile. Do not overwrite other configuration or install an
+unapproved bridge. Complete interactive authentication, initialize MCP, discover
+actual operation schemas, reload the client as needed, and verify target reads.
+A mapping-only result or browser login is not completed MCP setup. Report blocked
+states and ask for missing target/access information without claiming success.
+
+Before ticket/page writes, verify create, read, update, native-parent assignment,
+and parent/children read-back for the chosen workflow. Use stable existing IDs
+in visible parent and task names, for example SPEC-001 and TASK-001-001. Tasks
+must be native children of their corresponding ticket; description links and
+checklists do not satisfy that requirement. Confluence is the documentation
+adapter: selected pages use native parent/child page relations, while actual
+ticket/task hierarchy must be verified through the selected issue adapter.
+If required operations are missing, stop before creating flat substitutes.
+Record the precise missing capability and any separately approved supported
+connection needed to complete it. Keep capability and action permission distinct.
 
 Inspect the project and available tools. Identify the Confluence site, edition,
 space, parent page, content owner, audience, existing pages, and access method.

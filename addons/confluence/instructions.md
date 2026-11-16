@@ -1,7 +1,20 @@
-# Confluence Integration Instructions
+# Confluence Adapter Instructions
 
 Apply the [shared lifecycle](../README.md) and the project's canonical workflow.
 Load only documentation relevant to the selected publication or import scope.
+
+## Mandatory MCP Connection and Workflow Gate
+
+Follow [MCP setup](mcp-setup.md) and the [shared client configuration contract](../mcp-setup.md).
+Configure the selected client, complete authentication, initialize MCP, discover
+actual tool/operation schemas, and verify target reads. Reuse an existing matching
+Atlassian profile; do not overwrite unrelated settings or grants. Missing MCP
+access means setup is blocked, not complete with a manual workaround.
+
+Record create, read, update, native-parent assignment and bidirectional hierarchy
+read-back support before dependent writes. Verify the operations needed for the
+selected workflow and use truthful partial/blocked states when any are missing.
+Never create flat replacement objects because a relation tool is unavailable.
 
 ## Discovery and Decisions
 
@@ -21,6 +34,16 @@ Resolve and record before dependent changes:
 Ask focused questions when decisions are missing. Do not publish all of `docs/`
 or introduce automatic two-way synchronization by default.
 
+## Ticket and Page Hierarchy
+
+Confluence holds documentation. Keep actual tickets and child tasks in the
+selected issue system and verify their native hierarchy through its adapter.
+For selected page mappings, use stable ID-prefixed titles and the native page
+parent/child tree. A page link or embedded ticket list is not a native task
+relationship. Do not claim a Jira task is subordinate merely because its page
+is nested. If required hierarchy cannot be created and read back, report the
+combined workflow as blocked before creating flat substitute objects.
+
 ## Page Mapping and Rendering
 
 Prepare an explicit mapping. This example describes decisions to make, not
@@ -29,8 +52,8 @@ preconfigured page names or ownership:
 | Project content | Confluence representation | Decision to record |
 | --- | --- | --- |
 | Selected source file or section | Existing or planned page | Stable source reference and page ID/URL |
-| Document heading | Page title | Naming and rename ownership |
-| Document hierarchy | Space and parent page | Approved destination and audience |
+| Document heading and stable ID | ID-prefixed page title, such as `SPEC-001: <title>` | Naming and rename ownership |
+| Document hierarchy | Space, native parent page ID, and child listing | Verify parent/child relation and approved audience |
 | Requirements and criteria | Rendered body with stable IDs and source links | Authority and rendering format |
 | Diagrams and supporting evidence | Links or approved attachments | Visibility and supported rendering |
 | Publication evidence | Source revision and remote version | Operator, timestamp, and verification |

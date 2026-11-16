@@ -10,7 +10,7 @@ It provides a documentation structure, AI instruction files, role-based agent gu
 - `.github/copilot-instructions.md` - Copilot-compatible AI instructions
 - `.github/agents/` - role-specific agent instructions for GitHub Copilot, ChatGPT Codex, Claude Code, and other AI-assisted workflows
 - `.claude/agents/` - Claude Code wrappers that delegate to the shared `.github/agents/` role guidance
-- `addons/` - optional integration instructions and AI adaptation prompts
+- `addons/` - optional MCP adapters, configuration helper, and AI adaptation prompts
 - `docs/project/` - project overview, roadmap, and decisions
 - `docs/specs/` - requirements and specification templates
 - `docs/specs/baseline/` - global functional, non-functional, security, and acceptance requirements
@@ -25,8 +25,10 @@ New projects receive context-aware routing through the default instruction and r
 
 ## Optional External Integrations
 
-The [optional add-ons](addons/README.md) provide setup instructions and reusable
-AI prompts for Jira, Confluence, GitHub Projects, and GitLab. Select an add-on
+The [optional add-ons](addons/README.md) package MCP-backed adapters, an executable
+client configuration helper, and reusable AI prompts for Jira, Confluence, GitHub
+Projects, and GitLab. Setup must verify MCP access, visible stable IDs, and native
+ticket/task hierarchy before claiming the selected workflow operational. Select an add-on
 explicitly and load only its relevant guidance. It does not install a connector
 or change the bootstrap sequence, source authority, or approval gates.
 

@@ -1,7 +1,20 @@
-# Jira Integration Instructions
+# Jira Adapter Instructions
 
 Apply the [shared lifecycle](../README.md) and the project's canonical workflow.
 Load only the project sources relevant to this integration.
+
+## Mandatory MCP Connection and Workflow Gate
+
+Follow [MCP setup](mcp-setup.md) and the [shared client configuration contract](../mcp-setup.md).
+Configure the selected client, complete authentication, initialize MCP, discover
+actual tool/operation schemas, and verify target reads. Reuse an existing matching
+Atlassian profile; do not overwrite unrelated settings or grants. Missing MCP
+access means setup is blocked, not complete with a manual workaround.
+
+Record create, read, update, native-parent assignment and bidirectional hierarchy
+read-back support before dependent writes. Verify the operations needed for the
+selected workflow and use truthful partial/blocked states when any are missing.
+Never create flat replacement objects because a relation tool is unavailable.
 
 ## Discovery and Decisions
 
@@ -29,12 +42,21 @@ not an assumed Jira configuration:
 
 | Delivery content | Candidate Jira representation | Decision to record |
 | --- | --- | --- |
-| Stable task ID | Agreed description marker or existing custom field | Exact location and duplicate lookup |
-| Task title | Summary | Authoritative source |
+| Stable task ID | Visible `TASK-001-001: <title>` summary prefix plus marker/field | Preserve existing ID and exact duplicate lookup |
+| Parent ticket/spec | Visible `SPEC-001: <title>` summary and valid parent work type | Actual Jira hierarchy/type metadata |
+| Task title and parent | Child/subtask summary with ID prefix and native parent key | Correct ticket parent; verify from both objects |
 | Spec and acceptance criteria | Source links and selected description content | Content ownership and format |
 | Task status | A project workflow status reached through a valid transition | Allowed status/transition mapping |
 | Owner | Verified Jira account | Assignment authority; preserve role versus person distinction |
 | Blocker and verification evidence | Agreed field, link, or description section | Representation and update direction |
+
+The task must be a native child of its corresponding ticket. Select actual
+parent/child issue types from the target project's hierarchy metadata and confirm
+the parent's key before child creation. Keep the stable ID prefix visible in every
+parent and task summary, including existing objects being adapted. A body link,
+checklist, Issue Link, or matching title alone does not satisfy this hierarchy.
+If the MCP schema cannot set or read the native parent, stop before creating
+unparented task issues and report the precise missing operation.
 
 Discover creation/edit metadata for the selected project and issue type rather
 than inventing mandatory fields. Jira Cloud REST v3 descriptions use Atlassian
@@ -73,7 +95,8 @@ files under `addons/`.
 
 Validate with one representative existing task and a prepared preview. If a write
 is authorized, verify the resulting issue by reading it back and check that its
-criteria, source link, status, and stable ID match. Otherwise report preview-only
+criteria, source link, status, stable ID-prefixed summary, work type, and native
+parent match. Read the parent's child list as a separate hierarchy check. Otherwise report preview-only
 verification and the missing access/action. Exercise repeated preparation to
 confirm no duplicate is proposed. Preserve existing IDs, unrelated issues,
 project rules, and unresolved-question gates. Verify the durable record remains
