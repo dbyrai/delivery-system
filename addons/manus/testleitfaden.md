@@ -48,6 +48,9 @@ Reihenfolge bearbeitet, konkrete Fragen stellt und Entscheidungen dokumentiert.
 Mindestens eine offene Frage absichtlich noch nicht beantworten: keine davon
 abhängigen Tasks/Features erzeugen lassen. Danach Antwort oder ausdrückliche
 Deferral festhalten, erste Spec und Task-Plan prüfen und konkret freigeben.
+Vor dem Umsetzungspilot die Bootstrap-Abschlussprüfung aus dem How-to mit
+Schrittstatus und Ergebnisreferenzen verlangen. Einrichten des Addons oder ein
+pauschaler Abschluss im Chat allein darf keine Implementierung auslösen.
 Erst anschließend den Umsetzungspilot ausführen und seine Nachweise prüfen.
 
 ## Befund und Weitergabe

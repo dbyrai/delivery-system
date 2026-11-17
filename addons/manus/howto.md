@@ -3,6 +3,28 @@
 **Stand:** 17.11.2026 · **Ziel:** Ein GitHub-Repository je Anwendungsprojekt;
 Manus plant und implementiert darin nach den Delivery-Regeln.
 
+## Verbindliche Reihenfolge bis zur ersten Implementierung
+
+**Repository vorbereiten → Manus einrichten und Quellenzugriff prüfen → Projekt
+bootstrapen → Spec und Tasks freigeben → Anwendung implementieren → prüfen und
+veröffentlichen.** Das Kopieren der Delivery-Dateien und die Einrichtung des
+Manus-Addons schließen den Projekt-Bootstrap noch nicht ab.
+
+| Reihenfolge | Ergebnis vor dem nächsten Schritt | Anleitung |
+| --- | --- | --- |
+| A. Repository und Delivery-Dateien bereitstellen | Richtiger Projektstand ist in GitHub verfügbar; vorhandene Dateien bleiben erhalten | Abschnitte 1–2 |
+| B. Manus einrichten und Lesen prüfen | Projektanweisung, tatsächlicher Branch und relevante Regeln sind nachweislich geladen | Abschnitt 3 |
+| C. Projekt-Bootstrap bearbeiten | Schritt 0 passend behandelt; Schritte 1–12 abgeschlossen oder ausdrücklich zurückgestellt; Entscheidungen dokumentiert | Abschnitte 4–5 |
+| D. Umsetzungsbereitschaft prüfen | Bootstrap-Gate erfüllt, konkrete Spec/Tasks freigegeben, keine offenen abhängigen Blocker | Abschlussprüfung in Abschnitt 5 |
+| E. Implementieren und verifizieren | Freigegebener Plan mit Tests, Status und Abnahmen bearbeitet | Abschnitt 6 |
+| F. Review und Veröffentlichung | Freigegebener Quellstand; bestehende Git-/Release-Regeln eingehalten | Abschnitt 7 |
+
+Bei einem bereits adoptierten Projekt den vorhandenen Bootstrap-Nachweis prüfen
+und erhalten. Fehlende Angaben gezielt ergänzen; den Bootstrap nicht neu starten.
+Bei einem neuen Projekt oder erstmaliger Adoption ist Schritt C erforderlich.
+Manus führt den Bootstrap mit dem Projekt-Owner durch: Er bereitet die Dokumente
+vor und fragt fehlende Entscheidungen ab. Er darf die Antworten nicht erfinden.
+
 ## 1. Projekt und GitHub-Arbeitsmodus festlegen
 
 Du benötigst einen Manus-Account und Zugriff auf das ausgewählte GitHub-Repository.
@@ -122,12 +144,66 @@ Keine automatische Veröffentlichung. Melde blockierte Voraussetzungen konkret.
 Setze das neue Projekt <Projektziel> nach delivery-system.md auf.
 Markiere Bootstrap-Schritt 0 als nicht anwendbar und bearbeite Schritte 1–12
 in Reihenfolge. Schreibe Projektentscheidungen in die vorhandene Dokumentations-
-struktur; halte das Handbuch generisch. Frage fehlende Angaben gezielt ab und
-dokumentiere Antworten. Erfinde keine Anforderungen und beginne keine Feature-
+struktur; halte das Handbuch generisch. Halte am ersten blockierenden Punkt an, frage fehlende Angaben gezielt ab und
+dokumentiere Antworten oder ausdrückliche Deferrals in den zuständigen Quellen. Erfinde keine Anforderungen und beginne keine Feature-
 Implementierung vor abgeschlossenem oder ausdrücklich zurückgestelltem Bootstrap.
 Bereite die erste Spec und bereite Tasks mit Kriterien und Verifikation vor,
 sobald deren Quellenblocker geklärt sind. Lege mir den Plan zur Freigabe vor.
 ```
+
+### Bootstrap-Schritte in der richtigen Reihenfolge
+
+Diese Übersicht gilt auch für die erstmalige Adoption aus Abschnitt 4. Sie fasst
+[die verbindliche Bootstrap-Sequenz](../../delivery-system.md#bootstrap-sequence)
+zusammen; die dortigen Detailanforderungen bleiben maßgeblich. `docs/` steht hier
+für die bereits etablierte Dokumentationswurzel, falls das Projekt eine andere nutzt.
+
+| Schritt | Was Manus mit dem Owner klärt oder bearbeitet | Maßgebliches Ergebnis |
+| --- | --- | --- |
+| 0 | Nur bei bestehendem Projekt: Repository, Dokumentation, Code, CI/CD und Risiken prüfen; bei neuem Projekt als nicht anwendbar markieren | Bestandsreview, etwa `docs/project/existing-repository-review.md` |
+| 1 | Kopierte Platzhalter und fremde Projektannahmen bereinigen | Angepasste Dateien; offene Angaben ausdrücklich erfasst |
+| 2 | Zweck, Ziele, Nicht-Ziele, Stakeholder und Grenzen festlegen | `docs/project/overview.md` |
+| 3 | Übergeordnete funktionale, nichtfunktionale und Sicherheitsanforderungen klären | `docs/specs/requirements.md` |
+| 4 | Funktionale Baseline auf das Projekt zuschneiden | `docs/specs/baseline/functional-requirements.md` |
+| 5 | Nichtfunktionale Baseline und messbare Qualitätsziele prüfen | `docs/specs/baseline/non-functional-requirements.md` |
+| 6 | Sicherheit, Datenschutz, Zugriffe und Datenhaltung klären | `docs/specs/baseline/security-policy.md` |
+| 7 | Übergreifende Abnahmekriterien konkretisieren | `docs/specs/baseline/acceptance-criteria.md` |
+| 8 | Erste Meilensteine, Umfang und Abhängigkeiten planen | `docs/project/roadmap.md` |
+| 9 | Definition of Done und Prüfstrategie festlegen | `docs/quality/dod-checklist.md`, `docs/quality/test-strategy.md` |
+| 10 | Passende Rollen und deren Nutzung in Manus prüfen | Relevante Profile unter `.github/agents/` und dokumentierte Manus-Einrichtung |
+| 11 | Erste detaillierte Spec aus geklärten Anforderungen erstellen oder ausdrücklich zurückstellen | Spec nach `docs/specs/template.md` |
+| 12 | Erste Task-Datei mit IDs, Rollen, Kriterien und Prüfungen erstellen oder ausdrücklich zurückstellen | Tasks nach `docs/tasks/template.md` |
+
+**Stopppunkt bei offenen Fragen:** Am ersten blockierenden Punkt anhalten, die
+Frage konkret stellen und Antwort oder ausdrückliche Zurückstellung an der
+zuständigen Quelle dokumentieren. Erst dann im Bootstrap fortfahren. Aus einer
+noch blockierten Spec keine Implementierungstasks erzeugen; einen blockierten
+Task nicht implementieren. Eine Deferral erlaubt nur die ausdrücklich gewählte
+Fortsetzung und löst andere Voraussetzungen nicht automatisch auf.
+
+### Bootstrap-Abschluss und Freigabe zur Umsetzung
+
+Vor Abschnitt 6 den
+[Bootstrap Completion Check](../../delivery-system.md#bootstrap-completion-check)
+am tatsächlichen Projektstand durchführen. Im bestehenden Bootstrap-Nachweis
+oder, falls keiner vorhanden ist, im dauerhaften Projekt-Integrationsnachweis
+festhalten: Schritt, Status, Ergebnisreferenz, offene Frage und dokumentierte
+Antwort/Deferral. Keinen zusätzlichen konkurrierenden Projektplan anlegen.
+
+- Schritt 0 ist abgeschlossen oder für das neue Projekt nicht anwendbar.
+- Schritte 1–12 sind abgeschlossen oder vom Owner ausdrücklich zurückgestellt.
+- Quellenblocker und verlinkte Frage-Dateien sind geklärt oder ausdrücklich
+  zurückgestellt; die Entscheidungen stehen in den zuständigen Quellen.
+- Projektquellen, Qualitätsregeln und notwendige Prüfkommandos sind verfügbar.
+- Der konkret gewählte Umsetzungsumfang ist freigegeben; seine Spec und Tasks
+  erfüllen ihre Bereitschaftskriterien. Zurückgestellte erste Specs/Tasks liefern
+  noch keinen implementierbaren Auftrag.
+
+Manus soll diese Prüfung vor Implementierung kurz mit den tatsächlichen
+Dokumentreferenzen melden. Der Owner prüft den Plan und erteilt die noch fehlende
+Umsetzungsfreigabe. Eine bereits ausdrücklich erteilte, weiterhin passende
+Freigabe bleibt gültig. Ein pauschales „Bootstrap erledigt“ ohne Nachweise reicht
+nicht als Übergabe in die Implementierung.
 
 ## 6. Anwendung entlang der Specs und Tasks bauen
 
