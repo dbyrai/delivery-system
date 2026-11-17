@@ -1,10 +1,5 @@
 # Optional Integration Add-ons
 
-Choose a workflow add-on or an MCP integration adapter. The
-[Kiro workflow add-on](kiro/README.md) installs local steering and maps native
-specs to delivery documents; it uses its own setup and verification lifecycle
-and requires no MCP connection.
-
 The optional MCP packages below are adapters connecting the Delivery System to external
 tools through MCP. Each includes setup, identity/hierarchy rules, verification,
 and deactivation. The shared executable configuration helper prepares real client
@@ -21,15 +16,14 @@ and setup/removal prompts. It requires no external Manus API.
 | Add-on | Intended use | Start here |
 | --- | --- | --- |
 | Manus | Use Manus with GitHub for existing or new projects and approved spec/task execution | [Manus](manus/README.md) |
-| Kiro | Use shared instructions and map native specs to delivery documents | [Kiro](kiro/README.md) |
 | Jira | Link delivery tasks to Jira work items and workflows | [Jira](jira/README.md) |
 | Confluence | Publish or reference selected project documentation | [Confluence](confluence/README.md) |
 | GitHub Projects | Connect repository issues and project planning | [GitHub Projects](github-projects/README.md) |
 | GitLab | Connect project issues, planning, and merge requests | [GitLab](gitlab/README.md) |
 
-Select only the add-ons you need. For Manus, follow its direct GitHub workflow and verify the actual connector/sync mode; the
-MCP connection and ticket hierarchy gates below do not apply to that workflow.
-For Kiro, follow its linked guide and prompts.
+Select only the add-ons you need. For Manus, follow its direct GitHub workflow
+and verify the actual connector/sync mode. The MCP connection and ticket hierarchy
+gates below apply to the MCP adapters, not to the Manus workflow.
 For MCP adapters, read this lifecycle and the chosen add-on's
 instructions and the [MCP setup guide](mcp-setup.md), then copy its integration
 prompt into your AI tool. Verify that
@@ -146,10 +140,7 @@ Each add-on provides a copyable deactivation prompt:
 [GitHub Projects](github-projects/deactivation-prompt.md), and
 [GitLab](gitlab/deactivation-prompt.md).
 Manus provides a separate [deactivation prompt](manus/deactivation-prompt.md)
-for pending delegated work and any later configured access.
-Kiro provides a separate [deactivation prompt](kiro/deactivation-prompt.md) for
-installed steering and native-spec handover; external knowledge and credential
-shutdown steps below apply to MCP adapters.
+for its project instructions, pending work, and authorized GitHub access.
 Use the selected prompt with the durable project integration record. The prompt
 also works when supplied separately after optional add-on files were removed.
 When copying only selected add-ons, retain only their prompt links here.
