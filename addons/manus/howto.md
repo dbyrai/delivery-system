@@ -1,248 +1,234 @@
-# How-to: Mit Manus und GitHub nach dem Delivery-System entwickeln
+# How-to: Develop with Manus, GitHub, and the Delivery System
 
-**Stand:** 17.11.2026 · **Ziel:** Ein GitHub-Repository je Anwendungsprojekt;
-Manus plant und implementiert darin nach den Delivery-Regeln.
+**Updated:** 2026-11-17 · **Goal:** One GitHub repository per application project;
+Manus plans and implements according to its delivery rules.
 
-## Verbindliche Reihenfolge bis zur ersten Implementierung
+## Required Order Before Implementation
 
-**Repository vorbereiten → Manus einrichten und Quellenzugriff prüfen → Projekt
-bootstrapen → Spec und Tasks freigeben → Anwendung implementieren → prüfen und
-veröffentlichen.** Das Kopieren der Delivery-Dateien und die Einrichtung des
-Manus-Addons schließen den Projekt-Bootstrap noch nicht ab.
+**Prepare the repository → configure Manus and verify source access → bootstrap
+the project → approve specs/tasks → implement → verify and publish.** Copying
+delivery files and configuring the add-on do not complete project bootstrap.
 
-| Reihenfolge | Ergebnis vor dem nächsten Schritt | Anleitung |
+| Order | Required outcome before proceeding | Guidance |
 | --- | --- | --- |
-| A. Repository und Delivery-Dateien bereitstellen | Richtiger Projektstand ist in GitHub verfügbar; vorhandene Dateien bleiben erhalten | Abschnitte 1–2 |
-| B. Manus einrichten und Lesen prüfen | Projektanweisung, tatsächlicher Branch und relevante Regeln sind nachweislich geladen | Abschnitt 3 |
-| C. Projekt-Bootstrap bearbeiten | Schritt 0 passend behandelt; Schritte 1–12 abgeschlossen oder ausdrücklich zurückgestellt; Entscheidungen dokumentiert | Abschnitte 4–5 |
-| D. Umsetzungsbereitschaft prüfen | Bootstrap-Gate erfüllt, konkrete Spec/Tasks freigegeben, keine offenen abhängigen Blocker | Abschlussprüfung in Abschnitt 5 |
-| E. Implementieren und verifizieren | Freigegebener Plan mit Tests, Status und Abnahmen bearbeitet | Abschnitt 6 |
-| F. Review und Veröffentlichung | Freigegebener Quellstand; bestehende Git-/Release-Regeln eingehalten | Abschnitt 7 |
+| A. Prepare repository and delivery files | Correct project state available in GitHub; existing files preserved | Sections 1–2 |
+| B. Configure Manus and verify reads | Actual branch, project instructions, and relevant rules demonstrably loaded | Section 3 |
+| C. Bootstrap the project | Step 0 handled appropriately; steps 1–12 completed or explicitly deferred; decisions recorded | Sections 4–5 |
+| D. Verify implementation readiness | Bootstrap gate satisfied; selected specs/tasks approved; no unresolved dependent blockers | Completion check in section 5 |
+| E. Implement and verify | Approved plan executed with tests, status, and acceptance evidence | Section 6 |
+| F. Review and publish | Approved source revision; existing Git/release rules followed | Section 7 |
 
-Bei einem bereits adoptierten Projekt den vorhandenen Bootstrap-Nachweis prüfen
-und erhalten. Fehlende Angaben gezielt ergänzen; den Bootstrap nicht neu starten.
-Bei einem neuen Projekt oder erstmaliger Adoption ist Schritt C erforderlich.
-Manus führt den Bootstrap mit dem Projekt-Owner durch: Er bereitet die Dokumente
-vor und fragt fehlende Entscheidungen ab. Er darf die Antworten nicht erfinden.
+For an already adopted project, verify and preserve its bootstrap evidence.
+Address specific gaps without restarting bootstrap. New projects and first-time
+adoption require step C. Manus prepares documents and asks the project owner for
+missing decisions; it must not invent answers.
 
-## 1. Projekt und GitHub-Arbeitsmodus festlegen
+## 1. Choose the Project and GitHub Working Mode
 
-Du benötigst einen Manus-Account und Zugriff auf das ausgewählte GitHub-Repository.
-Der Account-Inhaber richtet die Verbindung in Manus ein. Das Addon richtet keine
-separate API-Anbindung ein. Bestehende App-Daten und Konfiguration erhalten;
-den Delivery-Template-README nicht über die Anwendungs-README kopieren.
+You need a Manus account and access to the selected GitHub repository. The account
+holder connects GitHub in Manus. This add-on configures no separate API integration.
+Preserve application data and configuration. Do not overwrite an application README
+with the Delivery System template README.
 
-Die offiziellen Manus-Seiten beschreiben zwei unterschiedliche GitHub-Wege:
+Official Manus documentation describes two GitHub paths:
 
-| GitHub-Weg | Dokumentiertes Verhalten | Einsatz im Delivery-System |
+| GitHub path | Documented behavior | Delivery System use |
 | --- | --- | --- |
-| GitHub-Connector | In Manus unter Connectors GitHub verbinden, Repository-Zugriff auswählen; Arbeit auf Branches und PRs möglich | Empfohlener Weg für ein bestehendes Repository mit Review-Prozess |
-| GitHub-Sync eines Manus-Web-App-Projekts | Export in ein neues privates Repository, automatische Übertragung nach `main` und Aktualisierung vor Änderungen | Nur mit bewusst akzeptiertem Sync-Verhalten für das betreffende Projekt |
+| GitHub connector | Connect GitHub under Connectors in Manus and select repository access; branches and PRs supported | Recommended for an existing repository with a review process |
+| Manus web-app GitHub sync | Export to a new private repository; automatic pushes to `main` and updates before edits | Use only after explicitly accepting this project's sync behavior |
 
-Quellen: [Manus GitHub-Connector](https://www.manus.im/connectors/github) und
+Sources: [Manus GitHub connector](https://www.manus.im/connectors/github) and
 [Manus GitHub Integration](https://manus.im/docs/website-builder/github-integration).
-Der dokumentierte Web-App-Export ist kein allgemeiner Import beliebiger bestehender
-Repositories. Ein vorhandenes Projekt daher über die tatsächlich verfügbare
-Connector-Funktion prüfen. Oberfläche und Fähigkeiten können sich ändern.
+The documented web-app export is not a general import of arbitrary existing
+repositories. Verify the available connector functionality for an existing project.
+The interface and capabilities can change.
 
-Vor Änderungen Repository-URL, Arbeitsbranch, Lese-/Schreibzugriff und aktive
-Sync-Funktion feststellen. Bei vorgeschriebenem Branch/PR-Prozess nur fortfahren,
-wenn dieser Weg tatsächlich unterstützt wird. Bei automatischem Main-Sync zuerst
-dessen Commit-/Push-Verhalten ausdrücklich klären und freigeben; bei Konflikt mit
-Projektregeln diesen Modus nicht für die Umsetzung verwenden. Ein Prompt wie
-„nicht pushen“ hebt die automatische Synchronisierung nicht technisch auf.
+Before edits, establish the repository URL, working branch, read/write access,
+and active sync behavior. If project rules require branches and PRs, proceed only
+when that path is actually supported. For automatic main sync, clarify and authorize
+its commit/push behavior first. Do not use a conflicting mode for implementation.
+A prompt saying “do not push” does not technically disable automatic sync.
 
-## 2. Delivery-System im Repository bereitstellen
+## 2. Prepare the Delivery System in the Repository
 
-Bei vorhandenem Delivery-System dessen Dokumentationswurzel, Anweisungen und IDs
-beibehalten. Sonst die benötigten generischen Dateien aus dem Delivery-System
-gezielt übernehmen: `delivery-system.md`, `.github/copilot-instructions.md`,
-relevante `.github/agents/` und die passenden Dokumentvorlagen unter `docs/`.
-Vorhandene Dateien abgleichen statt überschreiben. `AGENTS.md` kann als Router
-beibehalten werden; sein automatisches Laden durch Manus wird nicht vorausgesetzt.
+Preserve an existing Delivery System's documentation root, instructions, and IDs.
+Otherwise, selectively adopt generic files: `delivery-system.md`,
+`.github/copilot-instructions.md`, relevant `.github/agents/`, and appropriate
+`docs/` templates. Reconcile existing files rather than overwriting them.
+`AGENTS.md` can remain a router; do not assume Manus loads it automatically.
 
-Den [Integrationsprompt](integration-prompt.md) im Zielprojekt ausführen. Er
-bereitet eine dauerhafte Projektanweisung und einen Integrationsnachweis vor,
-beispielsweise `docs/project/integrations/manus.md`. Dort stehen die tatsächlichen
-Pfade, gewählter Einstieg, Repository/Branch, Zugriffsmodus, Owner, laufende Regeln,
-Freigaben, Testkommandos und offene Prüfungen. Rollen- und Workflowregeln werden
-über ihre kanonischen Quellen referenziert und nicht nochmals kopiert.
+Run the [integration prompt](integration-prompt.md) in the target project. It prepares
+durable project instructions and an integration record, for example
+`docs/project/integrations/manus.md`. Record actual paths, entry level, repository,
+branch, access mode, owner, operating rules, authorization, test commands, and
+pending checks. Reference canonical role/workflow guidance rather than duplicating it.
 
-Die wiederverwendbare [Projektanweisung](templates/manus-projektanweisung.md)
-anpassen und im Manus-Projekt als Projektanweisung hinterlegen, soweit diese
-Funktion verfügbar ist. Andernfalls den Inhalt am Beginn jedes neuen Manus-Auftrags
-mitgeben. Den tatsächlichen Ablageort im Nachweis dokumentieren. Keine erfundene
-Manus-Konfigurationsdatei oder automatische Regel-Erkennung voraussetzen.
+Adapt the [project instruction template](templates/manus-project-instructions.md).
+Use Manus project instructions if that feature is available; otherwise provide
+them at the start of every new task. Record the actual location. Do not invent a
+Manus configuration filename or assume automatic rule discovery.
 
-Wenn ein anderes Werkzeug die Dateien vorbereitet, muss der freigegebene Stand
-zuerst durch den zuständigen Git-Owner im Zielrepository verfügbar gemacht werden.
-Eine lokale Änderung auf deinem Computer ist noch nicht in Manus angekommen.
+If another tool prepares the files, the authorized Git owner must first make that
+revision available in the target repository. Local edits on your computer are not
+automatically available in Manus.
 
-## 3. Lesezugriff und Leitplanken in Manus prüfen
+## 3. Verify Repository Reads and Instructions in Manus
 
-Nach Auswahl des richtigen Repositorys diesen Startprompt in Manus verwenden.
-Beispielpfade an die tatsächliche Struktur anpassen:
+Select the correct repository and use this start prompt. Adapt example paths:
 
 ```text
-Verwende ausschließlich das ausgewählte Projekt <Repository-URL>.
-Arbeitsmodus: <GitHub-Connector mit Branch/PR oder ausdrücklich erlaubter Sync>.
-Lies die kanonischen Anweisungen unter .github/copilot-instructions.md und den
-Manus-Integrationsnachweis unter <tatsächlicher Pfad>. Wähle darüber die passende
-Rolle und lies nur den relevanten Projektkontext samt verlinkten Blockern.
+Use only the selected project <repository URL>.
+Working mode: <GitHub connector with branch/PR or explicitly authorized sync>.
+Read .github/copilot-instructions.md and the Manus integration record at
+<actual path>. Select the relevant role and load only the necessary project
+context, including linked blockers.
 
-Nenne vor Änderungen: Repository, Branch und Quellenstand, gelesene verbindliche
-Dateien, gewählte Rolle, Bootstrap-Status sowie bereite und blockierte Aufgaben.
-Belege das Lesen durch kurze konkrete Angaben aus den relevanten Dateien.
-Wenn Zugriff oder maßgebliche Quellen fehlen, melde das und stoppe davon abhängige
-Arbeit. Erfinde weder Projektentscheidungen noch bestandene Checks.
-Beginne zunächst nur mit dieser Bestandsaufnahme.
+Before changes, report the repository, branch, source revision, binding files
+actually read, selected role, bootstrap status, and ready/blocked tasks.
+Demonstrate reading with brief concrete details from the relevant files.
+Report missing access or authoritative sources and stop dependent work.
+Do not invent project decisions or passed checks. Start with this inventory only.
 ```
 
-Wenn Manus nur Chat-Inhalte statt Repository-Dateien gelesen hat, ist die
-Integration noch nicht verifiziert. Fehlenden Zugriff zuerst beheben; keine
-umfangreiche Umsetzung mit unvollständigen Regeln starten.
+Reading chat content alone does not verify repository integration. Resolve missing
+access before substantial implementation with incomplete instructions.
 
-## 4. Stufe 1: Bestehendes Projekt übernehmen
+## 4. Level 1: Adopt an Existing Project
 
-1. **Bestand prüfen:** Code, bestehende Dokumente, IDs, Architektur, CI/CD,
-   Testkommandos und vorhandene Änderungen erfassen. Fremde Arbeit erhalten.
-2. **Adoptionsstatus feststellen:** Bei bereits abgeschlossenem Bootstrap nur
-   relevante Lücken behandeln. Bei erstmaliger Adoption erst den Repository-Review
-   aus Schritt 0 des Handbuchs und anschließend den Bootstrap in Reihenfolge
-   durchführen. Vorhandenes Wissen übernehmen, keine fertigen Dokumente ersetzen.
-3. **Arbeitsumfang wählen:** Eine freigegebene Spec und ihre bereiten Tasks oder
-   einen explizit freigegebenen Anwendungsplan bestimmen. Bestehende IDs verwenden.
-4. **Ausführen:** Die Umsetzungsschleife aus Abschnitt 6 beauftragen.
+1. **Review the current state:** Identify code, documentation, IDs, architecture,
+   CI/CD, test commands, and existing changes. Preserve others' work.
+2. **Establish adoption status:** For completed bootstrap, address relevant gaps
+   only. For first-time adoption, perform handbook step 0, then bootstrap in order.
+   Use existing knowledge instead of replacing completed documents.
+3. **Select scope:** Choose an approved spec with ready tasks or an explicitly
+   approved application plan. Keep existing IDs.
+4. **Execute:** Use the implementation loop in section 6.
 
 ```text
-Arbeite im bestehenden Projekt nach den gelesenen Delivery-Anweisungen.
-Prüfe den Adoptions-/Bootstrap-Status und erhalte abgeschlossene Dokumentation.
-Bearbeite anschließend nur <freigegebene Spec-/Task-IDs> in <erlaubte Pfade>.
-Beachte Abhängigkeiten, verlinkte Fragen und <vereinbarte Prüfpunkte>.
-Nutze <Arbeitsbranch>. Commit/Push/PR: <konkret freigegebener Umfang>.
-Keine automatische Veröffentlichung. Melde blockierte Voraussetzungen konkret.
+Work in the existing project under the delivery instructions you read.
+Verify adoption/bootstrap status and preserve completed documentation.
+Then execute only <approved spec/task IDs> within <allowed paths>.
+Follow dependencies, linked questions, and <agreed checkpoints>.
+Use <working branch>. Commit/push/PR authority: <specific approved scope>.
+Do not publish automatically. Report blocked prerequisites concretely.
 ```
 
-## 5. Stufe 2: Neues Projekt vollständig aufsetzen
+## 5. Level 2: Bootstrap a New Project
 
-1. **Repository bereitstellen:** Neues Projektrepository mit der generischen
-   Delivery-Struktur verbinden. Falls Manus zunächst einen technischen Container
-   benötigt, nur ausdrücklich vereinbartes Gerüst erstellen; keine Feature-Umsetzung
-   vor dem Bootstrap-Gate. Einen Web-App-Export als eigenen Vorgang autorisieren.
-2. **Bootstrap durchlaufen:** Den [Bootstrap im Handbuch](../../delivery-system.md#bootstrap-sequence)
-   verwenden: Schritt 0 als nicht anwendbar markieren, Schritte 1–12 in Reihenfolge
-   abarbeiten. Die Detailanforderungen des Handbuchs bleiben maßgeblich.
-3. **Fragen klären:** Manus stellt konkrete Fragen zu fehlenden Anforderungen.
-   Antworten oder ausdrückliche Deferrals in den zuständigen Dokumenten erfassen.
-   Bei Blockern keine davon abhängigen Tasks oder Implementierung erzeugen.
-4. **Plan freigeben:** Anforderungen, erste Spec, Task-Datei und Qualitätsregeln
-   prüfen. Bootstrap-Abschluss bzw. explizite Deferrals dokumentieren. Eine
-   Deferral ist keine pauschale Freigabe für weiterhin blockierte Operationen.
-5. **Anwendung bauen:** Den vereinbarten Spec-/Task-Plan über Abschnitt 6 ausführen.
+1. **Prepare the repository:** Connect a new project repository containing the generic
+   delivery structure. If Manus needs an initial technical container, create only
+   explicitly agreed scaffolding; no feature implementation before bootstrap.
+   Authorize a web-app export as a separate operation.
+2. **Run bootstrap:** Follow the [handbook sequence](../../delivery-system.md#bootstrap-sequence).
+   Mark step 0 not applicable and complete steps 1–12 in order. The handbook's
+   detailed requirements remain authoritative.
+3. **Resolve questions:** Manus asks for missing requirements. Record answers or
+   explicit deferrals in the appropriate sources. Do not create dependent tasks
+   or implement features while their prerequisites remain blocked.
+4. **Approve the plan:** Review requirements, the first spec, task file, and quality
+   rules. Record bootstrap completion or explicit deferrals. A deferral does not
+   authorize operations that remain blocked for another reason.
+5. **Build:** Execute the approved spec/task plan using section 6.
 
 ```text
-Setze das neue Projekt <Projektziel> nach delivery-system.md auf.
-Markiere Bootstrap-Schritt 0 als nicht anwendbar und bearbeite Schritte 1–12
-in Reihenfolge. Schreibe Projektentscheidungen in die vorhandene Dokumentations-
-struktur; halte das Handbuch generisch. Halte am ersten blockierenden Punkt an, frage fehlende Angaben gezielt ab und
-dokumentiere Antworten oder ausdrückliche Deferrals in den zuständigen Quellen. Erfinde keine Anforderungen und beginne keine Feature-
-Implementierung vor abgeschlossenem oder ausdrücklich zurückgestelltem Bootstrap.
-Bereite die erste Spec und bereite Tasks mit Kriterien und Verifikation vor,
-sobald deren Quellenblocker geklärt sind. Lege mir den Plan zur Freigabe vor.
+Set up the new project <project goal> using delivery-system.md.
+Mark bootstrap step 0 not applicable and work through steps 1–12 in order.
+Write project decisions in the established documentation root; keep the handbook
+generic. Stop at the first blocker, ask focused questions, and record answers or
+explicit deferrals in the appropriate sources. Do not invent requirements or
+start feature implementation before completed or explicitly deferred bootstrap.
+Prepare the first spec and ready tasks with criteria and verification once their
+source blockers are resolved. Present the plan for approval.
 ```
 
-### Bootstrap-Schritte in der richtigen Reihenfolge
+### Bootstrap Steps in Order
 
-Diese Übersicht gilt auch für die erstmalige Adoption aus Abschnitt 4. Sie fasst
-[die verbindliche Bootstrap-Sequenz](../../delivery-system.md#bootstrap-sequence)
-zusammen; die dortigen Detailanforderungen bleiben maßgeblich. `docs/` steht hier
-für die bereits etablierte Dokumentationswurzel, falls das Projekt eine andere nutzt.
+This overview also applies to first-time adoption in section 4. It summarizes the
+[canonical bootstrap sequence](../../delivery-system.md#bootstrap-sequence);
+the handbook's detailed requirements remain authoritative. Substitute the project's
+established documentation root for `docs/` when applicable.
 
-| Schritt | Was Manus mit dem Owner klärt oder bearbeitet | Maßgebliches Ergebnis |
+| Step | What Manus clarifies or prepares with the owner | Required output |
 | --- | --- | --- |
-| 0 | Nur bei bestehendem Projekt: Repository, Dokumentation, Code, CI/CD und Risiken prüfen; bei neuem Projekt als nicht anwendbar markieren | Bestandsreview, etwa `docs/project/existing-repository-review.md` |
-| 1 | Kopierte Platzhalter und fremde Projektannahmen bereinigen | Angepasste Dateien; offene Angaben ausdrücklich erfasst |
-| 2 | Zweck, Ziele, Nicht-Ziele, Stakeholder und Grenzen festlegen | `docs/project/overview.md` |
-| 3 | Übergeordnete funktionale, nichtfunktionale und Sicherheitsanforderungen klären | `docs/specs/requirements.md` |
-| 4 | Funktionale Baseline auf das Projekt zuschneiden | `docs/specs/baseline/functional-requirements.md` |
-| 5 | Nichtfunktionale Baseline und messbare Qualitätsziele prüfen | `docs/specs/baseline/non-functional-requirements.md` |
-| 6 | Sicherheit, Datenschutz, Zugriffe und Datenhaltung klären | `docs/specs/baseline/security-policy.md` |
-| 7 | Übergreifende Abnahmekriterien konkretisieren | `docs/specs/baseline/acceptance-criteria.md` |
-| 8 | Erste Meilensteine, Umfang und Abhängigkeiten planen | `docs/project/roadmap.md` |
-| 9 | Definition of Done und Prüfstrategie festlegen | `docs/quality/dod-checklist.md`, `docs/quality/test-strategy.md` |
-| 10 | Passende Rollen und deren Nutzung in Manus prüfen | Relevante Profile unter `.github/agents/` und dokumentierte Manus-Einrichtung |
-| 11 | Erste detaillierte Spec aus geklärten Anforderungen erstellen oder ausdrücklich zurückstellen | Spec nach `docs/specs/template.md` |
-| 12 | Erste Task-Datei mit IDs, Rollen, Kriterien und Prüfungen erstellen oder ausdrücklich zurückstellen | Tasks nach `docs/tasks/template.md` |
+| 0 | Existing project: review repository, docs, code, CI/CD, and risks; new project: mark not applicable | Review, e.g. `docs/project/existing-repository-review.md` |
+| 1 | Remove copied placeholders and unrelated project assumptions | Adapted files; unknowns explicitly recorded |
+| 2 | Define purpose, goals, non-goals, stakeholders, and boundaries | `docs/project/overview.md` |
+| 3 | Clarify high-level functional, non-functional, and security requirements | `docs/specs/requirements.md` |
+| 4 | Adapt the functional baseline | `docs/specs/baseline/functional-requirements.md` |
+| 5 | Review non-functional baseline and measurable quality targets | `docs/specs/baseline/non-functional-requirements.md` |
+| 6 | Clarify security, privacy, access, and data handling | `docs/specs/baseline/security-policy.md` |
+| 7 | Define global acceptance criteria | `docs/specs/baseline/acceptance-criteria.md` |
+| 8 | Plan initial milestones, scope, and dependencies | `docs/project/roadmap.md` |
+| 9 | Define the Definition of Done and verification strategy | `docs/quality/dod-checklist.md`, `docs/quality/test-strategy.md` |
+| 10 | Review relevant roles and their use in Manus | Relevant `.github/agents/` profiles and documented Manus setup |
+| 11 | Create the first detailed spec from clarified requirements, or explicitly defer it | Spec based on `docs/specs/template.md` |
+| 12 | Create the first task file with IDs, roles, criteria, and checks, or explicitly defer it | Tasks based on `docs/tasks/template.md` |
 
-**Stopppunkt bei offenen Fragen:** Am ersten blockierenden Punkt anhalten, die
-Frage konkret stellen und Antwort oder ausdrückliche Zurückstellung an der
-zuständigen Quelle dokumentieren. Erst dann im Bootstrap fortfahren. Aus einer
-noch blockierten Spec keine Implementierungstasks erzeugen; einen blockierten
-Task nicht implementieren. Eine Deferral erlaubt nur die ausdrücklich gewählte
-Fortsetzung und löst andere Voraussetzungen nicht automatisch auf.
+**Question gate:** Stop at the first blocking question, ask it concretely, and
+record the answer or explicit deferral at its source before continuing bootstrap.
+Do not generate implementation tasks from a blocked spec or implement a blocked
+task. A deferral permits only the explicitly chosen continuation; it does not
+resolve other prerequisites automatically.
 
-### Bootstrap-Abschluss und Freigabe zur Umsetzung
+### Bootstrap Completion and Implementation Approval
 
-Vor Abschnitt 6 den
-[Bootstrap Completion Check](../../delivery-system.md#bootstrap-completion-check)
-am tatsächlichen Projektstand durchführen. Im bestehenden Bootstrap-Nachweis
-oder, falls keiner vorhanden ist, im dauerhaften Projekt-Integrationsnachweis
-festhalten: Schritt, Status, Ergebnisreferenz, offene Frage und dokumentierte
-Antwort/Deferral. Keinen zusätzlichen konkurrierenden Projektplan anlegen.
+Before section 6, apply the [Bootstrap Completion Check](../../delivery-system.md#bootstrap-completion-check)
+to the actual project state. Use an existing bootstrap record or, if absent, the
+durable integration record. Record each step, status, output reference, open
+question, and answer/deferral. Do not introduce a competing project plan.
 
-- Schritt 0 ist abgeschlossen oder für das neue Projekt nicht anwendbar.
-- Schritte 1–12 sind abgeschlossen oder vom Owner ausdrücklich zurückgestellt.
-- Quellenblocker und verlinkte Frage-Dateien sind geklärt oder ausdrücklich
-  zurückgestellt; die Entscheidungen stehen in den zuständigen Quellen.
-- Projektquellen, Qualitätsregeln und notwendige Prüfkommandos sind verfügbar.
-- Der konkret gewählte Umsetzungsumfang ist freigegeben; seine Spec und Tasks
-  erfüllen ihre Bereitschaftskriterien. Zurückgestellte erste Specs/Tasks liefern
-  noch keinen implementierbaren Auftrag.
+- Step 0 is complete or not applicable to the new project.
+- Steps 1–12 are complete or explicitly deferred by the owner.
+- Source blockers and linked question files are resolved or explicitly deferred,
+  with decisions recorded in the appropriate sources.
+- Project sources, quality rules, and required verification commands are available.
+- The selected implementation scope is approved and its specs/tasks satisfy
+  readiness criteria. Deferred initial specs/tasks are not executable assignments.
 
-Manus soll diese Prüfung vor Implementierung kurz mit den tatsächlichen
-Dokumentreferenzen melden. Der Owner prüft den Plan und erteilt die noch fehlende
-Umsetzungsfreigabe. Eine bereits ausdrücklich erteilte, weiterhin passende
-Freigabe bleibt gültig. Ein pauschales „Bootstrap erledigt“ ohne Nachweise reicht
-nicht als Übergabe in die Implementierung.
+Before implementation, Manus should report this check with actual document
+references. The owner reviews the plan and grants any missing implementation
+authority. Existing explicit authorization remains valid within its scope.
+“Bootstrap done” without evidence is insufficient for implementation handoff.
 
-## 6. Anwendung entlang der Specs und Tasks bauen
+## 6. Build the Application from Specs and Tasks
 
-Den freigegebenen Plan über die [Umsetzungsvorlage](templates/umsetzung.md)
-konkretisieren. Manus arbeitet im Repository, aktualisiert Fortschritt und
-Verifikation im vorhandenen Task-Format und verwendet die relevanten Rollenprofile.
-Diese Profile erzeugen keine automatisch getrennten Manus-Agenten.
+Define the approved plan using the [implementation template](templates/implementation.md).
+Manus works in the repository, updates progress and verification in the existing
+task format, and follows relevant role profiles. Profiles do not automatically
+create separate Manus agents.
 
 ```text
-Setze den freigegebenen Plan <Spec-/Task-Referenzen> im vereinbarten Repository
-und Branch um. Prüfe vor jedem Task dessen Quellen, offene Fragen, Abhängigkeiten
-und Akzeptanzkriterien. Arbeite bereite Tasks innerhalb dieses Plans selbstständig
-ab; frage nicht erneut nach bereits erteilter Autorisierung.
+Implement <approved spec/task references> in the agreed repository and branch.
+Before each task, check its sources, questions, dependencies, and acceptance
+criteria. Independently execute ready tasks within this plan; do not ask again
+for authorization already granted.
 
-Führe die erforderlichen Tests, Build-/Lint-/Typprüfungen aus und dokumentiere
-Kommandos und tatsächliche Ergebnisse je Task. Melde fehlende Umgebung separat.
-Halte an <vereinbarte Review-/Abnahmepunkte>. Stoppe abhängige Arbeit bei Blockern,
-Scope-Konflikten oder fehlender Freigabe. Liefere dort eine konkrete Rückfrage.
+Run required tests and build/lint/type checks. Record actual commands and results
+per task. Report missing environments separately. Respect <agreed review and
+acceptance checkpoints>. Stop dependent work on blockers, scope conflicts, or
+missing authority, and ask a concrete question.
 
-Halte Task-Status, Übersicht und Nachweise konsistent. Done erfordert die
-projektspezifischen Akzeptanz- und DoD-Nachweise sowie vorgeschriebene Abnahme.
-Liefere zu Prüfpunkten Task-IDs, Diff/Commit-Referenzen, Testbefunde und offene Punkte.
-Commit/Push/PR: <konkrete Erlaubnis>. Merge und Release nur gemäß Projektfreigabe.
+Keep task status, overview, and evidence consistent. Done requires project-specific
+acceptance criteria, DoD evidence, and required acceptance. At checkpoints, provide
+task IDs, diff/commit references, test results, and open issues.
+Commit/push/PR authority: <specific permission>. Merge and release only under
+project authorization.
 ```
 
-Der freigegebene Plan kann mehrere Specs bis zur vollständigen Anwendung umfassen.
-Freigaben und Prüfpunkte bestimmen die Autonomie; es gibt keinen pauschalen Stopp
-nach jedem Task. Gleichzeitige lokale und Manus-Änderungen vor Fortsetzung abgleichen.
+The approved plan may cover multiple specs through a complete application.
+Authorization and checkpoints define autonomy; there is no blanket stop after
+each task. Reconcile concurrent local and Manus edits before continuing.
 
-## 7. Review, Fortsetzung und Veröffentlichung
+## 7. Review, Resume, and Publish
 
-Der zuständige Owner prüft Diff, Kriterienabdeckung und Testnachweise am richtigen
-Quellstand. Fehlende oder umgebungsspezifische Checks nachholen. Bei Nacharbeit
-Befund am vorhandenen Task festhalten, keinen zweiten widersprüchlichen Plan anlegen.
+The responsible owner reviews the diff, criteria coverage, and evidence against
+the correct revision. Run missing or environment-specific checks. Record rework
+against the existing task rather than creating a conflicting second plan.
 
-Bei einem neuen Manus-Chat erneut die Projektanweisung laden lassen. Repository,
-Branch, offenen Stand und nächste bereite Tasks frisch lesen; der Chat-Verlauf
-ersetzt keinen dauerhaft dokumentierten Projektstand.
+In a new Manus chat, reload project instructions. Read the current repository,
+branch, open state, and next ready tasks. Chat history does not replace durable
+project records.
 
-Merge, Release und Deployment verwenden die bestehenden Freigaben und Pipelines.
-Dieses Addon veröffentlicht keine Anwendung und installiert keine Automationen.
-Mit dem [Testleitfaden](testleitfaden.md) das reale Verhalten beider Einstiege prüfen.
+Merges, releases, and deployment use existing authorization and pipelines. This
+add-on publishes no application and installs no automation. Verify both entry
+levels using the [test guide](test-guide.md).

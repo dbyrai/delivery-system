@@ -1,55 +1,55 @@
-# Workflow: Manus baut im GitHub-Projekt nach dem Delivery-System
+# Workflow: Manus Develops in GitHub Using the Delivery System
 
-Beide Einstiegsstufen laufen direkt in Manus mit demselben Projektrepository.
-Die Grafik zeigt die fachlichen Gates; Connector oder Sync sind Arbeitsmodi,
-keine weiteren Integrationsstufen. Live-Verifikation steht noch aus.
+Both entry levels run directly in Manus with the same project repository.
+The diagram shows delivery gates; connector and sync are working modes, not
+additional integration levels. Live verification remains pending.
 
-![Zwei Einstiege und gemeinsame Umsetzungsschleife](workflow.svg)
+![Two entry levels and a shared implementation loop](workflow.svg)
 
-## Bearbeitbare Diagrammquelle
+## Editable Diagram Source
 
 ```mermaid
 flowchart TD
-    A[Manus mit GitHub-Projekt verbinden und Arbeitsmodus prüfen] --> B[Projektregeln und Repository-Quellen lesen]
-    B --> C{Einstiegsstufe}
-    C -->|1: Bestehendes Projekt| D[Bestand und Adoptionsstatus prüfen; fertige Dokumentation erhalten]
-    C -->|2: Neues Projekt| E[Schritt 0 nicht anwendbar; Bootstrap 1 bis 12 durchführen]
-    D --> F{Delivery bereits adoptiert?}
-    F -->|Ja| G[Freigegebene Specs und Tasks auswählen]
-    F -->|Nein| H[Repository-Review Schritt 0; Bootstrap 1 bis 12]
-    H --> I[Fragen und Entscheidungen in Projektquellen dokumentieren]
+    A[Connect Manus to the GitHub project and verify working mode] --> B[Read project instructions and repository sources]
+    B --> C{Entry level}
+    C -->|1: Existing project| D[Review current state and adoption; preserve completed documents]
+    C -->|2: New project| E[Step 0 not applicable; complete bootstrap 1 through 12]
+    D --> F{Delivery already adopted?}
+    F -->|Yes| G[Select approved specs and tasks]
+    F -->|No| H[Repository review step 0; bootstrap 1 through 12]
+    H --> I[Record questions and decisions in project sources]
     E --> I
-    I --> J{Bootstrap und Quellenblocker geklärt oder ausdrücklich zurückgestellt?}
-    J -->|Nein| I
-    J -->|Ja| G
-    G --> K{Plan freigegeben und nächster Task bereit?}
-    K -->|Blockiert| L[Konkrete Rückfrage; abhängige Arbeit stoppen]
+    I --> J{Bootstrap and source blockers resolved or explicitly deferred?}
+    J -->|No| I
+    J -->|Yes| G
+    G --> K{Plan approved and next task ready?}
+    K -->|Blocked| L[Ask a focused question; stop dependent work]
     L --> G
-    K -->|Ja| M[Manus implementiert Task im erlaubten Arbeitsbereich]
-    M --> N[Tests ausführen; Status und Evidenz dokumentieren]
-    N --> O{Vorgeschriebener Prüfpunkt erreicht?}
-    O -->|Nein, weiterer bereiter Task| K
-    O -->|Ja oder Plan bearbeitet| P[Diff, Kriterien und Testbefunde prüfen]
-    P -->|Nacharbeit| M
-    P -->|Angenommen, weitere Tasks| K
-    P -->|Plan abgenommen| Q[Merge und Release gemäß bestehender Freigabe und Pipeline]
+    K -->|Yes| M[Manus implements within the allowed scope]
+    M --> N[Run checks; document status and evidence]
+    N --> O{Required checkpoint reached?}
+    O -->|No, another ready task| K
+    O -->|Yes or plan implemented| P[Review diff, criteria, and test evidence]
+    P -->|Rework| M
+    P -->|Accepted, more tasks| K
+    P -->|Plan accepted| Q[Merge and release under existing authority and pipeline]
 ```
 
-## Übergaben und Fortsetzung
+## Handoffs and Resumption
 
-| Punkt | Verantwortung | Nachweis |
+| Point | Accountable role | Evidence |
 | --- | --- | --- |
-| Einrichtung | Projekt-Owner | Repository, Modus, Branch, Zugriff, tatsächlich gelesene Regeln |
-| Projektklärung | Fachlicher Owner; Manus bereitet vor | Bootstrap-Status, Antworten/Deferrals, freigegebene Quellen |
-| Ausführung | Manus mit zuständigem Rollenprofil | Task-IDs, erlaubter Umfang, Diff und ausgeführte Checks |
-| Abnahme | Nach Projektregeln zuständiger Prüfer/Owner | Kriterienabdeckung, DoD und vorgeschriebene Abnahme |
-| Veröffentlichung | Bestehender Release-Owner | Freigegebener Commit und vorhandener Deployprozess |
+| Setup | Project owner | Repository, mode, branch, access, actual instruction reads |
+| Project clarification | Domain owner; Manus prepares | Bootstrap status, answers/deferrals, approved sources |
+| Execution | Manus following the relevant role profile | Task IDs, allowed scope, diff, and actual checks |
+| Acceptance | Reviewer/owner under project rules | Criteria coverage, DoD, and required approval |
+| Publication | Existing release owner | Approved commit and existing deployment process |
 
-Im freigegebenen Plan darf Manus ohne erneute Einzelbeauftragung weiterarbeiten.
-Blocker, Abhängigkeiten und vereinbarte Abnahmen begrenzen die Fortsetzung. Eine
-Deferral hebt nicht automatisch weitere Voraussetzungen auf. Im neuen Chat den
-aktuellen Repository- und Aufgabenstand erneut lesen lassen.
+Within the approved plan, Manus may continue without another task assignment.
+Blockers, dependencies, and agreed acceptance gates limit progression. A deferral
+does not automatically remove other prerequisites. In a new chat, read the current
+repository and task state again.
 
-Der dokumentierte Web-App-Sync kann Code bereits vor einer fachlichen Abnahme
-übertragen. Deshalb dessen Verhalten vor Umsetzung klären; ein Push erfüllt
-keine Abnahmekriterien. Details und Startprompts stehen im [How-to](howto.md).
+Documented web-app sync may transfer code before delivery acceptance. Establish
+its behavior before implementation; a push does not satisfy acceptance criteria.
+See the [how-to](howto.md) for details and start prompts.
