@@ -24,6 +24,8 @@ selected repository through the authorized Git workflow.
 | Run checks | Actual commands/results traceable per task; missing checks identified |
 | Review and rework | Findings addressed in the existing task; Done requires evidence and required acceptance |
 | New Manus chat | Current instructions, revision, and next tasks read again |
+| Cross-tool handoff | A second tool reads the same sources, verifies the exact revision, and resumes only the documented remaining scope |
+| Parallel work | Separate working areas and write scopes; combined changes verified before acceptance |
 | Concurrent change | Difference from current GitHub state identified before overwriting |
 | Deactivation | Pending work preserved; only authorized add-on routing/access removed |
 

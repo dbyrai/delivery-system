@@ -232,3 +232,77 @@ project records.
 Merges, releases, and deployment use existing authorization and pipelines. This
 add-on publishes no application and installs no automation. Verify both entry
 levels using the [test guide](test-guide.md).
+
+## 8. Work Together with Manus, Claude, and Codex
+
+Enabling the Manus add-on does not make Manus the exclusive development tool.
+Claude and Codex can continue working in the same project. All tools follow the
+same canonical instructions, requirements, specs, task IDs, and acceptance rules.
+Keep one authoritative project record in the repository rather than separate
+plans or status lists per tool. See the
+[shared workflow](../../.github/copilot-instructions.md) for ownership, scope,
+and verification rules.
+
+### Assign Tasks and Separate Working Areas
+
+Keep the accountable owner and responsible role in the existing task format.
+Also identify the executing tool, allowed paths, working branch, and review owner
+in task implementation or handoff notes. A tool name does not replace a role.
+
+| Example assignment | Executing tool | Working area | Handoff |
+| --- | --- | --- | --- |
+| Approved backend task | Manus | Dedicated backend feature branch | Diff, interface changes, and test evidence |
+| Approved UI task | Claude | Separate UI feature branch | Diff and UI verification against the agreed interface |
+| Review or integration task | Codex | Separate checkout or integration branch | Review findings and combined verification |
+
+These are examples, not fixed tool roles. Choose tools based on the actual task
+and available capabilities. Parallel work requires independent tasks or an agreed
+interface and separate write scopes. Do not start a dependent task before its
+prerequisites meet the project's readiness and acceptance rules.
+
+Use separate branches and checkouts/worktrees for simultaneous edits. A branch
+name alone does not isolate tools sharing one working directory. Avoid concurrent
+changes to the same files, including shared task indexes; nominate one updater
+or serialize those edits. Before integration, compare the actual base revisions
+and current target state. Resolve conflicts without overwriting others' work.
+
+For parallel development, prefer the verified connector branch/PR workflow from
+section 1. If Manus uses automatic main sync, do not assume its work is isolated
+on another branch. Agree a serialized editing window or another supported isolated
+working mode before edits. Keep existing Git authorization and branch protections;
+do not weaken them to enable collaboration.
+
+### Hand Work to Another Tool
+
+Before switching tools, persist the current state in the task's existing handoff
+notes. Make referenced changes available to the receiving tool through the
+previously authorized Git workflow or an explicitly shared patch. Local uncommitted
+files on one machine are not automatically visible to another tool.
+
+```text
+Task/spec IDs: <existing references>
+Accountable owner / responsible role: <existing assignment>
+Outgoing tool -> incoming tool: <Manus / Claude / Codex>
+Repository / branch / base revision: <exact references>
+Changes available at: <commit/PR or patch plus its base revision>
+Completed work and allowed remaining scope: <summary and paths>
+Checks actually run and results: <commands and evidence>
+Unrun checks, blockers, and decisions needed: <details>
+Next checkpoint and reviewer: <agreement>
+Existing commit/push/merge/release authority: <specific scope>
+```
+
+The receiving tool reads its applicable entry instructions, the canonical shared
+workflow, relevant role, current spec/task sources, linked questions, and handoff.
+It verifies the revision and working area before continuing. Do not rerun completed
+bootstrap or infer decisions from another tool's chat history. Reuse existing
+authorization only within its recorded scope.
+
+### Integrate and Accept Combined Work
+
+Assign one integration owner. Review each diff and its task evidence, combine
+changes through the existing branch/PR process, then run the required checks
+against the combined revision. Passing checks on separate branches do not prove
+the integrated application works. Update task status and acceptance evidence in
+the authoritative task files. A review by another tool can support acceptance;
+it does not replace any required owner approval, pipeline gate, or release decision.
