@@ -1,0 +1,95 @@
+{
+  "date": "2026-11-16",
+  "client": "isolated Python JSON-RPC stdio acceptance harness",
+  "server": "official github/github-mcp-server v2.1.0",
+  "artifact_sha256": "3fb2936c33416693a8b268442ab9b1e838d4fbb8c2a6813d8a77f87c3009ced6",
+  "auth": "separate built-in browser OAuth; repo,project; in-memory token; no delete_repo scope",
+  "owner": "dobosolution",
+  "account_plan": "GitHub Free and Copilot Free verified in billing UI",
+  "cost_boundary": "Only repository, issues, native sub-issues and Projects; no paid features activated; no Actions or Codespaces executions requested",
+  "targets": [
+    {
+      "kind": "repository",
+      "id": "1459708129",
+      "url": "https://github.com/dobosolution/delivery-system-mcp-test-20261116-5da065"
+    },
+    {
+      "kind": "project",
+      "id": "PVT_kwHOALjyhs4Br0TN",
+      "number": 1,
+      "title": "Delivery System MCP Test 2026-11-16 5da065",
+      "url": "https://github.com/users/dobosolution/projects/1"
+    }
+  ],
+  "spec": {
+    "stable_id": "SPEC-001",
+    "api_id": 6416750517,
+    "number": 1,
+    "project_item_id": 306531921
+  },
+  "task": {
+    "stable_id": "TASK-001-001",
+    "api_id": 6416750674,
+    "number": 2,
+    "project_item_id": 306531944
+  },
+  "checks": {
+    "native_hierarchy_both_directions": true,
+    "visible_stable_ids": true,
+    "title_body_state_update": true,
+    "unmanaged_text_preserved": true,
+    "project_status_readback": "Done",
+    "reconciliation": "Existing IDs reused; two issues across open and closed states; two unique Project items; no mutation required on second inspection",
+    "no_duplicate_issues_or_items": true,
+    "comments_inventory": [
+      [],
+      []
+    ],
+    "prompt_model_session_test": "Not run; protocol acceptance harness only, no additional model invocation"
+  },
+  "snapshots": {
+    "spec_title": "SPEC-001: MCP adapter acceptance test",
+    "spec_body": "<!-- delivery-spec: SPEC-001 -->\nDisposable acceptance-test specification.\n\nAcceptance: native TASK-001-001 hierarchy, status update, duplicate-free reconciliation, and scoped retirement. Local test record is authoritative. No application implementation is requested.",
+    "task_title": "TASK-001-001: Verify GitHub adapter workflow (updated)",
+    "task_body": "<!-- delivery-task: TASK-001-001 -->\nDisposable task for SPEC-001.\n\nAcceptance: native parent relation, title/body/state update, Project Status read-back, no duplicate objects.\n\nUnmanaged note: preserve this text during updates.\n\nManaged verification: update read-back required.",
+    "task_state": "closed",
+    "parent": {
+      "number": 1,
+      "repository": "dobosolution/delivery-system-mcp-test-20261116-5da065",
+      "state": "OPEN",
+      "title": "SPEC-001: MCP adapter acceptance test",
+      "url": "https://github.com/dobosolution/delivery-system-mcp-test-20261116-5da065/issues/1"
+    },
+    "children": [
+      {
+        "id": 6416750674,
+        "number": 2,
+        "title": "TASK-001-001: Verify GitHub adapter workflow (updated)"
+      }
+    ],
+    "project_status": [
+      {
+        "id": 444936023,
+        "name": "Status",
+        "data_type": "single_select",
+        "value": {
+          "id": "98236657",
+          "name": "Done",
+          "color": "PURPLE"
+        }
+      }
+    ],
+    "comments": {
+      "1": [],
+      "2": []
+    }
+  },
+  "cleanup": {
+    "state": "Both disposable targets deleted through GitHub UI after explicit at-action confirmation",
+    "repository_search_count": 0,
+    "project_search_count": 0,
+    "mcp_post_delete_reads": "responses 029 and 030",
+    "credential_handling": "Isolated runtime stopped; token was memory-only. Existing GitHub connector and account grants were not revoked. No global/client profile was written.",
+    "deactivation_prompt": "Not executed; test-only snapshot/cleanup is not full production deactivation-prompt acceptance"
+  }
+}

@@ -1,0 +1,12 @@
+# Merge only after reviewing the pinned dependency and actual client schema.
+# Replace all example paths/host and use the actual discovered tool allowlist.
+# This profile does not add missing work-item update or hierarchy operations.
+[mcp_servers.delivery_gitlab]
+command = "npx"
+args = ["-y", "mcp-remote@0.16.6", "https://gitlab.example.com/api/v4/mcp", "--transport", "http-only", "--resource", "https://gitlab.example.com/api/v4/mcp", "--static-oauth-client-metadata", '{"scope":"mcp"}', "--auth-timeout", "600", "--ignore-tool", "create_*", "--ignore-tool", "link_*", "--ignore-tool", "manage_pipeline"]
+startup_timeout_sec = 120
+tool_timeout_sec = 60
+enabled_tools = ["get_mcp_server_version", "search", "get_issue", "search_labels", "get_work_item_types", "get_workitem_notes", "get_merge_request", "get_merge_request_notes"]
+
+[mcp_servers.delivery_gitlab.env]
+MCP_REMOTE_CONFIG_DIR = "/absolute/path/to/private/gitlab-mcp-auth"

@@ -36,6 +36,7 @@ The public website explains the product story: moving from vibe coding to verifi
 - `docs/specs/baseline/` - baseline functional, non-functional, security, and acceptance requirements
 - `docs/tasks/` - implementation task templates and task artifacts
 - `docs/quality/` - Definition of Done, test strategy, and manual test structure
+- `addons/` - optional MCP adapters, configuration helper, and AI prompts for external delivery tools
 - `howto/` - optional walkthroughs and prompt examples for trying the Delivery System
 
 The agents are intentionally kept global. They describe stable role behavior instead of assuming a specific product, architecture, or delivery process. During project bootstrap, review the agents against the project overview and scope. Keep them generic when possible, but adapt them when a project needs clearer ownership, terminology, or workflow rules.
@@ -111,6 +112,21 @@ The default [shared instructions](.github/copilot-instructions.md#task-routing-a
 - Existing v1 adopters should follow the [v1-to-v2 upgrade guide](howto/upgrades/v1-to-v2.md). This is a workflow migration, not a bulk replacement of completed project documents.
 
 Reducing unnecessary context is a goal, not a guarantee for a particular context-window size or model. Tool-specific instruction support varies; inspect the active client and distinguish static checks from live verification.
+
+## Optional Integration Add-ons
+
+Use the [add-on guide](addons/README.md) to select Jira, Confluence, GitHub Projects,
+or GitLab adapters and a copyable AI adaptation prompt. Setup configures and
+verifies MCP in the actual client; copying files alone establishes no connection.
+Adapters require visible stable IDs and native ticket/task hierarchy. Their
+instructions are loaded only for the selected integration.
+Project-specific decisions and durable operating rules stay in the project's
+existing documentation root.
+
+Existing v2.0 projects can follow the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
+Adoption is optional. Users can delete individual add-ons or the entire `addons/`
+directory and remove associated links; see the [removal instructions](addons/README.md#removing-instruction-files).
+Deleting instructions does not disable an already configured external connection.
 
 ## Optional Delivery Diagnostics
 
@@ -257,13 +273,15 @@ The goal is not to reject fast AI-assisted exploration. The goal is to make the 
 
 The [maintainer release workflow](.github/maintainers/releasing.md) describes branches, reviews, versioning, and GitHub releases for the original Delivery System repository. It applies only to maintaining this upstream repository and introduces no release requirements for projects adopting the template.
 
-When using this repository as a template, you can remove the upstream maintainer documentation. From the root of your new project, run this command in a POSIX shell (such as Bash or Zsh):
+Upstream helper tests, live adapter acceptance reports, and their evidence belong under `.github/maintainers/`. They are not application tests or project documentation for adopting projects.
+
+When using this repository as a template, you can remove the upstream maintainer files. From the root of your new project, run this command in a POSIX shell (such as Bash or Zsh):
 
 ```sh
 rm -r -- .github/maintainers
 ```
 
-This deletes only the upstream maintainer documentation. Keep `.github/agents/` and `.github/copilot-instructions.md` for the Delivery System. After removing the directory, remove this README section as well so its link does not point to a deleted file.
+This deletes only upstream maintainer documentation, tests, and acceptance evidence. Keep `.github/agents/` and `.github/copilot-instructions.md` for the Delivery System. After removing the directory, remove this README section as well so its link does not point to a deleted file.
 
 ## License
 

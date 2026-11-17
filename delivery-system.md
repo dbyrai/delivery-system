@@ -10,6 +10,7 @@ It provides a documentation structure, AI instruction files, role-based agent gu
 - `.github/copilot-instructions.md` - Copilot-compatible AI instructions
 - `.github/agents/` - role-specific agent instructions for GitHub Copilot, ChatGPT Codex, Claude Code, and other AI-assisted workflows
 - `.claude/agents/` - Claude Code wrappers that delegate to the shared `.github/agents/` role guidance
+- `addons/` - optional MCP adapters, configuration helper, and AI adaptation prompts
 - `docs/project/` - project overview, roadmap, and decisions
 - `docs/specs/` - requirements and specification templates
 - `docs/specs/baseline/` - global functional, non-functional, security, and acceptance requirements
@@ -21,6 +22,22 @@ It provides a documentation structure, AI instruction files, role-based agent gu
 The [shared workflow](.github/copilot-instructions.md#task-routing-and-context-loading) defines task classification and context loading. Read this handbook for bootstrap/adoption, spec/task conventions, or migration work, rather than on every question or code change. During bootstrap, use the sequence below and read each current step's required files before proceeding; targeted reading does not skip steps, linked blockers, security policy, or acceptance gates.
 
 New projects receive context-aware routing through the default instruction and role files. No optimization prompt is required after copying the template. See [Context Optimization](howto/context-optimization.md) for rationale, [the reusable prompt](howto/prompts/context-optimization.md) for adapting an existing setup, and [the v1-to-v2 upgrade guide](howto/upgrades/v1-to-v2.md) for existing adopters. Preserve an established documentation root instead of relocating it to match examples here.
+
+## Optional External Integrations
+
+The [optional add-ons](addons/README.md) package MCP-backed adapters, an executable
+client configuration helper, and reusable AI prompts for Jira, Confluence, GitHub
+Projects, and GitLab. Setup must verify MCP access, visible stable IDs, and native
+ticket/task hierarchy before claiming the selected workflow operational. Select an add-on
+explicitly and load only its relevant guidance. It does not install a connector
+or change the bootstrap sequence, source authority, or approval gates.
+
+Keep reusable instructions under `addons/` and actual project decisions and
+operating rules in the project's existing documentation root. The shared add-on
+guide explains how to make configured integrations independent of these optional
+files. Users may [remove individual add-ons or the entire directory](addons/README.md#removing-instruction-files)
+and clean associated links; disabling an active connection is a separate action.
+Existing v2.0 adopters can use the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
 
 ## Bootstrap Rules
 
