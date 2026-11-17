@@ -11,17 +11,25 @@ and deactivation. The shared executable configuration helper prepares real clien
 profiles. Copying files alone activates nothing; a mapping document alone is not
 a working adapter. No background synchronization service is installed.
 
+The optional [Manus add-on](manus/README.md) guides direct GitHub project work
+in Manus: adopt an existing project or bootstrap a new one, then implement the
+approved specs/tasks. It includes a how-to, project instructions, review rules,
+and setup/removal prompts. It requires no external Manus API.
+
 ## Choose an Add-on
 
 | Add-on | Intended use | Start here |
 | --- | --- | --- |
+| Manus | Use Manus with GitHub for existing or new projects and approved spec/task execution | [Manus](manus/README.md) |
 | Kiro | Use shared instructions and map native specs to delivery documents | [Kiro](kiro/README.md) |
 | Jira | Link delivery tasks to Jira work items and workflows | [Jira](jira/README.md) |
 | Confluence | Publish or reference selected project documentation | [Confluence](confluence/README.md) |
 | GitHub Projects | Connect repository issues and project planning | [GitHub Projects](github-projects/README.md) |
 | GitLab | Connect project issues, planning, and merge requests | [GitLab](gitlab/README.md) |
 
-Select only the add-ons you need. For Kiro, follow its linked guide and prompts.
+Select only the add-ons you need. For Manus, follow its direct GitHub workflow and verify the actual connector/sync mode; the
+MCP connection and ticket hierarchy gates below do not apply to that workflow.
+For Kiro, follow its linked guide and prompts.
 For MCP adapters, read this lifecycle and the chosen add-on's
 instructions and the [MCP setup guide](mcp-setup.md), then copy its integration
 prompt into your AI tool. Verify that
@@ -137,6 +145,8 @@ Each add-on provides a copyable deactivation prompt:
 [Confluence](confluence/deactivation-prompt.md),
 [GitHub Projects](github-projects/deactivation-prompt.md), and
 [GitLab](gitlab/deactivation-prompt.md).
+Manus provides a separate [deactivation prompt](manus/deactivation-prompt.md)
+for pending delegated work and any later configured access.
 Kiro provides a separate [deactivation prompt](kiro/deactivation-prompt.md) for
 installed steering and native-spec handover; external knowledge and credential
 shutdown steps below apply to MCP adapters.

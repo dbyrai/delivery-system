@@ -44,6 +44,13 @@ and spec mapping to the existing delivery documents. Use its setup and removal
 prompts when adopting Kiro; no MCP connection is required. Its installed
 configuration remains independent of removable add-on files.
 
+The optional [Manus add-on](addons/manus/README.md) guides direct development
+in Manus with a GitHub project repository. It covers adopting existing projects
+and bootstrapping new ones, then implementing approved specs and tasks. The
+[Manus how-to](addons/manus/howto.md) includes setup prompts and a
+[graphical workflow](addons/manus/workflow.md). No external Manus API is required;
+actual repository access and instruction loading must be verified in Manus.
+
 ## Bootstrap Rules
 
 Use this delivery system as a gated sequence, not as loose guidance.

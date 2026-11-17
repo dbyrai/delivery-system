@@ -128,6 +128,13 @@ template and setup/removal prompts. It routes Kiro to the shared instructions
 and maps native specs to authoritative delivery documents. It requires no MCP
 connection and remains inactive until its steering is installed.
 
+The optional [Manus add-on](addons/manus/README.md) guides direct development
+in Manus with a GitHub project repository. It covers adopting existing projects
+and bootstrapping new ones, then implementing approved specs and tasks. The
+[Manus how-to](addons/manus/howto.md) includes setup prompts and a
+[graphical workflow](addons/manus/workflow.md). No external Manus API is required;
+actual repository access and instruction loading must be verified in Manus.
+
 Existing v2.0 projects can follow the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
 Adoption is optional. Users can delete individual add-ons or the entire `addons/`
 directory and remove associated links; see the [removal instructions](addons/README.md#removing-instruction-files).
