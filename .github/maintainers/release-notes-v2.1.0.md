@@ -60,6 +60,10 @@ tests verified GitLab authentication and reads under the documented client/versi
 conditions. A [GitHub Free live test](github-adapter-acceptance-2026-11-16.md)
 verified native sub-issue hierarchy, issue updates and Project Status updates
 through the official MCP server; both disposable targets were removed afterward.
-These results do not establish full fresh-session prompt compliance or support
-for every client/server edition. Jira and Confluence live acceptance remains
-pending; target-specific validation is required during setup.
+The owner also [reported successful Jira and Confluence reads, writes and updates](atlassian-verification-2026-11-17.md)
+in separate projects and accepted that tested scope. These external results were
+not independently rerun here. They do not establish V2 connector compatibility,
+native Jira subtask writes, duplicate-free repeated setup, migration or
+deactivation. Full fresh-session prompt compliance and support for every
+client/server edition remain unverified; target-specific validation is required
+during setup.
