@@ -1,31 +1,29 @@
-# Deaktivierungsprompt für Manus im GitHub-Projekt
+# Manus GitHub Project Deactivation Prompt
 
-Auch nach Entfernen des optionalen Pakets verwendbar.
+Usable independently after the optional package is removed.
 
 ```text
-Deaktiviere die Manus-Arbeitsweise für dieses Projekt.
+Deactivate the Manus workflow for this project.
 
-Lies die Projektanweisungen und den dauerhaften Manus-Integrationsnachweis.
-Prüfe Arbeitskopie, laufende Manus-Arbeiten, GitHub-Modus, Branch-/PR-Stand und
-noch nicht synchronisierte Änderungen. Erhalte fremde Arbeit und Konfiguration.
+Read project instructions and the durable Manus integration record. Inspect the
+working tree, active Manus work, GitHub mode, branch/PR state, and unsynchronized
+changes. Preserve unrelated work and configuration.
 
-Sichere vereinbarte Ergebnisse, offene Fragen und Verifikationsbefunde in den
-bestehenden Projektquellen, bevor benötigter Zugriff endet. Kläre offene
-Aufbewahrungs-/Migrationsentscheidungen. Ungeklärte laufende Arbeiten oder
-Synchronisierungsstände als unvollständige Deaktivierung ausweisen.
+Save agreed results, open questions, and verification evidence in authoritative
+project sources before removing required access. Resolve outstanding retention
+or migration decisions. Report unresolved work or sync state as incomplete teardown.
 
-Entferne nur addonbezogene Projektanweisungen und bedingtes Routing im erlaubten
-Umfang. Keine geteilten Regeln, Rollen, Specs, Tasks, Branches oder Historie löschen.
-Das Löschen optionaler Dateien stoppt keinen Manus-Lauf oder GitHub-Sync.
+Remove only add-on-owned project instructions and conditional routing within the
+authorized scope. Do not delete shared instructions, roles, specs, tasks, branches,
+or history. Deleting optional files stops neither Manus work nor GitHub sync.
 
-Prüfe konkret, ob nur die Addon-Anweisungen oder zusätzlich Manus-Zugriff/Sync
-beendet werden sollen; vorhandene Autorisierung dafür nutzen. Eine gemeinsame
-GitHub-Verbindung nicht ohne Klärung ihrer anderen Nutzer/Projekte entziehen.
-Falls Disconnect autorisiert ist, vom Account-Inhaber im tatsächlichen Manus-Modus
-vornehmen und dessen Ergebnis prüfen lassen. Keine GitHub-Repositories löschen.
+Establish whether the scope covers only add-on instructions or also Manus access
+and sync. Reuse existing authorization. Do not revoke shared GitHub connections
+without checking other projects/users. If disconnection is authorized, have the
+account holder perform it in the actual Manus mode and verify the outcome.
+Do not delete GitHub repositories.
 
-Dokumentiere deaktiviert/teilweise deaktiviert, bewahrte Ergebnisse, Restarbeiten,
-weiterbestehende Verbindungen und tatsächlich geprüften Zustand. Fehlende
-Live-Prüfung offenlassen. Ohne dafür erteilte Autorisierung kein Commit, Push,
-Merge oder Release.
+Record inactive/partially inactive status, retained results, remaining work,
+connections still active, and actual checks. Leave unavailable live verification
+pending. No commit, push, merge, or release without applicable authorization.
 ```

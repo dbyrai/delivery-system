@@ -1,45 +1,42 @@
-# Integrationsprompt für Manus und GitHub
+# Manus and GitHub Integration Prompt
 
-Im Zielprojekt mit Repository-Zugriff verwenden. Dieser Prompt bereitet die
-Einrichtung vor; die Anwendungsumsetzung wird anschließend konkret beauftragt.
+Use in the target project with repository access. This prompt prepares setup;
+application implementation requires a subsequent concrete assignment.
 
 ```text
-Richte das optionale Manus-Addon für die direkte Arbeit im GitHub-Projekt ein.
+Set up the optional Manus add-on for direct work in this GitHub project.
 
-Lies die anwendbaren Projektanweisungen, addons/manus/README.md, howto.md,
-instructions.md und templates/manus-projektanweisung.md innerhalb dieses Addons.
-Prüfe Arbeitskopie, Dokumentationswurzel, vorhandene Integrationen und Rollen.
-Erhalte vorhandenen Code, Dokumentation, IDs und lokale Anpassungen.
+Read applicable project instructions and these files under addons/manus/:
+README.md, howto.md, instructions.md, and templates/manus-project-instructions.md.
+Inspect the working tree, documentation root, existing integrations, and roles.
+Preserve code, documentation, IDs, and local customizations.
 
-Wähle anhand des Bestands Stufe 1 (bestehendes Projekt) oder Stufe 2 (neues Projekt).
-Wenn der Zustand unklar ist, kläre ihn vor abhängiger Arbeit. Stelle fest, ob das
-Delivery-System bereits adoptiert ist; keinen abgeschlossenen Bootstrap wiederholen.
-Bei erstmaliger Adoption erst Repository-Review, dann Bootstrap nach Handbuch.
-Bei neuem Projekt Schritt 0 als nicht anwendbar behandeln und Schritte 1–12 nutzen.
-Führe in diesem Einrichtungsschritt noch keine Anwendungsimplementierung aus.
+Choose level 1 (existing project) or level 2 (new project) from the actual state.
+Clarify ambiguity before dependent work. Preserve completed Delivery System
+adoption and bootstrap. First-time adoption requires repository review followed
+by handbook bootstrap. For new projects, mark step 0 not applicable and follow
+steps 1–12. Do not implement the application during this setup step.
 
-Prüfe GitHub-Repository, Branch, tatsächlichen Zugriff und Arbeitsmodus: Connector
-mit Branch/PR oder Web-App-Sync. Erfasse automatisches Schreibverhalten. Ein
-Prompt deaktiviert keinen Main-Sync. Fehlende Freigabe oder Konflikt mit den
-Projektregeln blockiert davon abhängige Änderungen. Keine Verbindung eigenmächtig
-herstellen, kein Repository exportieren und keinen Sync aktivieren.
+Verify GitHub repository, branch, actual access, and mode: branch/PR connector
+or web-app sync. Record automatic write behavior. A prompt cannot disable main
+sync. Missing authority or conflict with project rules blocks dependent edits.
+Do not independently connect accounts, export repositories, or activate sync.
 
-Erstelle/ergänze den dauerhaften Manus-Integrationsnachweis im bestehenden
-Dokumentationsverzeichnis: Owner, Einstieg, Quellenversion, tatsächliche Pfade,
-Arbeitsmodus, Freigaben, Bootstrap-Status, Plan, Prüfpunkte, Checks und Entfernung.
-Übertrage benötigte laufende Regeln dorthin; offene Angaben ausdrücklich benennen.
-Bereite eine angepasste Manus-Projektanweisung aus der Vorlage vor. Dokumentiere,
-wie sie im Manus-Projekt oder am Anfang jedes Auftrags verfügbar gemacht wird.
-Kein automatisches Lesen von AGENTS.md oder erfundenen Manus-Konfigurationspfaden
-voraussetzen. Aktive Regeln dürfen keine addons/-Dateien benötigen.
+Create/update a durable Manus integration record under the existing documentation
+root: owner, entry level, source revision, actual paths, mode, authority, bootstrap
+status, plan, checkpoints, verification, and removal. Copy required ongoing
+operating rules there and explicitly identify unknowns. Adapt the project instruction
+template and record how it is provided in Manus or at the start of every task.
+Do not assume automatic AGENTS.md loading or invent Manus configuration paths.
+Installed rules must remain usable without addons/ files.
 
-Ergänze einen kurzen bedingten Verweis aus den kanonischen gemeinsamen Anweisungen
-auf den tatsächlichen Nachweis. Keine Workflow-/Rollenduplikate erzeugen. Prüfe
-lokale Links, wiederholbares Setup ohne Duplikate und Quellenverfügbarkeit. Lasse
-in Manus vor Codeänderungen Repository, Branch, gelesene Regeln, Rolle und offene
-Blocker benennen. Unverfügbare Live-Prüfungen offenlassen.
+Add a short conditional pointer from canonical shared instructions to the actual
+record. Do not duplicate role/workflow guidance. Check local links, repeatable
+setup without duplicates, and source availability. Before code changes, verify
+that Manus identifies repository, branch, read instructions, role, and blockers.
+Keep unavailable live checks pending.
 
-Keine externe Manus-API, API-Keys, Dienste, Automationen oder Ticket-Synchronisierung
-einrichten. Gib geänderte Dateien, vorhandene Freigaben und verbleibende Schritte
-an. Ohne dafür erteilte Autorisierung kein Commit, Push, Merge oder Release.
+Do not configure an external Manus API, API keys, services, automation, or ticket
+synchronization. Report changed files, existing authority, and remaining steps.
+Do not commit, push, merge, or release without authorization covering those actions.
 ```

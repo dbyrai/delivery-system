@@ -1,74 +1,71 @@
-# Manus-Addon für das Delivery-System
+# Manus Delivery System Add-on
 
-**Stand:** 17.11.2026 · **Status:** Preview; Live-Prüfung in Manus offen.
+**Updated:** 2026-11-17 · **Status:** Preview; live verification in Manus pending.
 
-Manus arbeitet direkt mit dem GitHub-Projektrepository und verwendet dessen
-Delivery-System als Arbeitsrahmen: Anforderungen klären, Specs und Tasks beachten,
-die Anwendung bauen, Tests ausführen und überprüfbare Ergebnisse dokumentieren.
-Das Addon liefert Einrichtung, Projektanweisung und Arbeitsablauf. Es installiert
-keinen Dienst und benötigt keine externe Manus-API oder API-Zugangsdaten.
+Manus works directly with a GitHub project repository and uses its Delivery
+System to clarify requirements, follow specs and tasks, build the application,
+run checks, and document evidence. This package provides setup instructions,
+project guidance, and a workflow. It installs no service and requires no external
+Manus API or API credentials.
 
-## Zwei Einstiegsstufen
+## Two Entry Levels
 
-| Stufe | Ausgangslage | Vorgehen |
+| Level | Starting point | Workflow |
 | --- | --- | --- |
-| **1 – Bestehendes Projekt übernehmen** | Code und eventuell schon Delivery-Dokumente vorhanden | Bestand prüfen, fehlende Struktur ergänzen, freigegebene Specs/Tasks ausführen |
-| **2 – Neues Projekt aufsetzen** | Projektidee und leeres oder frisch angelegtes Repository | Bootstrap durchführen, Anforderungen und erste Spec/Tasks klären, anschließend implementieren |
+| **1 – Adopt an existing project** | Code and possibly delivery documents exist | Review the repository, fill structural gaps, and execute approved specs/tasks |
+| **2 – Bootstrap a new project** | Project idea and an empty or newly created repository | Complete bootstrap, clarify requirements and initial specs/tasks, then implement |
 
-Beide Stufen laufen direkt in Manus. Sie unterscheiden den Projektstart, nicht
-die technische Anbindung. Ein bereits adoptiertes Projekt durchläuft keinen
-neuen Bootstrap. Bei erstmaliger Adoption gelten die vorhandenen Bootstrap-Gates.
+Both levels run directly in Manus. They describe project entry points rather than
+connection types. Preserve completed bootstrap in adopted projects. First-time
+adoption must satisfy the existing bootstrap gates.
 
-## Start und enthaltene Dateien
+## Getting Started
 
-1. Das [Manus-How-to](howto.md) öffnen und GitHub-Zugriff sowie Arbeitsmodus prüfen.
-2. Mit dem [Integrationsprompt](integration-prompt.md) das Zielprojekt vorbereiten.
-3. Die angepasste [Projektanweisung](templates/manus-projektanweisung.md) in Manus
-   verwenden und das tatsächliche Lesen der Repository-Quellen prüfen.
-4. Die passende Einstiegsstufe aus dem How-to ausführen und den freigegebenen
-   Arbeitsplan mit der [Umsetzungsvorlage](templates/umsetzung.md) konkretisieren.
-5. Mit dem [Testleitfaden](testleitfaden.md) beide Einstiegswege prüfen.
+1. Follow the [Manus how-to](howto.md) to verify GitHub access and the working mode.
+2. Prepare the target project with the [integration prompt](integration-prompt.md).
+3. Adapt the [project instructions](templates/manus-project-instructions.md), make
+   them available in Manus, and verify actual repository reads.
+4. Follow the appropriate entry level and define the approved implementation plan
+   using the [implementation template](templates/implementation.md).
+5. Verify both entry levels using the [test guide](test-guide.md).
 
-Weitere Hilfen: [Betriebsregeln](instructions.md),
-[optionale Recherche-/Entwurfsvorlage](templates/auftrag.md) und
-[Deaktivierungsprompt](deactivation-prompt.md).
+Additional guidance: [operating rules](instructions.md), an optional
+[research/drafting assignment](templates/assignment.md), and the
+[deactivation prompt](deactivation-prompt.md).
 
-## Besprochener Workflow
+## Workflow
 
-![Manus baut entlang der Delivery-Struktur](workflow.svg)
+![Manus follows the Delivery System in GitHub](workflow.svg)
 
-Der [Workflow mit Mermaid-Quelle](workflow.md) zeigt beide Einstiege, die
-Blockerbehandlung und die Umsetzungsschleife bis zur Abnahme.
+The [workflow and Mermaid source](workflow.md) show both entry levels, blockers,
+and the implementation loop through acceptance.
 
-## Leitplanken und Grenzen
+## Boundaries
 
-Die kanonischen Projektanweisungen und bestehenden Delivery-Dokumente bleiben
-maßgeblich. Manus kann innerhalb eines freigegebenen Plans mehrere bereite Tasks
-selbstständig abarbeiten. Eine erneute Einzelbestätigung ist nur erforderlich,
-wenn Projektregeln, fehlende Autorisierung oder ein vereinbarter Prüfpunkt dies
-verlangen. Offene Blocker verhindern die davon abhängige Arbeit.
+Canonical project instructions and delivery documents remain authoritative.
+Manus may independently execute multiple ready tasks within an approved plan.
+Request another decision only when required by project rules, missing authority,
+or an agreed checkpoint. Blockers prevent dependent work.
 
-Die GitHub-Anbindung und der tatsächlich verwendete Branch müssen vor Änderungen
-geprüft werden. Das How-to unterscheidet Connector mit Branch/PR und Web-App-Sync;
-automatischer Sync lässt sich durch eine Textanweisung nicht technisch begrenzen.
-Commit/Push, Merge und Veröffentlichung folgen den jeweiligen Projektfreigaben.
-Ein GitHub-Push allein ist keine Abnahme und kein Release.
+Verify GitHub access and the actual branch before changes. The how-to distinguishes
+branch/PR work through the connector from web-app sync. Text instructions cannot
+technically disable automatic sync. Commits, pushes, merges, and publication
+follow project authorization. A push alone is neither acceptance nor a release.
 
-Die Rollenprofile sind Arbeitsanweisungen, keine automatisch gestarteten
-Manus-Subagenten. Automatisches Laden von `AGENTS.md` oder anderen Dateien wird
-nicht vorausgesetzt: Der Startprompt verlangt das Lesen der tatsächlichen Quellen.
-Die Leitplanken und ihre Befolgung sind im Zielprojekt zu verifizieren.
+Role profiles provide guidance; they do not automatically launch Manus subagents.
+Do not assume automatic loading of `AGENTS.md` or other files. The start prompt
+requires reading the actual sources. Verify instruction compliance in the project.
 
-Der dauerhafte Integrationsnachweis wird im bestehenden Dokumentationsverzeichnis
-geführt. Aktive Anweisungen dürfen nach Einrichtung keine entfernbaren `addons/`-
-Dateien benötigen. Dieses Template erhält keine fiktiven Projekteinstellungen.
+Keep a durable integration record under the existing documentation root. Installed
+instructions must remain usable without removable `addons/` files. Do not populate
+this template's project documents with invented adopter settings.
 
-## Verifikation und Entfernung
+## Verification and Removal
 
-Links, Grafik und Vorlagen können lokal geprüft werden. Konto, tatsächlicher
-Repository-Zugriff, Branch-Verhalten, Tests und Ergebnisqualität benötigen einen
-Live-Test. Bis zu dessen Nachweis bleibt das Paket eine Preview.
+Links, graphics, and templates can be checked locally. Account access, actual
+repository reads, branch behavior, tests, and result quality require live checks.
+The package remains a preview until those checks provide evidence.
 
-Zur Deaktivierung zuerst offene Arbeiten und Ergebnisse sichern, dann nur die
-addonbezogenen Anweisungen und autorisierten Zugriffe entfernen. Das Löschen
-von `addons/manus/` stoppt weder Manus noch einen bestehenden GitHub-Sync.
+Before deactivation, preserve pending work and results. Remove only add-on-owned
+instructions and authorized access. Deleting `addons/manus/` stops neither Manus
+nor an existing GitHub sync.

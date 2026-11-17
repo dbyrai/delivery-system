@@ -1,51 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
-<title id="title">Manus und GitHub mit dem Delivery-System</title>
-<desc id="desc">Bestehendes Projekt prüfen oder neues Projekt durch den Bootstrap führen. Nach Freigabe arbeitet Manus bereite Tasks mit Tests und dokumentierten Ergebnissen ab. Blocker gehen an den Owner. Review und Abnahme führen zu Nacharbeit, weiteren Tasks oder freigegebenem Release.</desc>
+<title id="title">Manus and GitHub with the Delivery System</title>
+<desc id="desc">Review an existing project or bootstrap a new one. Once approved, Manus implements ready tasks with tests and documented evidence. Blockers go to the owner. Review and acceptance lead to rework, further tasks, or an authorized release.</desc>
 <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#536880" stroke-width="1.5"/></marker></defs>
 <rect width="1200" height="1200" fill="#f4f7fc"/>
 <g font-family="Arial, Helvetica, sans-serif" fill="#182942">
-<text x="55" y="65" font-size="29" font-weight="700">Manus + GitHub + Delivery-System</text>
-<text x="55" y="96" font-size="17" fill="#52647d">Zwei Einstiege · Direkte Arbeit in Manus · Specs und Tasks als Arbeitsplan</text>
+<text x="55" y="65" font-size="29" font-weight="700">Manus + GitHub + Delivery System</text>
+<text x="55" y="96" font-size="17" fill="#52647d">Two entry levels · Direct work in Manus · Specs and tasks guide implementation</text>
 <rect x="190" y="125" width="820" height="86" rx="13" fill="#ffffff" stroke="#bacadc"/>
-<text x="209" y="155" font-size="18" font-weight="700">1  GitHub-Projekt und Leitplanken laden</text>
-<text x="209" y="182" font-size="16" fill="#425770">Repository, Branch, Zugriff und Connector-/Sync-Verhalten prüfen</text>
+<text x="209" y="155" font-size="18" font-weight="700">1  Load the GitHub project and instructions</text>
+<text x="209" y="182" font-size="16" fill="#425770">Verify repository, branch, access, and connector/sync behavior</text>
 <path d="M600 211 V235 H320 V255" fill="none" stroke="#536880" stroke-width="2" marker-end="url(#arrow)"/>
 <path d="M600 235 H880 V255" fill="none" stroke="#536880" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="65" y="260" width="510" height="145" rx="13" fill="#e7eef9" stroke="#bacadc"/>
-<text x="84" y="290" font-size="18" font-weight="700">Stufe 1 · Bestehendes Projekt</text>
-<text x="84" y="317" font-size="16" fill="#425770">Bestand prüfen; fertige Delivery-Dokumente erhalten.</text>
-<text x="84" y="340" font-size="16" fill="#425770">Bei erstmaliger Adoption: Review + Bootstrap.</text>
-<text x="84" y="363" font-size="16" fill="#425770">Bereits adoptiert: relevante Specs / Tasks auswählen.</text>
+<text x="84" y="290" font-size="18" font-weight="700">Level 1 · Existing project</text>
+<text x="84" y="317" font-size="16" fill="#425770">Review current state; preserve completed documents.</text>
+<text x="84" y="340" font-size="16" fill="#425770">First-time adoption: repository review + bootstrap.</text>
+<text x="84" y="363" font-size="16" fill="#425770">Already adopted: select relevant specs / tasks.</text>
 <rect x="625" y="260" width="510" height="145" rx="13" fill="#e5f3ef" stroke="#bacadc"/>
-<text x="644" y="290" font-size="18" font-weight="700">Stufe 2 · Neues Projekt</text>
-<text x="644" y="317" font-size="16" fill="#425770">Schritt 0 nicht anwendbar; Bootstrap 1–12.</text>
-<text x="644" y="340" font-size="16" fill="#425770">Anforderungen, erste Spec und Tasks klären.</text>
-<text x="644" y="363" font-size="16" fill="#425770">Antworten und ausdrückliche Deferrals festhalten.</text>
+<text x="644" y="290" font-size="18" font-weight="700">Level 2 · New project</text>
+<text x="644" y="317" font-size="16" fill="#425770">Step 0 not applicable; bootstrap steps 1–12.</text>
+<text x="644" y="340" font-size="16" fill="#425770">Clarify requirements, initial spec, and tasks.</text>
+<text x="644" y="363" font-size="16" fill="#425770">Record answers and explicit deferrals.</text>
 <path d="M320 405 V430 H600 V450" fill="none" stroke="#536880" stroke-width="2" marker-end="url(#arrow)"/>
 <path d="M880 405 V430 H600" fill="none" stroke="#536880" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="190" y="455" width="820" height="88" rx="13" fill="#ffffff" stroke="#bacadc"/>
-<text x="209" y="485" font-size="18" font-weight="700">2  Bereitschaft und Planfreigabe prüfen</text>
-<text x="209" y="512" font-size="16" fill="#425770">Bootstrap, Quellenblocker, Abhängigkeiten und Prüfpunkte berücksichtigen</text>
+<text x="209" y="485" font-size="18" font-weight="700">2  Verify readiness and plan approval</text>
+<text x="209" y="512" font-size="16" fill="#425770">Check bootstrap, source blockers, dependencies, and checkpoints</text>
 <path d="M600 543 V580" fill="none" stroke="#536880" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="190" y="585" width="820" height="88" rx="13" fill="#ffffff" stroke="#bacadc"/>
-<text x="209" y="615" font-size="18" font-weight="700">3  Manus setzt bereite Tasks selbstständig um</text>
-<text x="209" y="642" font-size="16" fill="#425770">Im freigegebenen Plan bleiben; bestehende IDs und Schreibbereiche beachten</text>
+<text x="209" y="615" font-size="18" font-weight="700">3  Manus independently implements ready tasks</text>
+<text x="209" y="642" font-size="16" fill="#425770">Stay within the approved plan; respect existing IDs and write boundaries</text>
 <path d="M600 673 V710" fill="none" stroke="#536880" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="190" y="715" width="820" height="88" rx="13" fill="#ffffff" stroke="#bacadc"/>
-<text x="209" y="745" font-size="18" font-weight="700">4  Tests ausführen und Fortschritt dokumentieren</text>
-<text x="209" y="772" font-size="16" fill="#425770">Echte Befunde, Status und Kriterienabdeckung im vorhandenen Task-Format</text>
+<text x="209" y="745" font-size="18" font-weight="700">4  Run checks and document progress</text>
+<text x="209" y="772" font-size="16" fill="#425770">Actual results, status, and criteria coverage in the existing task format</text>
 <path d="M600 803 V845" fill="none" stroke="#536880" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="190" y="850" width="820" height="88" rx="13" fill="#ffffff" stroke="#bacadc"/>
-<text x="209" y="880" font-size="18" font-weight="700">5  Am vereinbarten Prüfpunkt: Review und Abnahme</text>
-<text x="209" y="907" font-size="16" fill="#425770">Diff und Evidenz prüfen; Nacharbeit oder nächsten Planabschnitt bestimmen</text>
+<text x="209" y="880" font-size="18" font-weight="700">5  At agreed checkpoints: review and acceptance</text>
+<text x="209" y="907" font-size="16" fill="#425770">Review diff and evidence; identify rework or the next part of the plan</text>
 <path d="M1010 760 H1080 V630 H1015" fill="none" stroke="#536880" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="1018" y="696" font-size="13" fill="#52647d">Weiterer</text><text x="1018" y="714" font-size="13" fill="#52647d">bereiter Task</text>
+<text x="1018" y="696" font-size="13" fill="#52647d">Another</text><text x="1018" y="714" font-size="13" fill="#52647d">ready task</text>
 <path d="M190 892 H105 V630 H185" fill="none" stroke="#536880" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="55" y="830" font-size="13" fill="#52647d">Nacharbeit /</text><text x="55" y="848" font-size="13" fill="#52647d">weitere Tasks</text>
+<text x="55" y="830" font-size="13" fill="#52647d">Rework /</text><text x="55" y="848" font-size="13" fill="#52647d">more tasks</text>
 <path d="M600 938 V980" fill="none" stroke="#536880" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="190" y="985" width="820" height="86" rx="13" fill="#dbe7fa" stroke="#bacadc"/>
-<text x="209" y="1015" font-size="18" font-weight="700">6  Merge und Release nach bestehendem Projektprozess</text>
-<text x="209" y="1042" font-size="16" fill="#425770">Freigegebener Quellstand, zuständiger Owner und vorhandene Pipeline</text>
-<text x="65" y="1120" font-size="16" fill="#425770">Bei Blockern: abhängige Arbeit stoppen, Owner fragen und Entscheidung dokumentieren.</text>
-<text x="65" y="1147" font-size="16" fill="#425770">Ein Push ist keine Abnahme. Automatischen Main-Sync vor Änderungen ausdrücklich klären.</text>
-<text x="65" y="1175" font-size="14" fill="#52647d">Preview · Live-Verifikation offen · Ablaufdetails und Rückwege: workflow.md und howto.md</text></g></svg>
+<text x="209" y="1015" font-size="18" font-weight="700">6  Merge and release through the existing project process</text>
+<text x="209" y="1042" font-size="16" fill="#425770">Approved revision, responsible owner, and existing pipeline</text>
+<text x="65" y="1120" font-size="16" fill="#425770">On blockers: stop dependent work, ask the owner, and record the decision.</text>
+<text x="65" y="1147" font-size="16" fill="#425770">A push is not acceptance. Explicitly clarify automatic main sync before changes.</text>
+<text x="65" y="1175" font-size="14" fill="#52647d">Preview · Live verification pending · Details and feedback loops: workflow.md and howto.md</text></g></svg>
