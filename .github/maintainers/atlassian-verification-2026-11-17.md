@@ -52,7 +52,8 @@ capabilities, native hierarchy and permission gates during activation.
 
 ## Publication Boundary
 
-The owner's latest instruction authorizes committing and pushing this evidence
+The owner's instruction at this evidence checkpoint authorized committing and pushing this evidence
 to the existing feature branch only. No merge, version change, tag or release is
 authorized by this verification update. Release numbering remains to be resolved
-before publication.
+before publication. A subsequent instruction explicitly authorized v2.1.0
+preparation and publication; see the [release decision](v2.1.0-verification.md#release-decision--2026-11-17).

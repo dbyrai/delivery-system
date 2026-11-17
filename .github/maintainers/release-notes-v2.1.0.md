@@ -1,7 +1,4 @@
-# v2.1.0 Release Notes — Draft
-
-Publication is pending maintainer review and authorization. These notes describe
-the prepared source, not an already published release.
+# v2.1.0 Release Notes
 
 ## Summary
 
@@ -16,7 +13,8 @@ a client configuration helper, and prompts for adapting and retiring the connect
 - Added: four MCP-backed adapters, each with a README, operation instructions,
   product MCP setup, integration prompt, and deactivation prompt.
 - Added: `addons/configure_mcp.py` previews and merges project HTTP profiles for
-  Codex, Claude Code, and VS Code without credentials or implicit login.
+  Codex, Claude Code, and VS Code without credentials or implicit login. Running
+  the optional helper requires Python 3.11 or later.
 - Added: mandatory native ticket/task hierarchy and visible stable ID titles,
   with update/parent/read-back capability gates before ticket creation.
 - Added: pinned GitLab proxy example and explicit unsupported-operation handling;
@@ -45,6 +43,9 @@ client and hosting capabilities must be checked during each project's setup.
 - Preserve existing documentation roots, completed content, task IDs, integration
   rules, diagnostic defaults, and security/approval boundaries. Do not replace
   project documents with this template.
+- Upstream tests and live-test evidence are under `.github/maintainers/`; do not
+  copy them into the adopting application's test suite. The maintainer directory
+  can be removed when adopting the template.
 - Verification after adoption: check links and mappings, resolve target-specific
   decisions, verify actual access, and confirm durable records survive removal
   of optional instructions. External writes require their applicable authorization.
@@ -67,3 +68,7 @@ native Jira subtask writes, duplicate-free repeated setup, migration or
 deactivation. Full fresh-session prompt compliance and support for every
 client/server edition remain unverified; target-specific validation is required
 during setup.
+
+GitLab authentication and reads do not establish full update/hierarchy support
+in the observed server catalog. Unsupported selected workflows remain blocked
+until the target server and granted tools expose the required operations.
