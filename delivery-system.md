@@ -10,7 +10,7 @@ It provides a documentation structure, AI instruction files, role-based agent gu
 - `.github/copilot-instructions.md` - Copilot-compatible AI instructions
 - `.github/agents/` - role-specific agent instructions for GitHub Copilot, ChatGPT Codex, Claude Code, and other AI-assisted workflows
 - `.claude/agents/` - Claude Code wrappers that delegate to the shared `.github/agents/` role guidance
-- `addons/` - optional MCP adapters, configuration helper, and AI adaptation prompts
+- `addons/` - optional tool workflows, MCP adapters, configuration helper, and AI adaptation prompts
 - `docs/project/` - project overview, roadmap, and decisions
 - `docs/specs/` - requirements and specification templates
 - `docs/specs/baseline/` - global functional, non-functional, security, and acceptance requirements
@@ -38,6 +38,11 @@ guide explains how to make configured integrations independent of these optional
 files. Users may [remove individual add-ons or the entire directory](addons/README.md#removing-instruction-files)
 and clean associated links; disabling an active connection is a separate action.
 Existing v2.0 adopters can use the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
+
+The optional [Kiro workflow add-on](addons/kiro/README.md) provides local steering
+and spec mapping to the existing delivery documents. Use its setup and removal
+prompts when adopting Kiro; no MCP connection is required. Its installed
+configuration remains independent of removable add-on files.
 
 ## Bootstrap Rules
 

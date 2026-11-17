@@ -36,7 +36,7 @@ The public website explains the product story: moving from vibe coding to verifi
 - `docs/specs/baseline/` - baseline functional, non-functional, security, and acceptance requirements
 - `docs/tasks/` - implementation task templates and task artifacts
 - `docs/quality/` - Definition of Done, test strategy, and manual test structure
-- `addons/` - optional MCP adapters, configuration helper, and AI prompts for external delivery tools
+- `addons/` - optional tool workflows, MCP adapters, configuration helper, and AI setup prompts
 - `howto/` - optional walkthroughs and prompt examples for trying the Delivery System
 
 The agents are intentionally kept global. They describe stable role behavior instead of assuming a specific product, architecture, or delivery process. During project bootstrap, review the agents against the project overview and scope. Keep them generic when possible, but adapt them when a project needs clearer ownership, terminology, or workflow rules.
@@ -122,6 +122,11 @@ Adapters require visible stable IDs and native ticket/task hierarchy. Their
 instructions are loaded only for the selected integration.
 Project-specific decisions and durable operating rules stay in the project's
 existing documentation root.
+
+The optional [Kiro workflow add-on](addons/kiro/README.md) supplies a steering
+template and setup/removal prompts. It routes Kiro to the shared instructions
+and maps native specs to authoritative delivery documents. It requires no MCP
+connection and remains inactive until its steering is installed.
 
 Existing v2.0 projects can follow the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
 Adoption is optional. Users can delete individual add-ons or the entire `addons/`
