@@ -10,21 +10,30 @@ The optional [Matt Pocock skills add-on](mattpocock-skills/README.md) lists
 upstream skills and activates selected, adapted methods in one project-local
 document. It uses a separate setup flow without MCP configuration.
 
+The optional [Manus add-on](manus/README.md) guides direct GitHub project work
+in Manus: adopt an existing project or bootstrap a new one, then implement the
+approved specs/tasks. It includes a how-to, project instructions, review rules,
+and setup/removal prompts. It requires no external Manus API.
+
 ## Choose an Add-on
 
 | Add-on | Intended use | Start here |
 | --- | --- | --- |
 | Matt Pocock skills | Apply selected debugging, TDD, and decision-clarification methods | [Matt Pocock skills](mattpocock-skills/README.md) |
 | Security | Activate review methods for application code and infrastructure | [Security](security/README.md) |
+| Manus | Use Manus with GitHub for existing or new projects and approved spec/task execution | [Manus](manus/README.md) |
 | Jira | Link delivery tasks to Jira work items and workflows | [Jira](jira/README.md) |
 | Confluence | Publish or reference selected project documentation | [Confluence](confluence/README.md) |
 | GitHub Projects | Connect repository issues and project planning | [GitHub Projects](github-projects/README.md) |
 | GitLab | Connect project issues, planning, and merge requests | [GitLab](gitlab/README.md) |
 
 For Matt Pocock skills, use the [selection prompt](mattpocock-skills/integration-prompt.md).
-The setup steps below apply to MCP adapters.
+For Manus, follow its direct GitHub workflow and verify the actual connector/sync
+mode; the MCP connection and ticket hierarchy gates below do not apply to that
+workflow. The setup steps below apply to MCP adapters.
 
-Select only the add-ons you need. Read this lifecycle and the chosen add-on's
+Select only the add-ons you need. For MCP adapters, read this lifecycle and the
+chosen add-on's
 instructions and the [MCP setup guide](mcp-setup.md), then copy its integration
 prompt into your AI tool. Verify that
 the tool can read the repository; otherwise supply the relevant files as context.
@@ -141,7 +150,8 @@ Each add-on provides a copyable deactivation prompt:
 [GitLab](gitlab/deactivation-prompt.md).
 The Matt Pocock skills [deactivation prompt](mattpocock-skills/deactivation-prompt.md)
 handles its local methods entry.
-
+Manus provides a separate [deactivation prompt](manus/deactivation-prompt.md)
+for pending delegated work and any later configured access.
 Use the selected prompt with the durable project integration record. The prompt
 also works when supplied separately after optional add-on files were removed.
 When copying only selected add-ons, retain only their prompt links here.

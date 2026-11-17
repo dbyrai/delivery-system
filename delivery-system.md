@@ -43,6 +43,13 @@ The optional [Matt Pocock skills add-on](addons/mattpocock-skills/README.md)
 activates selected methods in `docs/project/integrations/`. The shared task
 routing loads a matching method when needed within the existing delivery gates.
 
+The optional [Manus add-on](addons/manus/README.md) guides direct development
+in Manus with a GitHub project repository. It covers adopting existing projects
+and bootstrapping new ones, then implementing approved specs and tasks. The
+[Manus how-to](addons/manus/howto.md) includes setup prompts and a
+[graphical workflow](addons/manus/workflow.md). No external Manus API is required;
+actual repository access and instruction loading must be verified in Manus.
+
 ## Bootstrap Rules
 
 Use this delivery system as a gated sequence, not as loose guidance.
