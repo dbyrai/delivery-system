@@ -32,25 +32,32 @@ If direct downloads are unavailable, the agent can fetch the exact file bytes
 through a read-only GitHub connector into a temporary directory outside the
 project and pass it as `--source-dir`. The same verification applies.
 
-Activation creates one `mattpocock-skills.md` in that documentation root. It
-writes the bundled, adapted methods only after all source checks pass. The
-helper refuses to replace an existing different entry, even if another
-activation creates it concurrently. Repeating the same selection is idempotent.
+Activation creates `docs/project/integrations/mattpocock-skills.md` or the same
+relative path under the project's existing documentation root. It creates the
+integration directory as needed after verifying all sources. The helper checks
+that the shared Delivery System instructions include the method routing and
+refuses to replace an existing different entry. Repeating the same selection
+is idempotent.
 
 ## Use and remove
 
-Give the agent a concrete assignment and name the method, for example:
+Give the agent a concrete assignment, for example:
 
-> Apply the `diagnosing-bugs` method from `docs/mattpocock-skills.md` to this
-> issue. Read and follow the applicable Delivery System rules first.
+> Investigate why the import fails intermittently and establish a reproducible
+> check before proposing a fix. Delivery diagnostics: on.
 
-The entry is loaded by explicit request. Native slash commands, plugins, remote
-scripts, and automatic updates are outside this add-on's activation path. The
-entry does not change canonical instructions, agent roles, tracker settings, or
-approval gates. Its methods apply within the authorized task and inherit project
-rules for bootstrap, blockers, source authority, and verification. It works
-without the add-on directory after activation. Agent compliance during use is
-separate from the helper's local write boundary.
+The [shared instructions](../../.github/copilot-instructions.md#optional-matt-pocock-methods)
+select `diagnosing-bugs` for this assignment after normal role selection and
+gate checks. The primary role uses the method. Diagnostics show the selected
+method and the file the agent loaded. An explicit request can select an active
+method or skip optional methods for the assignment. Unrelated tasks continue
+through the regular workflow. The setup works without the add-on directory after
+activation.
+
+For projects that used the previous manual-only setup, activate the same
+selection again with the updated shared instructions and helper. The previous
+`<docs-root>/mattpocock-skills.md` stays available for review or archiving.
+Automatic routing uses the entry under `project/integrations/`.
 
 Use the [deactivation prompt](deactivation-prompt.md) to remove the entry.
 To change the selection or adopt a newer reviewed version, preserve any local

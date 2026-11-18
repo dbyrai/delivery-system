@@ -23,15 +23,18 @@ class ActivationTests(unittest.TestCase):
         self.docs.mkdir()
         self.rules = self.root / ".github/copilot-instructions.md"
         self.rules.parent.mkdir()
-        self.rules.write_text("Project rules", encoding="utf-8")
+        self.rules.write_text("Project rules\n\n## Optional Matt Pocock Methods\n", encoding="utf-8")
         self.revision = CATALOG["revision"]
         self.skills = CATALOG["skills"]
+        self.target = self.docs / "project/integrations/mattpocock-skills.md"
 
     def test_activation_is_scoped_and_repeatable(self):
         names = ["grill-me", "tdd", "grill-me"]
         selected = MANAGE.resolve_selection(self.skills, names)
         self.assertEqual(list(selected), ["codebase-design", "grill-me", "grilling", "tdd"])
         target = MANAGE.destination(self.root, Path("docs"))
+        self.assertEqual(target, self.target)
+        self.assertFalse(target.parent.exists())
         before = {path: path.read_bytes() for path in self.root.rglob("*") if path.is_file()}
         with patch.object(MANAGE, "verify_sources") as verify:
             MANAGE.activate(target, self.revision, selected)
@@ -51,15 +54,15 @@ class ActivationTests(unittest.TestCase):
         self.assertEqual(list(self.docs.iterdir()), [])
 
     def test_source_mismatch_leaves_no_files(self):
-        target = self.docs / MANAGE.RECORD
         selected = MANAGE.resolve_selection(self.skills, ["tdd"])
         with patch.object(MANAGE, "urlopen", return_value=io.BytesIO(b"unexpected content")):
             with self.assertRaises(ValueError):
-                MANAGE.activate(target, self.revision, selected)
+                MANAGE.activate(self.target, self.revision, selected)
         self.assertEqual(list(self.docs.iterdir()), [])
 
     def test_existing_file_is_preserved(self):
-        target = self.docs / MANAGE.RECORD
+        target = self.target
+        target.parent.mkdir(parents=True)
         target.write_text("Existing project content", encoding="utf-8")
         selected = MANAGE.resolve_selection(self.skills, ["tdd"])
         with patch.object(MANAGE, "verify_sources") as verify:
@@ -69,17 +72,18 @@ class ActivationTests(unittest.TestCase):
         self.assertEqual(target.read_text(encoding="utf-8"), "Existing project content")
 
     def test_concurrent_creation_is_preserved(self):
-        target = self.docs / MANAGE.RECORD
+        target = self.target
         selected = MANAGE.resolve_selection(self.skills, ["tdd"])
 
         def create_during_verification(*args):
+            target.parent.mkdir(parents=True)
             target.write_text("Concurrent change", encoding="utf-8")
 
         with patch.object(MANAGE, "verify_sources", side_effect=create_during_verification):
             with self.assertRaises(FileExistsError):
                 MANAGE.activate(target, self.revision, selected)
         self.assertEqual(target.read_text(encoding="utf-8"), "Concurrent change")
-        self.assertEqual(list(self.docs.iterdir()), [target])
+        self.assertEqual(list(target.parent.iterdir()), [target])
 
     def test_paths_cannot_escape_project_or_follow_links(self):
         alias = self.root / "alias"
@@ -88,12 +92,40 @@ class ActivationTests(unittest.TestCase):
             with self.subTest(path=path), self.assertRaises(ValueError):
                 MANAGE.destination(self.root, path)
 
-        target = self.docs / MANAGE.RECORD
+        target = self.target
+        target.parent.mkdir(parents=True)
         target.symlink_to(self.rules)
+        original_rules = self.rules.read_bytes()
         selected = MANAGE.resolve_selection(self.skills, ["tdd"])
         with self.assertRaises(ValueError):
             MANAGE.activate(target, self.revision, selected)
-        self.assertEqual(self.rules.read_text(encoding="utf-8"), "Project rules")
+        self.assertEqual(self.rules.read_bytes(), original_rules)
+
+    def test_integration_directory_cannot_be_a_link(self):
+        self.target.parent.parent.mkdir()
+        self.target.parent.symlink_to(self.root, target_is_directory=True)
+        with self.assertRaises(ValueError):
+            MANAGE.destination(self.root, Path("docs"))
+        self.assertFalse((self.root / MANAGE.RECORD).exists())
+
+    def test_custom_documentation_root_preserves_manual_entry(self):
+        custom = self.root / "knowledge"
+        custom.mkdir()
+        manual = custom / MANAGE.RECORD
+        manual.write_text("Previous customization", encoding="utf-8")
+        target = MANAGE.destination(self.root, Path("knowledge"))
+        selected = MANAGE.resolve_selection(self.skills, ["tdd"])
+        with patch.object(MANAGE, "verify_sources"):
+            MANAGE.activate(target, self.revision, selected)
+        self.assertEqual(manual.read_text(encoding="utf-8"), "Previous customization")
+        self.assertEqual(target, custom / "project/integrations/mattpocock-skills.md")
+        self.assertTrue(target.is_file())
+
+    def test_activation_requires_shared_routing(self):
+        self.rules.write_text("Older project rules", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "Anbindung"):
+            MANAGE.destination(self.root, Path("docs"))
+        self.assertFalse(self.target.parent.exists())
 
 
 if __name__ == "__main__":

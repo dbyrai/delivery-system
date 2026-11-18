@@ -32,6 +32,12 @@ Apply this order within the repository; applicable tool/system safety policies r
 
 The overview, full delivery handbook, all baseline files, and all roles are not universal startup reading. Classify mixed requests by all affected concerns; routing is never an exemption from required acceptance or safety gates. Keep existing documentation roots, including subproject roots, and resolve their nearest applicable instructions before using generic paths.
 
+## Optional Matt Pocock Methods
+
+After choosing the primary role and checking the applicable delivery gates, select a method only when the current assignment calls for it. Honor an explicit method request or opt-out. Otherwise use `diagnosing-bugs` for hard-to-reproduce defects or performance regressions, `tdd` when the assignment calls for test-first work, `grill-me` for a request to work through open design decisions, or `to-questionnaire` when the user wants questions for someone else to answer.
+
+For a matching assignment, look for `project/integrations/mattpocock-skills.md` under the applicable documentation root (normally `docs/`). Use the nearest applicable active entry, falling back to the project entry if needed. Locate sections by heading and load just `Geltung`, the selected method, and its named references in the entry. If the entry or method is absent, continue with the normal workflow. Other assignments skip this lookup. The existing primary role performs the work within task scope and project rules. The method grants no authority to change gates, delegate, or write externally.
+
 ## Optional Diagnostic Gate
 
 Delivery diagnostics default: off
@@ -39,6 +45,7 @@ Delivery diagnostics default: off
 Diagnostics control visible output only; all gates still apply when hidden. `Delivery diagnostics: on` or `Delivery diagnostics: off` in a user message overrides this default for the chat until changed. A choice explicitly limited to one task restores the previous setting afterward. Chat changes do not modify files or carry over to other chats; change this default only when asked to set a persistent project preference.
 
 When enabled, emit this compact gate after classification and role selection, before detailed domain/code analysis or edits. List only sources actually loaded; if needed, report missing sources separately. Do not bulk-read documents merely to populate the gate.
+When using an optional method, add `- selected method: <Name> (<Reason>)` to the diagnostic gate and include its entry in the loaded project sources.
 
 ```text
 Delivery System:

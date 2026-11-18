@@ -15,6 +15,7 @@ ADDON = Path(__file__).resolve().parent
 REPOSITORY = "https://github.com/mattpocock/skills"
 RAW = "https://raw.githubusercontent.com/mattpocock/skills"
 RECORD = "mattpocock-skills.md"
+ROUTING_SECTION = "## Optional Matt Pocock Methods"
 STATUSES = {
     "ready": "empfohlen und aktivierbar",
     "dependency": "adaptierte Referenz",
@@ -42,14 +43,24 @@ def resolve_selection(skills, names):
 
 
 def destination(root, docs_root):
-    if not (root / ".github/copilot-instructions.md").is_file():
+    rules = root / ".github/copilot-instructions.md"
+    if not rules.is_file():
         raise ValueError("Starte den Befehl im Wurzelverzeichnis des Delivery-System-Projekts.")
+    if ROUTING_SECTION not in rules.read_text(encoding="utf-8").splitlines():
+        raise ValueError("Die gemeinsamen Delivery-Regeln enthalten die Anbindung für Matt Pocock noch nicht.")
     if docs_root.is_absolute() or not docs_root.parts or any(part.startswith(".") for part in docs_root.parts):
         raise ValueError("Gib ein vorhandenes Dokumentationsverzeichnis im Projekt an.")
     directory = root / docs_root
     if not directory.is_dir() or directory.resolve() != directory or root not in directory.parents:
         raise ValueError("Das Dokumentationsverzeichnis muss im Projekt liegen und darf keine Links enthalten.")
-    return directory / RECORD
+    target = directory / "project" / "integrations" / RECORD
+    check_integration_path(target)
+    return target
+
+
+def check_integration_path(target):
+    if target.parent.resolve() != target.parent:
+        raise ValueError("Der Integrationspfad darf keine symbolischen Links enthalten.")
 
 
 def verify_sources(revision, selected, source_dir):
@@ -77,7 +88,7 @@ def render_record(revision, selected):
         "Dieser Eintrag enthält für das Delivery-System angepasste Methoden.",
         "## Geltung\n\n"
         "Lies die geltenden Projektanweisungen und die kanonischen Delivery-Regeln vor der Verwendung. "
-        "Lade diesen Eintrag nur auf ausdrücklichen Aufruf und verwende ausschließlich die angeforderte Methode "
+        "Die gemeinsamen Delivery-Regeln bestimmen, wann dieser Eintrag geladen wird. Verwende die gewählte Methode "
         "samt ihren hier genannten Referenzen. Die zugehörige Aufgabe, Projektquellen, Rollen und Freigaben "
         "bestimmen den Umfang. Offene Blocker, Bootstrap, Akzeptanz und Verifikation richten sich nach dem Projekt. "
         "Dieser Eintrag erteilt keine Berechtigung für externe Schreibvorgänge, Delegation oder Git- und Release-Aktionen. "
@@ -96,6 +107,7 @@ def render_record(revision, selected):
 
 
 def activate(target, revision, selected, source_dir=None):
+    check_integration_path(target)
     record = render_record(revision, selected).encode("utf-8")
     if target.is_symlink() or target.exists():
         if not target.is_symlink() and target.is_file() and target.read_bytes() == record:
@@ -103,6 +115,8 @@ def activate(target, revision, selected, source_dir=None):
         raise ValueError(f"Vorhandener Eintrag bleibt erhalten: {target}")
 
     verify_sources(revision, selected, source_dir)
+    check_integration_path(target)
+    target.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".mattpocock-", dir=target.parent) as staging:
         draft = Path(staging) / RECORD
         draft.write_bytes(record)

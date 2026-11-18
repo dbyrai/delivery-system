@@ -8,14 +8,17 @@ Set up the optional Matt Pocock skills add-on for this Delivery System project.
 
 Read the applicable project instructions and addons/mattpocock-skills/README.md.
 Identify the project root and the existing documentation root from the repository.
-Inspect the working tree so you can preserve existing changes.
+Inspect the working tree so you can preserve existing changes. Verify that the
+shared Delivery System instructions contain the Optional Matt Pocock Methods
+section. If it is missing, report that the routing update is required.
 
 From the project root run:
 python3 addons/mattpocock-skills/manage.py list
 
 Present the full printed catalog in my language, with each skill's name, short
 explanation, availability and any referenced methods. Explain that activation
-adds one project-local Markdown entry. If I did not name skills, ask once which
+adds one Markdown entry under project/integrations in the documentation root
+and creates that directory if needed. If I did not name skills, ask once which
 available methods I want. Wait for selection before writing. If I only ask to
 see the catalog, finish after presenting it. If a selected name is unavailable,
 explain its status and ask me to resolve the selection before activation.
@@ -41,7 +44,7 @@ approval gates. Activation itself authorizes no application work, tracker writes
 automation, delegation, Git writes, or release actions. If you find a conflict,
 report it and stop using the conflicting step. Preserve unrelated local edits.
 
-Report the path, revision, methods and what was actually verified. Use a method
-only on explicit request with a concrete assignment. Read the applicable project
-instructions before using the selected method from the local entry.
+Report the path, revision, methods and what was actually verified. For later
+assignments, the primary role selects a relevant active method according to the
+shared Delivery System instructions and applies it within the assignment scope.
 ```
