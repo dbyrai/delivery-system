@@ -6,14 +6,22 @@ and deactivation. The shared executable configuration helper prepares real clien
 profiles. Copying files alone activates nothing; a mapping document alone is not
 a working adapter. No background synchronization service is installed.
 
+The optional [Matt Pocock skills add-on](mattpocock-skills/README.md) lists
+upstream skills and activates selected, adapted methods in one project-local
+document. It uses a separate setup flow without MCP configuration.
+
 ## Choose an Add-on
 
 | Add-on | Intended use | Start here |
 | --- | --- | --- |
+| Matt Pocock skills | Apply selected debugging, TDD, and decision-clarification methods | [Matt Pocock skills](mattpocock-skills/README.md) |
 | Jira | Link delivery tasks to Jira work items and workflows | [Jira](jira/README.md) |
 | Confluence | Publish or reference selected project documentation | [Confluence](confluence/README.md) |
 | GitHub Projects | Connect repository issues and project planning | [GitHub Projects](github-projects/README.md) |
 | GitLab | Connect project issues, planning, and merge requests | [GitLab](gitlab/README.md) |
+
+For Matt Pocock skills, use the [selection prompt](mattpocock-skills/integration-prompt.md).
+The setup steps below apply to MCP adapters.
 
 Select only the add-ons you need. Read this lifecycle and the chosen add-on's
 instructions and the [MCP setup guide](mcp-setup.md), then copy its integration
@@ -130,6 +138,9 @@ Each add-on provides a copyable deactivation prompt:
 [Confluence](confluence/deactivation-prompt.md),
 [GitHub Projects](github-projects/deactivation-prompt.md), and
 [GitLab](gitlab/deactivation-prompt.md).
+The Matt Pocock skills [deactivation prompt](mattpocock-skills/deactivation-prompt.md)
+handles its local methods entry.
+
 Use the selected prompt with the durable project integration record. The prompt
 also works when supplied separately after optional add-on files were removed.
 When copying only selected add-ons, retain only their prompt links here.

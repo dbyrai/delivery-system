@@ -123,6 +123,11 @@ instructions are loaded only for the selected integration.
 Project-specific decisions and durable operating rules stay in the project's
 existing documentation root.
 
+The optional [Matt Pocock skills add-on](addons/mattpocock-skills/README.md)
+offers a [selection prompt](addons/mattpocock-skills/integration-prompt.md)
+for project-local debugging, TDD, and decision-clarification methods. Its
+activation creates a single integration entry for task-based method selection.
+
 Existing v2.0 projects can follow the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
 Adoption is optional. Users can delete individual add-ons or the entire `addons/`
 directory and remove associated links; see the [removal instructions](addons/README.md#removing-instruction-files).

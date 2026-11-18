@@ -1,0 +1,197 @@
+{
+  "revision": "5863806dd4e15c63174bee4e7515a4256792ecfa",
+  "skills": {
+    "ask-matt": {
+      "group": "engineering",
+      "status": "catalog",
+      "description": "Empfiehlt einen passenden Upstream-Skill oder Ablauf."
+    },
+    "grill-with-docs": {
+      "group": "engineering",
+      "status": "adapt",
+      "description": "Klärt ein Vorhaben im Interview und aktualisiert Fachbegriffe und Architekturentscheidungen."
+    },
+    "triage": {
+      "group": "engineering",
+      "status": "omit",
+      "description": "Bewertet Tracker-Einträge und wendet Status, Kommentare oder Schließungen an."
+    },
+    "improve-codebase-architecture": {
+      "group": "engineering",
+      "status": "adapt",
+      "description": "Findet Architekturverbesserungen und präsentiert sie als HTML-Bericht."
+    },
+    "setup-matt-pocock-skills": {
+      "group": "engineering",
+      "status": "omit",
+      "description": "Richtet Tracker, Triage-Labels und Domänendokumentation ein."
+    },
+    "to-spec": {
+      "group": "engineering",
+      "status": "omit",
+      "description": "Verdichtet ein Gespräch zur Spezifikation und veröffentlicht sie im Tracker."
+    },
+    "to-tickets": {
+      "group": "engineering",
+      "status": "omit",
+      "description": "Zerlegt ein Vorhaben in umsetzbare Tickets mit Abhängigkeiten."
+    },
+    "implement": {
+      "group": "engineering",
+      "status": "omit",
+      "description": "Setzt ein Arbeitspaket mit Tests und Review um und committet die Änderungen."
+    },
+    "implement-spec": {
+      "group": "engineering",
+      "status": "omit",
+      "description": "Koordiniert die Umsetzung einer Spezifikation über Subagents und einen Integrationsbranch."
+    },
+    "wayfinder": {
+      "group": "engineering",
+      "status": "omit",
+      "description": "Plant große Vorhaben als Folge voneinander abhängiger Entscheidungstickets."
+    },
+    "retro": {
+      "group": "engineering",
+      "status": "catalog",
+      "description": "Schlägt nach einer Arbeitssitzung Verbesserungen an Tools, Checks und Anweisungen vor."
+    },
+    "prototype": {
+      "group": "engineering",
+      "status": "catalog",
+      "description": "Erstellt einen Wegwerfprototyp für eine konkrete Designfrage."
+    },
+    "diagnosing-bugs": {
+      "group": "engineering",
+      "status": "ready",
+      "description": "Baut für hartnäckige Fehler oder Performanceprobleme eine reproduzierbare Prüfschleife auf.",
+      "sources": {
+        "skills/engineering/diagnosing-bugs/SKILL.md": "d039541ddd1c46e6ddbd662fe99d49b686fc5e12"
+      },
+      "dependencies": [],
+      "method": [
+        "Nutze zunächst einen schnellen, aussagekräftigen Prüfablauf in einer geeigneten autorisierten Umgebung. Er muss das tatsächliche Symptom sichtbar machen. Minimiere den Auslöser und halte den ursprünglichen Fall für die Gegenprobe fest.",
+        "Formuliere überprüfbare Hypothesen und unterscheide sie durch gezielte, temporäre Beobachtungen. Verwende bereinigte Diagnosedaten und die vorhandenen Projektwerkzeuge.",
+        "Wende die kleinste passende Korrektur an. Führe die ursprüngliche Prüfung erneut aus, sichere die Regression nach den Projektregeln ab und entferne temporäre Instrumentierung. Berichte fehlende Reproduzierbarkeit als Befund."
+      ]
+    },
+    "research": {
+      "group": "engineering",
+      "status": "adapt",
+      "description": "Recherchiert mit Primärquellen und dokumentiert die Ergebnisse in Markdown."
+    },
+    "tdd": {
+      "group": "engineering",
+      "status": "ready",
+      "description": "Entwickelt in kleinen Schritten mit zuerst fehlschlagenden Verhaltenstests.",
+      "sources": {
+        "skills/engineering/tdd/SKILL.md": "01eadaa34e7c9a63a67d6dc3cce1cc81b0e49985",
+        "skills/engineering/tdd/tests.md": "7ab86479f925a1f9e8ba680af33cb3b12e015381",
+        "skills/engineering/tdd/mocking.md": "71cbfee674d93244ce81d1830b930ca9a69200bd"
+      },
+      "dependencies": [
+        "codebase-design"
+      ],
+      "method": [
+        "Leite den ersten Testfall aus dem freigegebenen Verhalten ab. Nutze vorhandene öffentliche Schnittstellen und dokumentierte Testvorgaben. Nutze die Referenz `codebase-design`, wenn die geeignete Schnittstelle offen ist.",
+        "Pro Iteration prüfst du einen kleinen Verhaltensschritt. Beobachte zunächst das erwartete Fehlschlagen, implementiere die kleinste passende Änderung und führe den Test erneut aus.",
+        "Bevorzuge beobachtbares Verhalten, klare erwartete Werte und schlanke Testdaten. Halte Tests von internen Details fern. Prüfe nach dem letzten Schritt die betroffenen Akzeptanzkriterien und die relevanten Projektchecks."
+      ]
+    },
+    "domain-modeling": {
+      "group": "engineering",
+      "status": "adapt",
+      "description": "Schärft Fachbegriffe und prüft ein Domänenmodell an Grenzfällen."
+    },
+    "codebase-design": {
+      "group": "engineering",
+      "status": "dependency",
+      "description": "Hilft, Module mit kleinen öffentlichen Schnittstellen zu gestalten.",
+      "sources": {
+        "skills/engineering/codebase-design/SKILL.md": "3f63c8146dd2604b419c929e9876b90c30d410e9"
+      },
+      "dependencies": [],
+      "method": [
+        "Suche eine vorhandene öffentliche Schnittstelle, die das Verhalten beobachtbar macht. Eine kleine Schnittstelle bündelt zusammengehörige Regeln im Modul und erlaubt stabile Verhaltenstests.",
+        "Wenn keine passende Schnittstelle existiert, beschreibe die kleinste sinnvolle Änderung und beachte bestehende Architekturentscheidungen sowie den freigegebenen Arbeitsumfang."
+      ]
+    },
+    "code-review": {
+      "group": "engineering",
+      "status": "adapt",
+      "description": "Prüft einen Diff getrennt auf Coding-Standards und Umsetzung der Spezifikation."
+    },
+    "pr": {
+      "group": "engineering",
+      "status": "catalog",
+      "description": "Strukturiert PR-Beschreibungen mit Belegen und Merge-Risiko."
+    },
+    "wizard": {
+      "group": "engineering",
+      "status": "catalog",
+      "description": "Entwirft einen Shell-Assistenten für Schritte, die ein Mensch ausführen muss."
+    },
+    "grill-me": {
+      "group": "productivity",
+      "status": "ready",
+      "description": "Klärt ein Vorhaben durch Fragen zu offenen Entscheidungen.",
+      "sources": {
+        "skills/productivity/grill-me/SKILL.md": "3947ff9c4ad980d14fc07fccbf659d47c114e81d"
+      },
+      "dependencies": [
+        "grilling"
+      ],
+      "method": [
+        "Verwende die Interviewmethode `grilling` aus diesem Eintrag für die offenen Entscheidungen des konkreten Vorhabens."
+      ]
+    },
+    "handoff": {
+      "group": "productivity",
+      "status": "catalog",
+      "description": "Verdichtet den Arbeitsstand für die Übergabe an einen anderen Agenten."
+    },
+    "teach": {
+      "group": "productivity",
+      "status": "catalog",
+      "description": "Vermittelt ein Thema über mehrere aufeinander aufbauende Sitzungen."
+    },
+    "to-questionnaire": {
+      "group": "productivity",
+      "status": "ready",
+      "description": "Formuliert offene Entscheidungen als Fragebogen für die Person, die sie beantworten kann.",
+      "sources": {
+        "skills/productivity/to-questionnaire/SKILL.md": "dadd0c00d6a350acaa15bb9ca1b96b20ead684ca"
+      },
+      "dependencies": [],
+      "method": [
+        "Klär aus dem Auftrag oder mit gezielten Rückfragen, wer den Fragebogen beantwortet und welche Informationen oder Entscheidungen gebraucht werden.",
+        "Entwirf einen kurzen Markdown-Fragebogen mit Kontext, konkreten Fragen und einer klaren Antwortform. Hole Fakten nach Möglichkeit zuvor aus den Projektquellen.",
+        "Speichere den Entwurf nur im vom Projekt oder Auftrag vorgesehenen Ort. Die Erstellung umfasst keinen Versand. Leite Entscheidungen erst aus bestätigten Antworten ab."
+      ]
+    },
+    "wait-what": {
+      "group": "productivity",
+      "status": "catalog",
+      "description": "Erklärt eine unklare Aussage mit dem fehlenden Kontext neu."
+    },
+    "grilling": {
+      "group": "productivity",
+      "status": "dependency",
+      "description": "Liefert die Interviewmethode für grill-me und weitere Skills.",
+      "sources": {
+        "skills/productivity/grilling/SKILL.md": "d2f09a18e6a6c65c55f1271ba08dfeaf06f0bed3"
+      },
+      "dependencies": [],
+      "method": [
+        "Ermittle Fakten aus den verfügbaren Projektquellen und baue darauf die offenen Entscheidungen und ihre Abhängigkeiten auf.",
+        "Stelle die nächste entscheidungsreife Frage mit einer begründeten Empfehlung. Folge den projektspezifischen Regeln zur Reihenfolge blockierender Fragen. Passe Folgerunden an die Antworten an.",
+        "Halte Antworten oder ausdrückliche Zurückstellungen im vorgesehenen Projektartefakt fest, soweit der Auftrag die Dokumentation umfasst. Behandle offene Blocker gemäß Projektregeln."
+      ]
+    },
+    "writing-for-agents": {
+      "group": "productivity",
+      "status": "catalog",
+      "description": "Hilft beim Schreiben von Skills und Anweisungen für Agenten."
+    }
+  }
+}
