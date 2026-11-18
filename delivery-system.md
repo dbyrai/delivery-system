@@ -39,6 +39,10 @@ files. Users may [remove individual add-ons or the entire directory](addons/READ
 and clean associated links; disabling an active connection is a separate action.
 Existing v2.0 adopters can use the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
 
+The optional [Matt Pocock skills add-on](addons/mattpocock-skills/README.md)
+activates selected methods in a project-local documentation entry. Request
+methods explicitly within the applicable Delivery System task and its gates.
+
 ## Bootstrap Rules
 
 Use this delivery system as a gated sequence, not as loose guidance.
