@@ -1,0 +1,48 @@
+{
+  "skills": {
+    "security-review": {
+      "description": "Prüft Änderungen an Anwendungscode, Authentifizierung, Berechtigungen und der Verarbeitung sensibler Daten.",
+      "source": {
+        "repository": "getsentry/skills",
+        "revision": "a582c51ee29d0f35e6ac321340796f77d43da733",
+        "path": "skills/security-review/SKILL.md",
+        "sha256": "26db9a5b1999adc19c4bf6eb7fbe37b56f0135b79f3054f33fd03baefa8e93ed"
+      },
+      "steps": [
+        "Begrenze den Bericht auf die beauftragten Dateien oder Änderungen. Lies angrenzenden Code, soweit er für Eingaben, Datenflüsse und vorhandene Schutzmaßnahmen relevant ist.",
+        "Verfolge relevante Eingaben bis zur geschützten Operation. Prüfe insbesondere Authentifizierung, serverseitige Berechtigungen, Eingabevalidierung und den Umgang mit sensiblen Daten.",
+        "Belege Befunde statisch mit Fundstelle, verletzter Sicherheitsanforderung, Auswirkung und konkreter Abhilfe. Kennzeichne offene Annahmen und ungeprüfte Pfade getrennt."
+      ]
+    },
+    "infra-security": {
+      "description": "Prüft Terraform, CloudFormation, Kubernetes, Helm, Docker, Compose und relevante CI-Konfiguration statisch.",
+      "source": {
+        "repository": "superagent-ai/skills",
+        "revision": "0da315b873ed141025fa601ed6e0ebe0c878d5af",
+        "path": "skills/infra-security/SKILL.md",
+        "sha256": "b613aa9959b5ae8adaedf4ad3c205e89257364ff6865176cbd8292875c43bdb0"
+      },
+      "steps": [
+        "Erfasse die Infrastrukturdateien im Prüfbereich und die zugehörigen Ressourcen, Parameter und Schutzmaßnahmen. Verwende lokale Quelldateien und bereits verfügbare Prüfergebnisse.",
+        "Prüfe übermäßige Rechte, Netzwerkfreigaben, Containerprivilegien, Zugriff auf Secrets und die relevanten Vertrauensgrenzen der Pipeline. Verfolge referenzierte Konfiguration, wenn sie die Auswirkungen ändert.",
+        "Belege Befunde anhand der Konfiguration mit Fundstelle, Schweregrad, Auswirkung und konkreter Abhilfe. Weise fehlende Informationen über die bereitgestellte Umgebung als Prüfgrenze aus."
+      ]
+    },
+    "code-security": {
+      "description": "Gibt bei neuen Änderungen Hinweise für sichere Implementierung und Konfiguration.",
+      "source": "https://github.com/semgrep/skills/tree/main/skills/code-security"
+    },
+    "semgrep": {
+      "description": "Eignet sich für regelbasierte Quellcode-Checks und wiederkehrende Muster.",
+      "source": "https://github.com/semgrep/skills/blob/main/skills/semgrep/SKILL.md"
+    },
+    "codeql": {
+      "description": "Vertieft die Datenflussanalyse in Projekten mit vorhandener CodeQL-Einrichtung.",
+      "source": "https://github.com/trailofbits/skills/tree/main/plugins/static-analysis/skills/codeql"
+    },
+    "sarif-parsing": {
+      "description": "Hilft, vorhandene SARIF-Ergebnisse zu bündeln und Duplikate zu erkennen.",
+      "source": "https://github.com/trailofbits/skills/tree/main/plugins/static-analysis/skills/sarif-parsing"
+    }
+  }
+}

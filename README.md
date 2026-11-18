@@ -128,6 +128,10 @@ offers a [selection prompt](addons/mattpocock-skills/integration-prompt.md)
 for project-local debugging, TDD, and decision-clarification methods. Its
 activation creates a single integration entry for task-based method selection.
 
+The optional [Security add-on](addons/security/README.md) provides a skill catalog,
+project-local activation for software and infrastructure reviews, and a shared
+Security Reviewer role with adapters for Codex and Claude Code.
+
 Existing v2.0 projects can follow the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
 Adoption is optional. Users can delete individual add-ons or the entire `addons/`
 directory and remove associated links; see the [removal instructions](addons/README.md#removing-instruction-files).

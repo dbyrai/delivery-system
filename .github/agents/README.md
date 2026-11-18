@@ -10,6 +10,7 @@ Use this index to select one primary owner under the [shared workflow](../copilo
 | backend-developer | [backend-developer.agent.md](backend-developer.agent.md) | APIs, data models, authentication/authorization, and integrations |
 | frontend-developer | [frontend-developer.agent.md](frontend-developer.agent.md) | UI, routing, accessibility, client state, and API integration |
 | qa-engineer | [qa-engineer.agent.md](qa-engineer.agent.md) | Acceptance evidence, integration tests, and regression checks |
+| security-reviewer | [security-reviewer.agent.md](security-reviewer.agent.md) | Explicitly requested independent, read-only security reviews |
 | content-editor | [content-editor.agent.md](content-editor.agent.md) | Content structure, terminology, metadata, and documentation quality |
 
 For mixed work, choose the role owning the main deliverable and identify any required handoff. Keep architecture decisions with the Technical Lead, implementation with its developer/operations owner, and verification evidence with QA when a separate review is required. This routing does not authorize spawning agents; the shared delegation rules apply.
