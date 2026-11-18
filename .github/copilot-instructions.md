@@ -38,6 +38,14 @@ After choosing the primary role and checking the applicable delivery gates, sele
 
 For a matching assignment, look for `project/integrations/mattpocock-skills.md` under the applicable documentation root (normally `docs/`). Use the nearest applicable active entry, falling back to the project entry if needed. Locate sections by heading and load just `Geltung`, the selected method, and its named references in the entry. If the entry or method is absent, continue with the normal workflow. Other assignments skip this lookup. The existing primary role performs the work within task scope and project rules. The method grants no authority to change gates, delegate, or write externally.
 
+## Optional Security Methods
+
+After selecting the primary role and checking delivery gates, use `security-review` for an assigned security review of application code or `infra-security` for an assigned security review of infrastructure, containers, or CI/CD configuration. Use both when both are in scope. Honor an explicit method choice or opt-out within that scope. Skip the lookup for unrelated work.
+
+Look for `project/integrations/security-skills.md` under the applicable documentation root. Prefer the nearest active entry containing the requested method and fall back to the project entry. Read `Geltung` and the selected sections alongside the project security policy. If a method is absent, continue under the existing project rules and report the missing method when explicitly requested. Report checks actually run and coverage gaps. Activation alone grants no authority to install tools, change CI, or access live systems.
+
+Use the shared [Security Reviewer role](agents/security-reviewer.agent.md) for an explicitly requested independent security review. For a second review within an ongoing assignment, delegate to the project's `security-reviewer` when the client supports it and delegation is permitted. If the client cannot provide a separate reviewer, report that limitation. The current assistant can run a read-only review using the shared role and identify it as a single review. The role is available even when no optional Security method is active.
+
 ## Optional Diagnostic Gate
 
 Delivery diagnostics default: off
@@ -45,7 +53,7 @@ Delivery diagnostics default: off
 Diagnostics control visible output only; all gates still apply when hidden. `Delivery diagnostics: on` or `Delivery diagnostics: off` in a user message overrides this default for the chat until changed. A choice explicitly limited to one task restores the previous setting afterward. Chat changes do not modify files or carry over to other chats; change this default only when asked to set a persistent project preference.
 
 When enabled, emit this compact gate after classification and role selection, before detailed domain/code analysis or edits. List only sources actually loaded; if needed, report missing sources separately. Do not bulk-read documents merely to populate the gate.
-When using an optional method, add `- selected method: <Name> (<Reason>)` to the diagnostic gate and include its entry in the loaded project sources.
+When using an optional method, add `- selected method: <Name> (<Reason>)` for each selected method to the diagnostic gate and include its entry in the loaded project sources.
 
 ```text
 Delivery System:

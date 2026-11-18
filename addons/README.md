@@ -15,6 +15,7 @@ document. It uses a separate setup flow without MCP configuration.
 | Add-on | Intended use | Start here |
 | --- | --- | --- |
 | Matt Pocock skills | Apply selected debugging, TDD, and decision-clarification methods | [Matt Pocock skills](mattpocock-skills/README.md) |
+| Security | Activate review methods for application code and infrastructure | [Security](security/README.md) |
 | Jira | Link delivery tasks to Jira work items and workflows | [Jira](jira/README.md) |
 | Confluence | Publish or reference selected project documentation | [Confluence](confluence/README.md) |
 | GitHub Projects | Connect repository issues and project planning | [GitHub Projects](github-projects/README.md) |
