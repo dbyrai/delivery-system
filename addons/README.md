@@ -16,6 +16,7 @@ and setup/removal prompts. It requires no external Manus API.
 | Add-on | Intended use | Start here |
 | --- | --- | --- |
 | Manus | Use Manus with GitHub for existing or new projects and approved spec/task execution | [Manus](manus/README.md) |
+| Security | Choose review skills and scanner options for application code and infrastructure | [Security](security/README.md) |
 | Jira | Link delivery tasks to Jira work items and workflows | [Jira](jira/README.md) |
 | Confluence | Publish or reference selected project documentation | [Confluence](confluence/README.md) |
 | GitHub Projects | Connect repository issues and project planning | [GitHub Projects](github-projects/README.md) |
