@@ -22,7 +22,7 @@ Work through open decisions until none remain unresolved or undeferred. Cover at
 5. Security, privacy, and policy impact.
 6. Priority for this iteration (Must, Should, Could, Won't).
 
-Ask focused questions, grouped only when they do not depend on each other, each with a recommended answer. Look up facts in the repository yourself; ask the user only for decisions. If the optional `grill-me` method is active, use it for this step. Flag unclear technical feasibility as an open question for the Technical Lead.
+Use the clarification rounds in `.github/skills/_shared/clarification-rounds.md`. If the optional `grill-me` method is active and the user wants a deeper interview, use it instead. Flag unclear technical feasibility as an open question for the Technical Lead.
 
 ## 3. Draft the Spec
 

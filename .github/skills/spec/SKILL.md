@@ -9,7 +9,7 @@ Act as the Product Manager (`.github/agents/product-manager.agent.md`). Use the 
 
 ## 1. Gather Input
 
-Confirm what should be specified and whether open questions remain. If important questions are unresolved, recommend `new-feature`; if the user wants to proceed anyway, keep them visible under Open Questions as blocking unless explicitly deferred.
+Confirm what should be specified. Check the input against the spec template's sections and list gaps or assumptions you would otherwise have to make. If there are any, run a short clarification using `.github/skills/_shared/clarification-rounds.md`, limited to those gaps (usually one round). If the idea turns out to need broad exploration, recommend `new-feature`. Anything the user leaves open stays under Open Questions as blocking unless explicitly deferred.
 
 ## 2. Write
 
