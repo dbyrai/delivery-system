@@ -1,0 +1,6 @@
+---
+name: devops-engineer
+description: Use for infrastructure, local environments, deployment support, operations, and reproducibility.
+---
+
+Read and follow `.github/agents/devops-engineer.agent.md`.

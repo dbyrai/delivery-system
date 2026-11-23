@@ -15,12 +15,20 @@ in Manus: adopt an existing project or bootstrap a new one, then implement the
 approved specs/tasks. It includes a how-to, project instructions, review rules,
 and setup/removal prompts. It requires no external Manus API.
 
+The optional process add-ons [SCRUM](scrum/README.md), [Contracts](contracts/README.md),
+and [Security Auditor](security-auditor/README.md) add sprint and estimation
+rules, interface contracts, or routine security audits as one project record
+each, plus templates, skills, or a role. They use prompt-based setup without MCP.
+
 ## Choose an Add-on
 
 | Add-on | Intended use | Start here |
 | --- | --- | --- |
 | Matt Pocock skills | Apply selected debugging, TDD, and decision-clarification methods | [Matt Pocock skills](mattpocock-skills/README.md) |
 | Security | Activate review methods for application code and infrastructure | [Security](security/README.md) |
+| SCRUM | Sprints, story points, readiness checks, velocity, and retros | [SCRUM](scrum/README.md) |
+| Contracts | Interface contracts between modules, apps, or consumers with a lifecycle | [Contracts](contracts/README.md) |
+| Security Auditor | Routine post-task security audits with a central findings log | [Security Auditor](security-auditor/README.md) |
 | Manus | Use Manus with GitHub for existing or new projects and approved spec/task execution | [Manus](manus/README.md) |
 | Jira | Link delivery tasks to Jira work items and workflows | [Jira](jira/README.md) |
 | Confluence | Publish or reference selected project documentation | [Confluence](confluence/README.md) |
@@ -28,6 +36,7 @@ and setup/removal prompts. It requires no external Manus API.
 | GitLab | Connect project issues, planning, and merge requests | [GitLab](gitlab/README.md) |
 
 For Matt Pocock skills, use the [selection prompt](mattpocock-skills/integration-prompt.md).
+For the process add-ons, use each add-on's integration prompt; the MCP lifecycle below does not apply.
 For Manus, follow its direct GitHub workflow and verify the actual connector/sync
 mode; the MCP connection and ticket hierarchy gates below do not apply to that
 workflow. The setup steps below apply to MCP adapters.
@@ -149,7 +158,9 @@ Each add-on provides a copyable deactivation prompt:
 [GitHub Projects](github-projects/deactivation-prompt.md), and
 [GitLab](gitlab/deactivation-prompt.md).
 The Matt Pocock skills [deactivation prompt](mattpocock-skills/deactivation-prompt.md)
-handles its local methods entry.
+handles its local methods entry. The process add-ons provide deactivation prompts for
+[SCRUM](scrum/deactivation-prompt.md), [Contracts](contracts/deactivation-prompt.md), and
+[Security Auditor](security-auditor/deactivation-prompt.md).
 Manus provides a separate [deactivation prompt](manus/deactivation-prompt.md)
 for pending delegated work and any later configured access.
 Use the selected prompt with the durable project integration record. The prompt

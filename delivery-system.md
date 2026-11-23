@@ -10,6 +10,8 @@ It provides a documentation structure, AI instruction files, role-based agent gu
 - `.github/copilot-instructions.md` - Copilot-compatible AI instructions
 - `.github/agents/` - role-specific agent instructions for GitHub Copilot, ChatGPT Codex, Claude Code, and other AI-assisted workflows
 - `.claude/agents/` - Claude Code wrappers that delegate to the shared `.github/agents/` role guidance
+- `.github/skills/` - shared workflow skills (`bootstrap`, `new-feature`, `spec`, `bugfix`, `prioritize`) with thin wrappers in `.claude/skills/`, `.agents/skills/` (Codex), and `.kiro/skills/`
+- `.kiro/` - Kiro steering, agent, and skill wrappers that delegate to the shared instructions, roles, and skills
 - `addons/` - optional MCP adapters, configuration helper, and AI adaptation prompts
 - `docs/project/` - project overview, roadmap, and decisions
 - `docs/specs/` - requirements and specification templates
@@ -38,6 +40,11 @@ guide explains how to make configured integrations independent of these optional
 files. Users may [remove individual add-ons or the entire directory](addons/README.md#removing-instruction-files)
 and clean associated links; disabling an active connection is a separate action.
 Existing v2.0 adopters can use the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
+
+The optional process add-ons [SCRUM](addons/scrum/README.md), [Contracts](addons/contracts/README.md),
+and [Security Auditor](addons/security-auditor/README.md) add sprint and estimation
+rules, interface contracts, or routine security audits. Each activates one project
+record under `docs/project/integrations/` that the shared routing loads only when relevant.
 
 The optional [Matt Pocock skills add-on](addons/mattpocock-skills/README.md)
 activates selected methods in `docs/project/integrations/`. The shared task
@@ -69,6 +76,8 @@ Use this delivery system as a gated sequence, not as loose guidance.
 3. Stop at the first blocking open question.
 4. Resolve or explicitly defer the question before continuing.
 5. Start implementation only after the bootstrap sequence has a clear completed or deferred state.
+
+The shared `bootstrap` skill walks through this sequence interactively, one step at a time.
 
 ## How To Adopt An Existing Project
 
@@ -466,18 +475,24 @@ For ChatGPT Codex:
 
 - Start from `AGENTS.md` and follow its reference to `.github/copilot-instructions.md`.
 - Load only the task-relevant sources selected by the shared routing table; reuse unchanged context.
-- Use `.github/agents/` for role-specific behavior.
+- Use `.github/agents/` for role-specific behavior and `.agents/skills/` wrappers for shared skills.
 
 For GitHub Copilot:
 
 - Use `.github/copilot-instructions.md`.
+- Shared skills are read from `.github/skills/`.
 - Keep project-specific knowledge in `docs/`.
 
 For Claude Code:
 
 - Start from `CLAUDE.md`, which imports `.github/copilot-instructions.md`.
-- Use `.claude/agents/` only as wrappers.
+- Use `.claude/agents/` and `.claude/skills/` only as wrappers.
 - Keep `.github/agents/` as the shared source for role guidance.
+
+For Kiro:
+
+- `.kiro/steering/delivery-system.md` is always included and references `.github/copilot-instructions.md`.
+- Use `.kiro/agents/` and `.kiro/skills/` only as wrappers.
 
 For all AI tools:
 

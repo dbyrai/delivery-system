@@ -2,31 +2,22 @@
 
 Use this file to record project-level and architecture decisions that affect future work.
 
-## Decision Template
+## When To Record A Decision
 
-```markdown
-## Decision: [Title]
+Record an architecture decision (ADR) when all three hold:
 
-**Date**: YYYY-MM-DD
-**Status**: Proposed | Accepted | Superseded
-**Owner**: [Role/name]
+1. Hard to reverse: changing it later has a meaningful cost.
+2. Surprising without context: a future reader would ask why it was done this way.
+3. The result of a real tradeoff: genuine alternatives existed and one was chosen for specific reasons.
 
-### Context
+Typical cases are architectural shape, integration patterns, lock-in technology, boundary or ownership decisions, deliberate deviations from the obvious path, and constraints invisible in code. Skip decisions that are easy to reverse or had no real alternative. A short entry is enough; the value is recording that and why a decision was made.
 
-[What problem or constraint led to this decision?]
+## Storage
 
-### Decision
+Use the [decision template](adr/template.md). Record decisions in this file by default, under Accepted Decisions, with every template heading shifted down one level. When decisions become numerous or long, store each as `docs/project/adr/NNN-slug.md` (next number after the highest existing file, starting at `001`) and keep this file as the index:
 
-[What was decided?]
-
-### Alternatives Considered
-
-- [Alternative and reason it was not chosen]
-
-### Consequences
-
-- [Tradeoff, follow-up, or impact]
-```
+| Decision | File | Topic | Date | Status | Owner |
+| --- | --- | --- | --- | --- | --- |
 
 ## Accepted Decisions
 

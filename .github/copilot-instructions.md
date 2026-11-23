@@ -32,6 +32,14 @@ Apply this order within the repository; applicable tool/system safety policies r
 
 The overview, full delivery handbook, all baseline files, and all roles are not universal startup reading. Classify mixed requests by all affected concerns; routing is never an exemption from required acceptance or safety gates. Keep existing documentation roots, including subproject roots, and resolve their nearest applicable instructions before using generic paths.
 
+## Shared Skills
+
+Workflow skills live in `.github/skills/<name>/SKILL.md`; tool wrappers in `.claude/skills/`, `.agents/skills/`, and `.kiro/skills/` only delegate there. Use a skill when the user invokes it or the request clearly matches its description. A skill sequences work for the primary role it names; it does not override source authority, delivery gates, work boundaries, or authorization rules in this file.
+
+## Optional Process Add-ons
+
+After selecting the primary role, check for an active process record only when the work concerns it: `project/integrations/scrum.md` for sprints, estimation, readiness, or velocity; `project/integrations/contracts.md` for interfaces between modules, apps, or consumers; `project/integrations/security-auditor.md` for routine security audits and the findings log. Look under the applicable documentation root and use the nearest active record. If a record is absent, continue with the normal workflow. A record adds project rules within these instructions; it grants no authority to bypass gates, delegate, or write externally.
+
 ## Optional Matt Pocock Methods
 
 After choosing the primary role and checking the applicable delivery gates, select a method only when the current assignment calls for it. Honor an explicit method request or opt-out. Otherwise use `diagnosing-bugs` for hard-to-reproduce defects or performance regressions, `tdd` when the assignment calls for test-first work, `grill-me` for a request to work through open design decisions, or `to-questionnaire` when the user wants questions for someone else to answer.
