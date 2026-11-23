@@ -23,6 +23,9 @@ After my confirmation:
 2. Copy the role profile to .github/agents/security-auditor.agent.md and add a
    security-auditor row to .github/agents/README.md.
 3. Copy the findings log template to <docs-root>/quality/security-findings.md.
+   In the workspace layout, or whenever the application repository is public,
+   use the private documentation root instead and never place the log in the
+   application repository.
 4. Copy the adapter for each tool in use (Claude Code, Codex, Kiro) to the path
    listed in the README. GitHub Copilot uses the shared role profile directly.
 5. Only if I explicitly choose automation, install the selected hook as described

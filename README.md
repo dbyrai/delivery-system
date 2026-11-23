@@ -175,6 +175,7 @@ The Delivery System can be used in two ways:
 
 - for a new project, by starting from this repository structure before implementation begins
 - for an existing project, by adding the structure after a short repository review
+- as a private workspace around a separate application repository, for example when the application is public; see the [workspace layout](delivery-system.md#workspace-layout-example)
 
 For existing projects, do a pre-bootstrap review before copying or adapting files. The goal is to understand the current repository shape, not to rewrite it. Review the existing README, architecture notes, package layout, build commands, test setup, deployment files, ownership boundaries, and any current documentation. Capture the result in `docs/project/overview.md`, `docs/project/decisions.md`, or a dedicated review note before starting the bootstrap sequence.
 

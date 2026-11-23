@@ -10,7 +10,10 @@ open question. This record must stay usable after the add-on directory is remove
 
 ## Scope
 
-Load this record for routine security audits and work on the findings log. The role profile is `.github/agents/security-auditor.agent.md`; the log is `docs/quality/security-findings.md`.
+Load this record for routine security audits and work on the findings log. The role profile is `.github/agents/security-auditor.agent.md`.
+
+- Findings log: {docs/quality/security-findings.md, or private/docs/quality/security-findings.md in the workspace layout}
+- Repository audited: {. | app/ in the workspace layout}
 
 ## Triggers
 

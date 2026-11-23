@@ -12,6 +12,19 @@ Apply this order within the repository; applicable tool/system safety policies r
 4. Selected role guidance under `.github/agents/`.
 5. General engineering practices.
 
+## Repository Layout
+
+Repository layout: standard
+Project documentation root: docs/
+Private documentation root: none
+Application repository: none
+
+In the `standard` layout the Delivery System, project documentation, and application code share one repository. In the `workspace` layout this repository is a private workspace holding only the Delivery System, and the application is a separate Git repository in the named subdirectory (for example `app/`), ignored by the workspace. Then:
+
+- Work from the workspace root. Treat the workspace `docs/` as templates and baselines only; never fill it. Write project documents to the project documentation root inside the application repository.
+- Write sensitive documents (security findings, confidential policy details, repository reviews, sprint reports with personal data) only to the private documentation root, never to a public application repository. Do not link to private documents from public ones. Look up integration and process records under both roots.
+- Run Git commands for application code and project documentation with `git -C <application repository>`; use the workspace repository only for Delivery System changes.
+
 ## Task Routing and Context Loading
 
 1. Check the working-tree state before edits. Preserve unrelated and uncommitted user changes.

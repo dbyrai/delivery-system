@@ -13,7 +13,7 @@ Use this optional add-on when the project wants routine security and code-qualit
 | --- | --- |
 | [security-auditor.agent.md](security-auditor.agent.md) | `.github/agents/security-auditor.agent.md` plus a row in the role index |
 | [record.md](record.md) | `<docs-root>/project/integrations/security-auditor.md`: triggers, severity handling, scope |
-| [templates/security-findings.md](templates/security-findings.md) | `<docs-root>/quality/security-findings.md` |
+| [templates/security-findings.md](templates/security-findings.md) | `<docs-root>/quality/security-findings.md`, or the private documentation root in the workspace layout |
 | [adapters/claude-agent.md](adapters/claude-agent.md) | `.claude/agents/security-auditor.md` |
 | [adapters/codex-agent.toml](adapters/codex-agent.toml) | `.codex/agents/security-auditor.toml` |
 | [adapters/kiro-agent.md](adapters/kiro-agent.md) | `.kiro/agents/security-auditor.md` |
@@ -34,7 +34,7 @@ Hooks run without a per-task request, so activate them only on explicit decision
   }
   ```
 
-  It asks for an audit once per distinct set of changed code files. Set `SECURITY_AUDIT=off` to skip it for a session.
+  It asks for an audit once per distinct set of changed code files. Set `SECURITY_AUDIT=off` to skip it for a session. In the workspace layout, set `SECURITY_AUDIT_REPO=app` (or the application directory) in the hook command or the `env` section of `.claude/settings.json`, and match `CODE` against paths inside the application repository.
 - **Kiro**: copy [adapters/kiro-post-task-hook.json](adapters/kiro-post-task-hook.json) to `.kiro/hooks/`. Verify the hook format and trigger in your Kiro version; this file was not tested against a live Kiro client.
 
 ## Activate

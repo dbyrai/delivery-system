@@ -13,7 +13,7 @@ Primary role: Product Manager for project definition (overview, requirements, ro
 
 1. Check the working tree and whether a bootstrap was already completed. Do not rerun completed steps or replace completed documents; continue at the first open or deferred step.
 2. Ask whether this is a brand-new project or an existing repository. For an existing repository, run Step 0 and write the review note described in `delivery-system.md`. For a new project, record Step 0 as not applicable.
-3. Confirm the repository shape (single project or monorepo, documentation root) and which AI tools will use it.
+3. Confirm the repository shape (single project, monorepo, or workspace layout as described in `delivery-system.md`), the documentation root, and which AI tools will use it. For the workspace layout, confirm the application directory, the project and private documentation roots, and whether the application repository is public; set the layout lines in `.github/copilot-instructions.md`, then copy the needed templates and baselines from the workspace `docs/` into the project documentation root and fill them there.
 
 ## Each Step
 
