@@ -27,14 +27,7 @@ Ask for the mode: **Full** (A then B), **Refinement only** (A), or **Planning on
 1. **Re-prioritize**: run the `prioritize` skill inline and finish it with explicit user confirmation.
 2. **Feature list**: collect specs planned for the target version and not yet delivered (roadmap, spec status, changelog). One row per spec.
 3. **Remediation candidates**: read the quality logs. Always surface open High/Critical security findings as Must candidates; add Medium/Low findings and tech-debt items that touch in-scope areas or block planned work. State explicitly when a log is missing or has no relevant entries.
-4. **Backlog table**:
-
-   ```markdown
-   | Feature / Spec | Short Description | Spec Status | MoSCoW | Prio | Effort | Refinement |
-   | --- | --- | --- | --- | --- | --- | --- |
-   ```
-
-   Effort is the human estimate in story points if a sized task exists, otherwise `-`.
+4. **Backlog table**: use the `## Backlog` table of the planning template in `docs/sprints/README.md`. Effort is the human estimate in story points if a sized task exists, otherwise `-`.
 5. **Refinement status**: `Ready` when the spec passes DoR Spec (and, with the Contracts record active, its required contracts are at least `review`); otherwise `Needs Refinement` with the open questions listed for the refinement meeting. A missing task file is not a blocker; it is the task-file author's first step after handoff. Refinement status lives only in `planning.md`.
 6. **Write** the header and `## Backlog` chapter of `docs/sprints/{N}/planning.md` after the user confirms the content.
 
@@ -42,12 +35,12 @@ Ask for the mode: **Full** (A then B), **Refinement only** (A), or **Planning on
 
 1. **Velocity**: from the last three reports compute per-sprint velocity, average, trend, and velocity per person-day. If the previous report is missing, recommend `sprint-close` first. Apply the latest report's open action items and learnings for planning and say which ones changed the recommendation.
 2. **Ready tasks**: list candidate tasks passing DoR Task (points set, linked spec, owner, no blockers), sorted by roadmap order.
-3. **Contract dependencies** (Contracts record active only): `| Task | Required Contract | Contract Status | DoR Met |`; flag contracts below `review`.
-4. **Remediation**: `| ID | Source | Area | Severity / Priority | In scope this sprint? | Note |`. Open High/Critical security findings are Must unless the user explicitly defers them. Unsized remediation is a gap to size, not committed work.
+3. **Contract dependencies** (Contracts record active only): flag contracts below `review`.
+4. **Remediation**: open High/Critical security findings are Must unless the user explicitly defers them. Unsized remediation is a gap to size, not committed work.
 5. **Capacity**: ask for available developers and absences; compute person-days and the recommended load from the SCRUM record.
 6. **Recommendation**: tasks within capacity by priority, load against capacity, risks, and tasks not ready with what is missing. If a High/Critical finding does not fit, flag it as a risk instead of dropping it.
 
-In Full mode write Phase B under `## Sprint Planning` in `planning.md`.
+Present Phase B in the structure of the `## Sprint Planning` chapter of the planning template in `docs/sprints/README.md`; in Full mode write it into `planning.md`.
 
 ## Rules
 

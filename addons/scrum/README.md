@@ -10,7 +10,7 @@ Use this optional add-on when a project works in sprints with story-point estima
 | [templates/dor-checklist.md](templates/dor-checklist.md) | `<docs-root>/quality/dor-checklist.md`: DoR Spec and DoR Task |
 | [templates/sprints-README.md](templates/sprints-README.md) | `<docs-root>/sprints/README.md`: planning and report templates |
 | [templates/tech-debt.md](templates/tech-debt.md) | `<docs-root>/quality/tech-debt.md`: technical-debt log |
-| [skills/](skills/) | `.github/skills/<name>/SKILL.md` plus wrappers for the tools in use |
+| [skills/](skills/) | `.github/skills/<name>/` (`SKILL.md` and `template.md` if present) plus wrappers for the tools in use |
 
 Skills: `sprint-planning` (refinement and planning prep), `sprint-close` (report, velocity, retro), `dor-readiness-check` (one spec against DoR), and `dod-readiness-check` (finished work against DoD).
 

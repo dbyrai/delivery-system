@@ -24,7 +24,8 @@ After my confirmation:
 1. Write the completed record to <docs-root>/project/integrations/scrum.md.
 2. Copy the templates to <docs-root>/quality/dor-checklist.md,
    <docs-root>/sprints/README.md, and <docs-root>/quality/tech-debt.md.
-3. Copy each skill to .github/skills/<name>/SKILL.md and create a wrapper for
+3. Copy each skill folder (SKILL.md and template.md if present) to
+   .github/skills/<name>/ and create a wrapper for
    each tool in use, matching the existing wrappers: .claude/skills/<name>/SKILL.md,
    .agents/skills/<name>/SKILL.md, .kiro/skills/<name>/SKILL.md, each with the
    skill's name and description in front matter and the single line

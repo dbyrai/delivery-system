@@ -9,7 +9,7 @@ Act as the Product Manager (`.github/agents/product-manager.agent.md`).
 
 ## 1. Inventory
 
-Read the roadmap, the specs in scope with their status and priority, and the changelog if the project keeps one. Present items grouped by current priority (Must, Should, Could, Won't, unassigned) and flag blocked or at-risk items.
+Read the roadmap, the specs in scope with their status and priority, and the changelog if the project keeps one. Present the inventory from `.github/skills/prioritize/template.md`, grouped by current priority, and flag blocked or at-risk items.
 
 ## 2. Evaluate
 
@@ -27,12 +27,7 @@ Ask focused questions with a recommended answer for each.
 
 ## 3. Propose
 
-```markdown
-| Item | Current | Proposed | Rationale |
-| --- | --- | --- | --- |
-```
-
-Flag dependencies (an item cannot become Must before its prerequisite) and be honest when there are more Musts than available capacity.
+Present the proposal from `.github/skills/prioritize/template.md` with a rationale per item. Flag dependencies and be honest when there are more Musts than available capacity.
 
 ## 4. Apply
 

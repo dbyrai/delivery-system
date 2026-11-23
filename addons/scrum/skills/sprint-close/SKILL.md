@@ -23,7 +23,7 @@ If the sprint has not ended, offer a screen-only preview.
 
 ## Step 1: Plan Versus Result
 
-`| Item | Planned | Size | Result | Note |` with Planned = committed, added mid-sprint, unplanned, or removed and Result = Done, Carry-over, Dropped, or Not started. Flag discrepancies (Done without merge, merge without Done, unsized work) and ask the responsible developer instead of deciding. Rate the sprint goal: Achieved, Partially, or Missed, with one sentence.
+Fill the `Planning vs. Result` table of the report template in `docs/sprints/README.md`, with Planned = committed, added mid-sprint, unplanned, or removed and Result = Done, Carry-over, Dropped, or Not started. Flag discrepancies (Done without merge, merge without Done, unsized work) and ask the responsible developer instead of deciding. Rate the sprint goal: Achieved, Partially, or Missed, with one sentence.
 
 ## Step 2: Velocity
 

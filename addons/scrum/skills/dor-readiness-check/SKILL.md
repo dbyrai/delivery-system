@@ -21,25 +21,7 @@ Open every referenced target and confirm it exists and is current: related specs
 
 ## Step 3: Findings
 
-| Severity | Meaning |
-| --- | --- |
-| Critical | Blocks task creation: open blocking questions, no verifiable acceptance criteria, not approved, required contract missing |
-| High | Will cause rework: undocumented dependencies, missing security requirements, superseded reference |
-| Medium | Workable gap: stale date, missing success indicator |
-| Low | Hygiene: single missing priority tag, link formatting |
-
-```markdown
-## DoR Readiness: {Spec Title} ({spec path})
-
-**Verdict**: READY | PARTIALLY READY | NOT READY
-**DoR Spec**: {met}/{total} criteria met
-**References**: {checked} checked, {issues} issues
-
-| # | Severity | Area | Finding | Evidence | Recommendation |
-| --- | --- | --- | --- | --- | --- |
-```
-
-Verdict: any Critical means NOT READY; no Critical but at least one High means PARTIALLY READY; otherwise READY with the noted hygiene items.
+Rate every gap and write the report using `.github/skills/dor-readiness-check/template.md` (severity scale, report format, verdict rule).
 
 ## Rules
 

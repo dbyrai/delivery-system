@@ -73,6 +73,9 @@ _(Full-flow mode only — Phase B output.)_
 ### Contract Dependencies
 {table: Task, Contract, Status, DoR Met; only when the Contracts add-on is active}
 
+### Remediation
+{table: ID, Source, Area, Severity / Priority, In scope this sprint?, Note}
+
 ### Capacity
 {available days, recommended load}
 

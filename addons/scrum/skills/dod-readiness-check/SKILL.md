@@ -23,26 +23,7 @@ For each acceptance criterion of the source spec, confirm the delivered work sat
 
 ## Step 3: Findings
 
-| Severity | Meaning |
-| --- | --- |
-| Critical | Not done: unmet Must criterion, failing build or tests, committed secret, violated contract |
-| High | Likely defects or rework: unhandled edge states, missing evidence for a risky change |
-| Medium | Non-blocking gap: documentation not updated, follow-ups not captured |
-| Low | Hygiene: missing changed-files summary, cosmetic drift |
-
-```markdown
-## DoD Readiness: {Task or Feature} ({task path})
-
-**Source Spec**: {spec path}
-**Verdict**: DONE | PARTIALLY DONE | NOT DONE
-**DoD**: {met}/{total} criteria met
-**Acceptance Criteria**: {met}/{total} satisfied
-
-| # | Severity | Area | Finding | Evidence | Recommendation |
-| --- | --- | --- | --- | --- | --- |
-```
-
-Verdict: any Critical means NOT DONE; no Critical but at least one High means PARTIALLY DONE; otherwise DONE with noted follow-ups.
+Rate every gap and write the report using `.github/skills/dod-readiness-check/template.md` (severity scale, report format, verdict rule).
 
 ## Rules
 

@@ -14,36 +14,10 @@ Typical cases are architectural shape, integration patterns, lock-in technology,
 
 ## Storage
 
-Record decisions in this file by default. When decisions become numerous or long, store each as `docs/project/adr/NNN-slug.md` (next number after the highest existing file) and keep this file as the index:
+Use the [decision template](adr/template.md). Record decisions in this file by default, under Accepted Decisions, with every template heading shifted down one level. When decisions become numerous or long, store each as `docs/project/adr/NNN-slug.md` (next number after the highest existing file, starting at `001`) and keep this file as the index:
 
 | Decision | File | Topic | Date | Status | Owner |
 | --- | --- | --- | --- | --- | --- |
-
-## Decision Template
-
-```markdown
-## Decision: [Title]
-
-**Date**: YYYY-MM-DD
-**Status**: Proposed | Accepted | Superseded
-**Owner**: [Role/name]
-
-### Context
-
-[What problem or constraint led to this decision?]
-
-### Decision
-
-[What was decided?]
-
-### Alternatives Considered
-
-- [Alternative and reason it was not chosen]
-
-### Consequences
-
-- [Tradeoff, follow-up, or impact]
-```
 
 ## Accepted Decisions
 
