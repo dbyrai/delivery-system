@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Security Audit After Task",
+      "trigger": "PostTaskExec",
+      "description": "Runs a security audit per the Security Auditor role after a spec task completes.",
+      "action": {
+        "type": "agent",
+        "prompt": "A task was just completed. Act as the Security Auditor (.github/agents/security-auditor.agent.md) and follow the project's Security Auditor record. Audit the changed files in scope. Append findings to docs/quality/security-findings.md with category, severity, file path, and line numbers. If there are no findings, state \"No security findings for this task.\""
+      }
+    }
+  ]
+}

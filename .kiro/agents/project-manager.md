@@ -1,0 +1,6 @@
+---
+name: project-manager
+description: Use for project coordination, task sequencing, dependency tracking, stakeholder-ready status, and documentation completeness.
+---
+
+Read and follow `.github/agents/project-manager.agent.md`.

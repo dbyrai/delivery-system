@@ -13,7 +13,7 @@ The Delivery System gives humans and AI agents a common operating model:
 - capture project context before implementation starts
 - define goals, non-goals, requirements, and open questions
 - turn requirements into scoped tasks with ownership and verification steps
-- use role-specific agent guidance for frontend, backend, QA, DevOps, project management, and content work
+- use role-specific agent guidance for product, project management, frontend, backend, integration, QA, DevOps, security, and content work
 - keep acceptance evidence, risks, and decisions close to the work
 
 In short: this repo is the working structure behind dbyrai's approach to structured AI engineering.
@@ -30,6 +30,8 @@ The public website explains the product story: moving from vibe coding to verifi
 - `.github/copilot-instructions.md` - project instructions for AI assistants
 - `.github/agents/` - role-specific guidance for GitHub Copilot, ChatGPT Codex, Claude Code, and other AI-assisted project workflows
 - `.claude/agents/` - Claude Code wrappers that delegate to the shared `.github/agents/` role guidance
+- `.github/skills/` - shared workflow skills (`bootstrap`, `new-feature`, `spec`, `bugfix`, `prioritize`) with thin wrappers in `.claude/skills/`, `.agents/skills/` (Codex), and `.kiro/skills/`
+- `.kiro/` - Kiro steering, agent, and skill wrappers that delegate to the shared instructions, roles, and skills
 - `delivery-system.md` - bootstrap process for starting a new project from this structure
 - `docs/project/` - project overview, roadmap, and decisions
 - `docs/specs/` - requirements and specification templates
@@ -99,8 +101,9 @@ Maintain common workflow rules in [`.github/copilot-instructions.md`](.github/co
 | Codex | `AGENTS.md` | Explicit instruction to read `.github/copilot-instructions.md` |
 | Claude Code | `CLAUDE.md` | Imports `.github/copilot-instructions.md` using `@` syntax |
 | GitHub Copilot | `.github/copilot-instructions.md` | Uses the shared file directly on supported surfaces with repository instructions enabled |
+| Kiro | `.kiro/steering/delivery-system.md` | Always-included steering file that references `.github/copilot-instructions.md` |
 
-The files in `.claude/agents/` and `.codex/agents/` reference the same role profiles. Global rules come from the tool entry points and repository instructions rather than being repeated in each adapter. Other assistants need access to these files and an entry instruction to read them. For a web chat without repository access, supply the shared instructions and relevant project files as context. Verify instruction loading in each tool; these documents guide model behavior and are not an enforcement mechanism.
+The files in `.claude/agents/`, `.codex/agents/`, and `.kiro/agents/` reference the same role profiles, and the skill wrappers in `.claude/skills/`, `.agents/skills/`, and `.kiro/skills/` reference the shared skills in `.github/skills/`. Global rules come from the tool entry points and repository instructions rather than being repeated in each adapter. Other assistants need access to these files and an entry instruction to read them. For a web chat without repository access, supply the shared instructions and relevant project files as context. Verify instruction loading in each tool; these documents guide model behavior and are not an enforcement mechanism.
 
 ## Context-Aware Workflow in v2
 
@@ -127,6 +130,10 @@ The optional [Matt Pocock skills add-on](addons/mattpocock-skills/README.md)
 offers a [selection prompt](addons/mattpocock-skills/integration-prompt.md)
 for project-local debugging, TDD, and decision-clarification methods. Its
 activation creates a single integration entry for task-based method selection.
+
+The optional process add-ons [SCRUM](addons/scrum/README.md), [Contracts](addons/contracts/README.md),
+and [Security Auditor](addons/security-auditor/README.md) add sprint and estimation
+rules, interface contracts, or routine security audits with a findings log.
 
 The optional [Security add-on](addons/security/README.md) provides a skill catalog,
 project-local activation for software and infrastructure reviews, and a shared
