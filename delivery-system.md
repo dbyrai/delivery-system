@@ -10,6 +10,8 @@ It provides a documentation structure, AI instruction files, role-based agent gu
 - `.github/copilot-instructions.md` - Copilot-compatible AI instructions
 - `.github/agents/` - role-specific agent instructions for GitHub Copilot, ChatGPT Codex, Claude Code, and other AI-assisted workflows
 - `.claude/agents/` - Claude Code wrappers that delegate to the shared `.github/agents/` role guidance
+- `.github/skills/` - shared workflow skills (`bootstrap`, `new-feature`, `spec`, `bugfix`, `prioritize`) with thin wrappers in `.claude/skills/`, `.agents/skills/` (Codex), and `.kiro/skills/`
+- `.kiro/` - Kiro steering, agent, and skill wrappers that delegate to the shared instructions, roles, and skills
 - `addons/` - optional MCP adapters, configuration helper, and AI adaptation prompts
 - `docs/project/` - project overview, roadmap, and decisions
 - `docs/specs/` - requirements and specification templates
@@ -38,6 +40,11 @@ guide explains how to make configured integrations independent of these optional
 files. Users may [remove individual add-ons or the entire directory](addons/README.md#removing-instruction-files)
 and clean associated links; disabling an active connection is a separate action.
 Existing v2.0 adopters can use the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
+
+The optional process add-ons [SCRUM](addons/scrum/README.md), [Contracts](addons/contracts/README.md),
+and [Security Auditor](addons/security-auditor/README.md) add sprint and estimation
+rules, interface contracts, or routine security audits. Each activates one project
+record under `docs/project/integrations/` that the shared routing loads only when relevant.
 
 The optional [Matt Pocock skills add-on](addons/mattpocock-skills/README.md)
 activates selected methods in `docs/project/integrations/`. The shared task
@@ -69,6 +76,8 @@ Use this delivery system as a gated sequence, not as loose guidance.
 3. Stop at the first blocking open question.
 4. Resolve or explicitly defer the question before continuing.
 5. Start implementation only after the bootstrap sequence has a clear completed or deferred state.
+
+The shared `bootstrap` skill walks through this sequence interactively, one step at a time.
 
 ## How To Adopt An Existing Project
 
@@ -430,6 +439,52 @@ company-platform/
 
 Use root-level `docs/` for shared project context, cross-cutting decisions, platform-level requirements, security expectations, and global quality standards. Use subproject-level `docs/` for local goals, requirements, tasks, acceptance criteria, and delivery evidence.
 
+## Workspace Layout Example
+
+Use the workspace layout when the application repository must stay free of AI instructions and delivery tooling, for example because it is public. A private workspace repository holds the Delivery System; the application is a separate repository in a subdirectory that keeps its own project documentation.
+
+```text
+product-workspace/          # private workspace repository
+  AGENTS.md
+  CLAUDE.md
+  delivery-system.md
+  .github/
+    copilot-instructions.md # layout settings
+    agents/
+    skills/
+  .claude/ .codex/ .agents/ .kiro/
+  docs/                     # templates and baselines only, never filled
+  private/
+    docs/                   # sensitive project documents
+      quality/
+        security-findings.md
+  app/                      # separate application repository, ignored by the workspace
+    src/
+    docs/                   # project documentation root
+      project/
+      specs/
+      tasks/
+      quality/
+```
+
+Rules:
+
+- Always start AI tools from the workspace root; the application repository alone carries no AI instructions.
+- Set `Repository layout: workspace`, the project and private documentation roots, and the application directory in `.github/copilot-instructions.md`. These lines are the workspace's only project-specific change to shared files.
+- Add the application directory to the workspace `.gitignore`. Run Git commands for code and project documents with `git -C app`; commit to the workspace only for Delivery System changes.
+- Copy templates and baselines from the workspace `docs/` into the project documentation root during bootstrap and fill them there. The workspace `docs/` stays unchanged, so Delivery System updates merge without conflicts.
+- Keep the workspace repository private. A GitHub fork of a public repository cannot be made private; create a private copy and add the upstream repository as an additional remote instead.
+- Record the adopted Delivery System version or commit in `docs/project/overview.md` of the application, and the workspace decision in its decisions.
+
+Decide per document whether it may be public:
+
+| Usually public in `app/docs/` | Usually private in `private/docs/` |
+| --- | --- |
+| Overview, roadmap, specs, tasks, acceptance criteria | Security findings and unreleased vulnerability details |
+| Architecture decisions without confidential context | Confidential security or compliance policy details |
+| Test strategy, Definition of Done, manual tests | Existing repository review with internal risks |
+| Contracts for public interfaces | Sprint reports with names, capacity, or personal data |
+
 ## Using Task Artifacts
 
 Use `docs/tasks/artifacts/` for supporting information that should not clutter the main task file.
@@ -466,18 +521,24 @@ For ChatGPT Codex:
 
 - Start from `AGENTS.md` and follow its reference to `.github/copilot-instructions.md`.
 - Load only the task-relevant sources selected by the shared routing table; reuse unchanged context.
-- Use `.github/agents/` for role-specific behavior.
+- Use `.github/agents/` for role-specific behavior and `.agents/skills/` wrappers for shared skills.
 
 For GitHub Copilot:
 
 - Use `.github/copilot-instructions.md`.
+- Shared skills are read from `.github/skills/`.
 - Keep project-specific knowledge in `docs/`.
 
 For Claude Code:
 
 - Start from `CLAUDE.md`, which imports `.github/copilot-instructions.md`.
-- Use `.claude/agents/` only as wrappers.
+- Use `.claude/agents/` and `.claude/skills/` only as wrappers.
 - Keep `.github/agents/` as the shared source for role guidance.
+
+For Kiro:
+
+- `.kiro/steering/delivery-system.md` is always included and references `.github/copilot-instructions.md`.
+- Use `.kiro/agents/` and `.kiro/skills/` only as wrappers.
 
 For all AI tools:
 

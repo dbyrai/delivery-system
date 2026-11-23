@@ -12,6 +12,19 @@ Apply this order within the repository; applicable tool/system safety policies r
 4. Selected role guidance under `.github/agents/`.
 5. General engineering practices.
 
+## Repository Layout
+
+Repository layout: standard
+Project documentation root: docs/
+Private documentation root: none
+Application repository: none
+
+In the `standard` layout the Delivery System, project documentation, and application code share one repository. In the `workspace` layout this repository is a private workspace holding only the Delivery System, and the application is a separate Git repository in the named subdirectory (for example `app/`), ignored by the workspace. Then:
+
+- Work from the workspace root. Treat the workspace `docs/` as templates and baselines only; never fill it. Write project documents to the project documentation root inside the application repository.
+- Write sensitive documents (security findings, confidential policy details, repository reviews, sprint reports with personal data) only to the private documentation root, never to a public application repository. Do not link to private documents from public ones. Look up integration and process records under both roots.
+- Run Git commands for application code and project documentation with `git -C <application repository>`; use the workspace repository only for Delivery System changes.
+
 ## Task Routing and Context Loading
 
 1. Check the working-tree state before edits. Preserve unrelated and uncommitted user changes.
@@ -31,6 +44,14 @@ Apply this order within the repository; applicable tool/system safety policies r
 | Release, operations, or migration | Relevant release/runbook/upgrade instructions, affected configuration, verification and rollback expectations |
 
 The overview, full delivery handbook, all baseline files, and all roles are not universal startup reading. Classify mixed requests by all affected concerns; routing is never an exemption from required acceptance or safety gates. Keep existing documentation roots, including subproject roots, and resolve their nearest applicable instructions before using generic paths.
+
+## Shared Skills
+
+Workflow skills live in `.github/skills/<name>/SKILL.md`; tool wrappers in `.claude/skills/`, `.agents/skills/`, and `.kiro/skills/` only delegate there. Use a skill when the user invokes it or the request clearly matches its description. A skill sequences work for the primary role it names; it does not override source authority, delivery gates, work boundaries, or authorization rules in this file.
+
+## Optional Process Add-ons
+
+After selecting the primary role, check for an active process record only when the work concerns it: `project/integrations/scrum.md` for sprints, estimation, readiness, or velocity; `project/integrations/contracts.md` for interfaces between modules, apps, or consumers; `project/integrations/security-auditor.md` for routine security audits and the findings log. Look under the applicable documentation root and use the nearest active record. If a record is absent, continue with the normal workflow. A record adds project rules within these instructions; it grants no authority to bypass gates, delegate, or write externally.
 
 ## Optional Matt Pocock Methods
 
