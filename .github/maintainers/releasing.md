@@ -30,7 +30,7 @@ Describe the change in the branch name. Assign the release version from the comp
 
 ## Version Policy
 
-Use `vMAJOR.MINOR.PATCH` tags, following [Semantic Versioning](https://semver.org/) principles. For this template, the compatibility surface consists of documented bootstrap behavior, required gates, file paths, template structure, and shared agent instructions.
+Use `vMAJOR.MINOR.PATCH` tags, following [Semantic Versioning](https://semver.org/) principles. When external validation is required before a stable publication, use an incrementing `vMAJOR.MINOR.PATCH-rc.N` tag and mark the GitHub release as a pre-release. Publish the stable version only after the release-candidate findings are resolved or explicitly accepted. For this template, the compatibility surface consists of documented bootstrap behavior, required gates, file paths, template structure, and shared agent instructions.
 
 | Increment | When to use it | Example |
 | --- | --- | --- |
@@ -46,7 +46,9 @@ Judge compatibility by behavior, even when only Markdown changes. Adding this ma
 2. Confirm the approved source commit is present in the upstream GitHub repository. Compare local and remote state before choosing the release commit; do not release uncommitted working-tree changes.
 3. Select the version and prepare release notes using the outline below. Review the changes since the previous release tag rather than only the latest pull request.
 4. Confirm who will create the tag, push it, and publish the GitHub release. An agent requires explicit authorization for these actions. Request only authorization not already provided in the current task.
-5. Create an annotated tag on the exact approved commit. Replace both placeholders below before running the command:
+5. Create an annotated tag on the exact approved commit. For a release candidate,
+   use the approved `vX.Y.Z-rc.N` version and mark the corresponding GitHub release
+   as a pre-release. Replace both placeholders below before running the command:
 
    ```sh
    git tag -a vX.Y.Z <approved-commit-sha> -m "Delivery System vX.Y.Z"

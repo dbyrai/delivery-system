@@ -21,6 +21,9 @@ adoption must satisfy the existing bootstrap gates.
 
 ## Getting Started
 
+For a short walkthrough aimed at a first-time Manus user, start with the
+[new-project quickstart](quickstart-new-project.md).
+
 1. Follow the [Manus how-to](howto.md) to verify GitHub access and the working mode.
 2. Prepare the target project with the [integration prompt](integration-prompt.md).
 3. Adapt the [project instructions](templates/manus-project-instructions.md), make
