@@ -139,6 +139,10 @@ and bootstrapping new ones, then implementing approved specs and tasks. The
 [graphical workflow](addons/manus/workflow.md). No external Manus API is required;
 actual repository access and instruction loading must be verified in Manus.
 
+The optional [Workspace Layout add-on](addons/workspace-layout/README.md) keeps
+the Delivery System and private records in a separate workspace repository while
+leaving the standard single-repository layout unchanged.
+
 Existing v2.0 projects can follow the [v2.1 adoption guide](howto/upgrades/v2.0-to-v2.1.md).
 Adoption is optional. Users can delete individual add-ons or the entire `addons/`
 directory and remove associated links; see the [removal instructions](addons/README.md#removing-instruction-files).

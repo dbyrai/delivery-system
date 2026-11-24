@@ -50,6 +50,10 @@ and bootstrapping new ones, then implementing approved specs and tasks. The
 [graphical workflow](addons/manus/workflow.md). No external Manus API is required;
 actual repository access and instruction loading must be verified in Manus.
 
+The optional [Workspace Layout add-on](addons/workspace-layout/README.md) supports
+a private Delivery System workspace with a separately versioned application
+repository. It is inactive until explicitly configured.
+
 ## Bootstrap Rules
 
 Use this delivery system as a gated sequence, not as loose guidance.
