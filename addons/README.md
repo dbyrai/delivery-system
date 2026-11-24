@@ -1,10 +1,29 @@
-# Optional Integration Add-ons
+# Optional Add-ons
 
-These optional packages are adapters connecting the Delivery System to external
-tools through MCP. Each includes setup, identity/hierarchy rules, verification,
-and deactivation. The shared executable configuration helper prepares real client
-profiles. Copying files alone activates nothing; a mapping document alone is not
-a working adapter. No background synchronization service is installed.
+These optional packages extend the Delivery System without expanding its default
+workflow. They can provide external integrations, process guidance, tool adapters,
+or alternative repository layouts. Copying files alone activates nothing. Each
+package defines its own setup, verification, and deactivation boundaries.
+
+## Add-on Lifecycle Contract
+
+Every add-on follows the same lifecycle:
+
+1. **Distributed**: files exist under `addons/<name>/`, but no project behavior is active.
+2. **Prepared**: setup decisions and exact target paths are reviewed; existing files are preserved.
+3. **Active**: a durable project record exists under the project's documentation root and a short conditional pointer in the shared instructions routes relevant work to it.
+4. **Verified**: the installed files, intended client behavior, and removal path have been checked with evidence appropriate to the add-on.
+5. **Inactive**: automation and access owned by the add-on are stopped, the routing pointer is removed, and retained records are marked inactive or archived.
+
+An active project record must remain usable after `addons/` is removed. It records
+the owner, adopted version or commit, scope, configuration without secrets,
+verification evidence, known limitations, and removal decisions. Activated files
+must not import instructions from `addons/`. Activation is explicit opt-in and
+authorizes only the changes confirmed during setup.
+
+External MCP adapters additionally use the shared executable configuration helper
+to prepare real client profiles. A mapping document alone is not a working adapter,
+and no background synchronization service is installed.
 
 The optional [Matt Pocock skills add-on](mattpocock-skills/README.md) lists
 upstream skills and activates selected, adapted methods in one project-local
@@ -40,7 +59,7 @@ the tool can read the repository; otherwise supply the relevant files as context
 MCP configuration, authentication, active-session tools, and target reads are
 required during adapter setup. No client or server is assumed already installed. See the [v2.0-to-v2.1 adoption guide](../howto/upgrades/v2.0-to-v2.1.md).
 
-## Shared Setup Lifecycle
+## Shared MCP Setup Lifecycle
 
 1. Inspect the working tree, applicable repository instructions, existing
    documentation root, current integration rules, task IDs, and project-specific

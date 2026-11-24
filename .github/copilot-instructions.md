@@ -32,6 +32,12 @@ Apply this order within the repository; applicable tool/system safety policies r
 
 The overview, full delivery handbook, all baseline files, and all roles are not universal startup reading. Classify mixed requests by all affected concerns; routing is never an exemption from required acceptance or safety gates. Keep existing documentation roots, including subproject roots, and resolve their nearest applicable instructions before using generic paths.
 
+## Optional Add-ons
+
+Files under `addons/` are distribution packages and are inactive by default. An add-on is active only when its setup flow has created a durable project record under the applicable documentation root and added a short conditional pointer to that record from these shared instructions. Load an active record only when the current request concerns its scope; do not scan or load unrelated add-ons.
+
+An active record must contain the operational rules needed after `addons/` is removed, identify its owner and source revision, and describe scope, activation state, verification, and removal. It must not import instructions from `addons/`. If the record or conditional pointer is absent, continue with the core workflow. Add-on activation grants no authority to change external systems, install automation, commit, push, merge, or publish.
+
 ## Optional Matt Pocock Methods
 
 After choosing the primary role and checking the applicable delivery gates, select a method only when the current assignment calls for it. Honor an explicit method request or opt-out. Otherwise use `diagnosing-bugs` for hard-to-reproduce defects or performance regressions, `tdd` when the assignment calls for test-first work, `grill-me` for a request to work through open design decisions, or `to-questionnaire` when the user wants questions for someone else to answer.
