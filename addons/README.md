@@ -15,6 +15,10 @@ in Manus: adopt an existing project or bootstrap a new one, then implement the
 approved specs/tasks. It includes a how-to, project instructions, review rules,
 and setup/removal prompts. It requires no external Manus API.
 
+The optional [Kiro add-on](kiro/README.md) installs project-local steering and
+maps Kiro-native specs to authoritative Delivery System documents. It requires
+no MCP connection and remains inactive until explicitly installed.
+
 ## Choose an Add-on
 
 | Add-on | Intended use | Start here |
@@ -22,6 +26,7 @@ and setup/removal prompts. It requires no external Manus API.
 | Matt Pocock skills | Apply selected debugging, TDD, and decision-clarification methods | [Matt Pocock skills](mattpocock-skills/README.md) |
 | Security | Activate review methods for application code and infrastructure | [Security](security/README.md) |
 | Manus | Use Manus with GitHub for existing or new projects and approved spec/task execution | [Manus](manus/README.md) |
+| Kiro | Route Kiro to shared instructions and map native specs | [Kiro](kiro/README.md) |
 | Jira | Link delivery tasks to Jira work items and workflows | [Jira](jira/README.md) |
 | Confluence | Publish or reference selected project documentation | [Confluence](confluence/README.md) |
 | GitHub Projects | Connect repository issues and project planning | [GitHub Projects](github-projects/README.md) |
@@ -152,6 +157,8 @@ The Matt Pocock skills [deactivation prompt](mattpocock-skills/deactivation-prom
 handles its local methods entry.
 Manus provides a separate [deactivation prompt](manus/deactivation-prompt.md)
 for pending delegated work and any later configured access.
+Kiro provides a separate [deactivation prompt](kiro/deactivation-prompt.md) for
+installed steering and native-spec handover.
 Use the selected prompt with the durable project integration record. The prompt
 also works when supplied separately after optional add-on files were removed.
 When copying only selected add-ons, retain only their prompt links here.

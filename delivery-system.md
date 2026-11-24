@@ -50,6 +50,10 @@ and bootstrapping new ones, then implementing approved specs and tasks. The
 [graphical workflow](addons/manus/workflow.md). No external Manus API is required;
 actual repository access and instruction loading must be verified in Manus.
 
+The optional [Kiro workflow add-on](addons/kiro/README.md) provides project-local
+steering and native-spec mapping without changing the default workflow. It is
+inactive until explicitly installed and requires no MCP connection.
+
 ## Bootstrap Rules
 
 Use this delivery system as a gated sequence, not as loose guidance.
