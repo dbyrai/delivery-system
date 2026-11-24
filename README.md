@@ -13,7 +13,7 @@ The Delivery System gives humans and AI agents a common operating model:
 - capture project context before implementation starts
 - define goals, non-goals, requirements, and open questions
 - turn requirements into scoped tasks with ownership and verification steps
-- use role-specific agent guidance for frontend, backend, QA, DevOps, project management, and content work
+- use role-specific agent guidance for product, project management, frontend, backend, integration, QA, DevOps, security, and content work
 - keep acceptance evidence, risks, and decisions close to the work
 
 In short: this repo is the working structure behind dbyrai's approach to structured AI engineering.
