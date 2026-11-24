@@ -52,6 +52,14 @@ Look for `project/integrations/security-skills.md` under the applicable document
 
 Use the shared [Security Reviewer role](agents/security-reviewer.agent.md) for an explicitly requested independent security review. For a second review within an ongoing assignment, delegate to the project's `security-reviewer` when the client supports it and delegation is permitted. If the client cannot provide a separate reviewer, report that limitation. The current assistant can run a read-only review using the shared role and identify it as a single review. The role is available even when no optional Security method is active.
 
+## Shared Skills
+
+Workflow skills live in `.github/skills/<name>/SKILL.md`; tool wrappers in
+`.claude/skills/` and `.agents/skills/` only delegate there. Use a skill when the
+user invokes it or the request clearly matches its description. A skill sequences
+work for the primary role it names; it does not override source authority,
+delivery gates, work boundaries, or authorization rules in this file.
+
 ## Optional Diagnostic Gate
 
 Delivery diagnostics default: off

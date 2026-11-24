@@ -30,6 +30,7 @@ The public website explains the product story: moving from vibe coding to verifi
 - `.github/copilot-instructions.md` - project instructions for AI assistants
 - `.github/agents/` - role-specific guidance for GitHub Copilot, ChatGPT Codex, Claude Code, and other AI-assisted project workflows
 - `.claude/agents/` - Claude Code wrappers that delegate to the shared `.github/agents/` role guidance
+- `.github/skills/` - shared workflow skills (`bootstrap`, `new-feature`, `spec`, `bugfix`, `prioritize`) with thin wrappers in `.claude/skills/` and `.agents/skills/` (Codex)
 - `delivery-system.md` - bootstrap process for starting a new project from this structure
 - `docs/project/` - project overview, roadmap, and decisions
 - `docs/specs/` - requirements and specification templates
@@ -100,7 +101,7 @@ Maintain common workflow rules in [`.github/copilot-instructions.md`](.github/co
 | Claude Code | `CLAUDE.md` | Imports `.github/copilot-instructions.md` using `@` syntax |
 | GitHub Copilot | `.github/copilot-instructions.md` | Uses the shared file directly on supported surfaces with repository instructions enabled |
 
-The files in `.claude/agents/` and `.codex/agents/` reference the same role profiles. Global rules come from the tool entry points and repository instructions rather than being repeated in each adapter. Other assistants need access to these files and an entry instruction to read them. For a web chat without repository access, supply the shared instructions and relevant project files as context. Verify instruction loading in each tool; these documents guide model behavior and are not an enforcement mechanism.
+The files in `.claude/agents/` and `.codex/agents/` reference the same role profiles, and the skill wrappers in `.claude/skills/` and `.agents/skills/` reference the shared skills in `.github/skills/`. Global rules come from the tool entry points and repository instructions rather than being repeated in each adapter. Other assistants need access to these files and an entry instruction to read them. For a web chat without repository access, supply the shared instructions and relevant project files as context. Verify instruction loading in each tool; these documents guide model behavior and are not an enforcement mechanism.
 
 ## Context-Aware Workflow in v2
 
