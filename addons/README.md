@@ -23,6 +23,10 @@ The optional [SCRUM add-on](scrum/README.md) adds sprint planning, story-point
 estimation, readiness checks, velocity, and retrospective records. It uses
 prompt-based setup without MCP and remains inactive until explicitly adopted.
 
+The optional [Security Auditor add-on](security-auditor/README.md) adds routine
+post-task or milestone audits with a durable findings log. It uses prompt-based
+setup without MCP and remains separate from the core read-only Security Reviewer.
+
 ## Choose an Add-on
 
 | Add-on | Intended use | Start here |
@@ -31,6 +35,7 @@ prompt-based setup without MCP and remains inactive until explicitly adopted.
 | Security | Activate review methods for application code and infrastructure | [Security](security/README.md) |
 | Contracts | Manage interface contracts between modules, applications, or consumers | [Contracts](contracts/README.md) |
 | SCRUM | Add sprints, readiness checks, story points, velocity, and retrospectives | [SCRUM](scrum/README.md) |
+| Security Auditor | Run routine audits and maintain a central findings log | [Security Auditor](security-auditor/README.md) |
 | Manus | Use Manus with GitHub for existing or new projects and approved spec/task execution | [Manus](manus/README.md) |
 | Jira | Link delivery tasks to Jira work items and workflows | [Jira](jira/README.md) |
 | Confluence | Publish or reference selected project documentation | [Confluence](confluence/README.md) |
@@ -40,6 +45,7 @@ prompt-based setup without MCP and remains inactive until explicitly adopted.
 For Matt Pocock skills, use the [selection prompt](mattpocock-skills/integration-prompt.md).
 For Contracts, use its integration prompt; the MCP lifecycle below does not apply.
 For SCRUM, use its integration prompt; the MCP lifecycle below does not apply.
+For Security Auditor, use its integration prompt; the MCP lifecycle below does not apply.
 For Manus, follow its direct GitHub workflow and verify the actual connector/sync
 mode; the MCP connection and ticket hierarchy gates below do not apply to that
 workflow. The setup steps below apply to MCP adapters.
