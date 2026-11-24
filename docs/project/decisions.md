@@ -1,33 +1,26 @@
-# Decisions
+# Projektentscheidungen
 
-Use this file to record project-level and architecture decisions that affect future work.
+In dieser Datei werden Projekt- und Architekturentscheidungen festgehalten, die zukünftige Arbeiten beeinflussen.
 
-## Decision Template
+## Wann eine Entscheidung dokumentiert wird
 
-```markdown
-## Decision: [Title]
+Eine Architekturentscheidung (ADR) wird dokumentiert, wenn alle drei Bedingungen erfüllt sind:
 
-**Date**: YYYY-MM-DD
-**Status**: Proposed | Accepted | Superseded
-**Owner**: [Role/name]
+1. Sie ist schwer umkehrbar: Eine spätere Änderung verursacht einen relevanten Aufwand.
+2. Sie ist ohne Kontext überraschend: Zukünftige Beteiligte würden nach dem Grund fragen.
+3. Sie beruht auf einer echten Abwägung: Es gab sinnvolle Alternativen, von denen eine aus konkreten Gründen gewählt wurde.
 
-### Context
+Typische Fälle sind die Architekturform, Integrationsmuster, Technologiebindung, Zuständigkeits- oder Systemgrenzen, bewusste Abweichungen vom naheliegenden Weg sowie im Code nicht sichtbare Einschränkungen. Leicht umkehrbare Festlegungen ohne echte Alternative benötigen keine ADR. Eine kurze Entscheidung reicht aus; entscheidend ist, dass Ergebnis und Begründung nachvollziehbar bleiben.
 
-[What problem or constraint led to this decision?]
+## Ablage
 
-### Decision
+Verwende die [Entscheidungsvorlage](adr/template.md). Entscheidungen werden standardmäßig unter „Akzeptierte Entscheidungen“ in dieser Datei erfasst. Dabei werden alle Überschriften der Vorlage um eine Ebene herabgestuft.
 
-[What was decided?]
+Wenn Entscheidungen zahlreich oder umfangreich werden, speichere jede Entscheidung als `docs/project/adr/NNN-kurzname.md`. Verwende die nächste Nummer nach der höchsten vorhandenen Datei und beginne bei `001`. Diese Datei dient dann als Index:
 
-### Alternatives Considered
+| Entscheidung | Datei | Thema | Datum | Status | Verantwortlich |
+| --- | --- | --- | --- | --- | --- |
 
-- [Alternative and reason it was not chosen]
+## Akzeptierte Entscheidungen
 
-### Consequences
-
-- [Tradeoff, follow-up, or impact]
-```
-
-## Accepted Decisions
-
-No decisions recorded yet.
+_Noch keine Entscheidungen dokumentiert._

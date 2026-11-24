@@ -2,6 +2,7 @@
 
 **Status**: Draft | In Review | Approved | Superseded  
 **Owner**: [Role/name]  
+**Priority**: Must | Should | Could | Won't<br>
 **Last Updated**: YYYY-MM-DD  
 **Related Tasks**: `docs/tasks/[task-file].md`
 
