@@ -15,12 +15,17 @@ in Manus: adopt an existing project or bootstrap a new one, then implement the
 approved specs/tasks. It includes a how-to, project instructions, review rules,
 and setup/removal prompts. It requires no external Manus API.
 
+The optional [Contracts add-on](contracts/README.md) adds a project-local
+interface-contract lifecycle. It uses prompt-based setup without MCP and remains
+inactive until its durable project record and scoped routing pointer are created.
+
 ## Choose an Add-on
 
 | Add-on | Intended use | Start here |
 | --- | --- | --- |
 | Matt Pocock skills | Apply selected debugging, TDD, and decision-clarification methods | [Matt Pocock skills](mattpocock-skills/README.md) |
 | Security | Activate review methods for application code and infrastructure | [Security](security/README.md) |
+| Contracts | Manage interface contracts between modules, applications, or consumers | [Contracts](contracts/README.md) |
 | Manus | Use Manus with GitHub for existing or new projects and approved spec/task execution | [Manus](manus/README.md) |
 | Jira | Link delivery tasks to Jira work items and workflows | [Jira](jira/README.md) |
 | Confluence | Publish or reference selected project documentation | [Confluence](confluence/README.md) |
@@ -28,6 +33,7 @@ and setup/removal prompts. It requires no external Manus API.
 | GitLab | Connect project issues, planning, and merge requests | [GitLab](gitlab/README.md) |
 
 For Matt Pocock skills, use the [selection prompt](mattpocock-skills/integration-prompt.md).
+For Contracts, use its integration prompt; the MCP lifecycle below does not apply.
 For Manus, follow its direct GitHub workflow and verify the actual connector/sync
 mode; the MCP connection and ticket hierarchy gates below do not apply to that
 workflow. The setup steps below apply to MCP adapters.
